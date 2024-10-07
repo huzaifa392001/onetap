@@ -237,6 +237,9 @@
             </button>
             <ul>
                 <li>
+                    <a href="{{ route('home') }}"><span>Home</span></a>
+                </li>
+                <li>
                     <a href="javascript:;" data-menu="rent"><span>Rent a Car</span><i
                             class="fas fa-caret-right"></i></a>
                 </li>

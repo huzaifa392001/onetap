@@ -6,6 +6,9 @@
 
 @media (max-width: 1366px) {
 
+    .collapse_wrap .custom_collapse {
+        padding: 1.75rem 0 1.75rem 0;
+    }
 }
 
 @media (max-width: 1199.98px) {
@@ -178,7 +181,7 @@
 
     .sideMenu {
         position: relative;
-        z-index: 1111;
+        z-index: 11111111111;
     }
 
     .categoryCard .cardImg {
@@ -244,6 +247,118 @@
         text-align: center;
         font-weight: 600;
         text-transform: capitalize;
+    }
+
+    .filterCont {
+        position: fixed;
+        z-index: 1111;
+        background: #fff;
+        top: 0;
+        left: -350px;
+        max-width: 350px;
+        width: 100%;
+        min-height: 100vh;
+        transition: all 0.3s ease;
+    }
+
+    .filterCont .filters {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+    }
+
+    body:has(.filterCont.active) {
+        overflow: hidden;
+    }
+
+    .filterBtnRow .filter_action {
+        display: block;
+    }
+
+    .filterCont.active {
+        left: 0;
+        box-shadow: 0px -7px 80px 0px #0005;
+    }
+
+    .filterCont .collapse_wrap .btnCont {
+        position: absolute;
+        bottom: 0;
+        padding: 2rem 1rem;
+        background: #fff;
+    }
+
+    .filterCont .collapse_wrap {
+        height: 90vh;
+        overflow: auto;
+    }
+
+
+    .filterCont > form {
+        position: relative;
+        height: 100vh;
+    }
+
+    .collapse_wrap .custom_collapse .collapse_content {
+        padding: 2rem 1rem 0;
+    }
+
+    .filterCont .filters > *:last-child {
+        padding: 1rem;
+        border-top: 1px solid #0002;
+    }
+
+    .filterCont .filters h2 {
+        padding: 1rem 0.5rem;
+    }
+
+    .contentArea .secHeading {
+        text-align: center;
+        font-size: 1.5rem;
+        margin: auto;
+    }
+
+    .carRow .carCard .imgCont {
+        height: 200px;
+    }
+
+    .carRow .carCard .imgCont img {
+        width: 80%;
+        margin: auto;
+        display: block;
+    }
+
+    .carRow .carCard .content .rent_details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .carRow .carCard .content h2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .carRow .carCard.fullCard {
+        height: 100%;
+    }
+
+    .filterBtnRow .filter_action {
+        margin-left: auto;
+    }
+
+    .linkingCont li:not(:last-child):after {
+        margin: 0 0.5rem;
+    }
+
+    .linkingCont li a, .linkingCont li span {
+        font-size: 12px;
+    }
+
+    .blogCard figure {
+        height: 250px;
     }
 }
 

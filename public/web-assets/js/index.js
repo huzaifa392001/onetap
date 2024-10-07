@@ -118,12 +118,51 @@ function allSlider() {
             },
         },
     });
+    const blogSwiper = new Swiper(".blogSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        // autoplay: {
+        //     delay: 2500
+        // },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            575: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            991: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1199: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+        },
+    });
     const testiSwiper = new Swiper(".testiSwiper", {
         slidesPerView: 1,
         loop: true,
         // autoplay: {
         //     delay: 2500
         // },
+    });
+    const sliderBanner = new Swiper(".sliderBanner", {
+        slidesPerView: 1,
+        loop: true,
+        autoplay: {
+            delay: 2500
+        },
+        parallax: true,
+        speed: 1000
     });
 }
 
@@ -133,6 +172,7 @@ function menuToggler() {
     let menu = document.querySelector(".mobileMenu .sideMenu")
     let mobileLinks = document.querySelectorAll('.sideMenu ul li a')
     let allSubMenu = document.querySelectorAll('.sideMenu .subMenu')
+    let filterBtn = document.getElementById("filterBtn")
 
     btn.addEventListener('click', () => {
         if (menu.classList.contains('active')) {
@@ -162,4 +202,26 @@ function menuToggler() {
             menu.classList.remove('active')
         })
     })
+
+    filterBtn.addEventListener('click', () => {
+        if (document.querySelector('.filterCont').classList.contains('active')) {
+            document.querySelector('.filterCont').classList.remove('active')
+        } else {
+            document.querySelector('.filterCont').classList.add('active')
+        }
+    })
+}
+
+function onOpenCollapse(id) {
+    let parentElem = document.getElementById(id);
+    let contentHeight = document.getElementById(`${id}-content`).getBoundingClientRect().height;
+
+    if (parentElem.getBoundingClientRect().height > 60) {
+        parentElem.style.height = 60 + "px"
+        document.getElementById(`${id}-arrow`).style.transform = 'rotate(0deg)'
+    } else {
+        console.log(parentElem, contentHeight + 60)
+        parentElem.style.height = `${contentHeight + 60}px`
+        document.getElementById(`${id}-arrow`).style.transform = 'rotate(-180deg)'
+    }
 }

@@ -28,5 +28,6 @@
 
 <script src="{{asset('web-assets/js/plugins.js')}}"></script>
 <script src="{{asset('web-assets/js/index.js')}}"></script>
+@yield('script')
 </body>
 </html>

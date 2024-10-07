@@ -3,42 +3,39 @@
 @section('content')
 
     <section class="linkingSec">
-        <div class="container">
+        <div class="container-lg">
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="linkingCont">
-                        <li><a href="/" class="fa fa-home"></a></li>
-                        <li><a href="#0">Dubai</a></li>
-                        <li><a href="#0">car brand</a></li>
-                        <li class="current"><span>By brand / by Vehicle type</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="productsSec">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="filterCont">
+                    <div class="filterBtnRow">
+                        <ul class="linkingCont">
+                            <li><a href="/" class="fa fa-home"></a></li>
+                            <li><a href="#0">Dubai</a></li>
+                            <li><a href="#0">car brand</a></li>
+                            <li class="current"><span>By brand / by Vehicle type</span></li>
+                        </ul>
                         <div class="filter_action">
-                            <button onclick="onOpenDetailsFilter('filters',this)"
-                                    class="styled_button rounded_sm filter_action">
+                            <button class="styled_button rounded_sm filter_action" id="filterBtn" type="button">
                                 {{-- <div></div>
                                 <div></div>
                                 <div></div> --}}
                                 <i class="fas fa-filter"></i>
                             </button>
                         </div>
-                        <form method="GET" action="{{ route('services') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="productsSec">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="filterCont">
+                        <form method="GET" action="{{ route('services') }}">
                             <div id="filters" class="filters">
                                 <h2>
                                     Filters
-                                    <button class="styled_button rounded_sm filter_action">
-                                        <i class="fa fa-times"></i>
-                                    </button>
                                 </h2>
 
                                 <div class="collapse_wrap">
@@ -103,7 +100,7 @@
                                                     <div><input type="hidden" id="language" value="english">
                                                         <input type="hidden" id="css" value=""> <label title="">Car
                                                             Brand</label> <span id="show_before4"> <select
-                                                                class="fomcntrl"
+                                                                class="form-control"
                                                                 name="brand"
                                                                 id="carmake">
                                                     <option value="">Select Car Make</option>
@@ -169,7 +166,7 @@
                                                             class="mt-3" title="">Car
                                                 Model</label>
                                             <div id="show_sub_categories" style="color: black; display: block;">
-                                                <select class="fomcntrl" name="carmodel" id="carmodel2">
+                                                <select class="form-control" name="carmodel" id="carmodel2">
                                                     <option value="0" selected="selected">Select Car Model</option>
                                                     {{-- <option value="1327">
                                                 Chiron Sports</option> --}}
@@ -689,604 +686,385 @@
                                         </div>
                                     </div> --}}
                                     </div>
-                                    <hr>
+                                </div>
 
-                                    <button class="btn_warning mx-2">Show Result</button>
+                                <div class="d-flex align-items-center justify-content-between w-100 btnCont">
                                     @php
                                         $currenturl = url()->full();
                                     @endphp
-                                    <br>
                                     @if ($currenturl != 'https://onetapdrive.com/services')
-                                        <a href="{{ route('clear-filters') }}">
-                                            <button type="button" class="btn_warning mx-2">Clear
-                                                Filters
-                                            </button>
+                                        <a href="{{ route('clear-filters') }}" class="themeBtn">
+                                            Clear Filters
                                         </a>
                                     @endif
+                                    <button class="themeBtn">Show Result</button>
                                 </div>
+                            </div>
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="content_area">
-            @if (!empty($get_brand))
-                <h2>RENT A {{ strtoupper($get_brand->brand_name) }} IN DUBAI, UAE</h2>
-            @else
-                <h2>RENT A CAR IN DUBAI ON DAY, WEEK, MONTH-BASIS</h2>
-            @endif
-            <p>
-                Hire cars directly from local car rental companies at the best rate
-            </p>
-            <div class="row">
-                <div class="col-lg-12">
-                    @if (count($cars) > 0)
-                        @foreach ($cars as $key => $value)
-                            {{-- dd{{$value}} --}}
-                            <div class="styled_vehicle_card_2">
-
-
-                                <div class="carousel_wrapper">
-                                    <div id="demo{{ $key }}" class="carousel slide" data-bs-ride="carousel">
-
-                                        <div class="favorite flex_center w-100">
-                                            <div class=" me-auto ms-4">
-                                                @if (!empty($value->is_admin_approve == 1))
-                                                    <button class="px-2 py-1 rounded fs_13">
-                                                        <i class="fa fa-check fs_13"></i> Verified
-                                                    </button>
-                                                @endif
-                                                @if ($value->is_featured == 1)
-                                                    <button class="ms-1 px-2 py-1 rounded fs_13">
-                                                        <i class="fa fa-star fs_13 mb-1 text-light"></i> Featured
-                                                    </button>
-                                                @endif
-                                                @if ($value->is_featured == 2)
-                                                    <button class="ms-1 px-2 py-1 rounded bg-dark text-light fs_13">
-                                                        <i class="fa fa-star fs_13 mb-1 text-light"></i> Premium
-                                                    </button>
-                                                @endif
-                                            </div>
-
-                                            @if (Auth::check())
-                                                @php
-                                                    $wishlistProduct = Auth::user()
-                                                        ->wishlist()
-                                                        ->where('product_id', $value->id)
-                                                        ->first();
-                                                @endphp
-                                                @if ($wishlistProduct)
-                                                    <button class="styled_button rounded_sm wishlist-button"
-                                                            data-product-id="{{ $value->id }}">
-                                                        <i class="fa fa-heart red_heart"></i>
-                                                    </button>
-                                                @else
-                                                    <button class="styled_button rounded_sm wishlist-button"
-                                                            data-product-id="{{ $value->id }}">
-                                                        <i class="fa fa-heart"></i>
-                                                    </button>
-                                                @endif
-                                            @else
-                                                <button class="styled_button rounded_sm wishlist-button"
-                                                        data-product-id="{{ $value->id }}">
-                                                    <i class="fa fa-heart"></i>
-                                                </button>
-                                            @endif
-                                        </div>
-
-                                        <!-- Indicators/dots -->
-                                        <div class="carousel-indicators">
-                                            @if ($value->get_images)
-                                                @foreach ($value->get_images as $image_key => $image_value)
-                                                    <button type="button" data-bs-target="#demo{{ $key }}"
-                                                            data-bs-slide-to="{{ $image_key }}" class="active"></button>
-                                                @endforeach
-                                            @endif
-                                        </div>
-
-                                        <!-- The slideshow/carousel -->
-                                        <a
-                                            href="{{ route('car-details', ['slug' => $value->slug]) }}">
-
-                                            <div class="carousel-inner">
-                                                @if ($value->get_images)
-                                                    @foreach ($value->get_images as $image_key => $image_value)
-                                                        @if ($image_key == 0)
-                                                            <div class="carousel-item active">
-                                                                <img src='{{ asset("images/$image_value->images") }}'
-                                                                     alt="{{ $image_value->images }}" class="d-block"
-                                                                     style="width: 100%; object-fit: cover;"
-                                                                     height="280px"/>
-                                                            </div>
-                                                        @else
-                                                            <div class="carousel-item">
-                                                                <img src='{{ asset("images/$image_value->images") }}'
-                                                                     alt="{{ $image_value->images }}" class="d-block"
-                                                                     style="width: 100%; object-fit: cover;"
-                                                                     height="280px"/>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-
-                                            </div>
-                                        </a>
-
-                                        <!-- Left and right controls/icons -->
-                                        <button class="carousel-control-prev" type="button"
-                                                data-bs-target="#demo{{ $key }}" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon"></span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                                data-bs-target="#demo{{ $key }}" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon"></span>
-                                        </button>
-                                    </div>
-                                </div>
-
-
-                                <div class="content_wrapper">
-                                    <a href="{{ route('car-details', ['slug' => $value->slug]) }}">
-                                        <h2 class="clr_primary mb-2">{{ $value->get_brand_name->brand_name ?? '' }}
-                                            {{ $value->model_name }}
-                                            {{ $value->make_year }}</h2>
-                                    </a>
-                                    <div>
-                                        <ul class="kylist col-xs-12 sddetail">
-                                            <li class="f-12 cartip">{{ $value->category ?? '' }}</li>
-                                            <li class="f-13" title="This vehicle has 4 Doors">
-                                                {{ $value->car_doors ?? '' }}
-                                                <img alt="Doors" class="svgis" src="{{ asset('icons/door.svg') }}">
-                                            </li>
-                                            <li title="This vehicle can seat upto 5 Passengers comfortably"
-                                                class="f-13">{{ $value->passengers ?? '' }}<img alt="Passengers"
-                                                                                                class="svgis passenger"
-                                                                                                src="{{ asset('icons/seaticon.svg') }}">
-                                            </li>
-                                            <li title="The boot-space of this vehicle is good for 3 luggage bag(s)"
-                                                class="f-13">{{ $value->bags ?? '' }}<img alt="Large Bags"
-                                                                                          class="svgis"
-                                                                                          src="{{ asset('icons/brefcase.svg') }}">
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="content_container ">
-                                        <div>
-
-                                            @if (!empty($value->delivery_days))
-                                                <p>
-                                                    <span><i class="fa fa-check"></i></span> Delivery :
-                                                    {{ $value->delivery_days }}
-                                                </p>
-                                            @endif
-                                            @if ($value->daily_availablity == 'Yes')
-                                                <p>
-                                                    <span><i class="fa fa-check"></i></span> 1 day rental
-                                                    available
-                                                </p>
-                                            @endif
-
-                                            @if ($value->insurance_per_day)
-                                                <p>
-                                                    <span><i class="fa fa-check"></i></span> Insurance
-                                                    included
-                                                </p>
-                                            @endif
-
-
-                                            {{-- <p>
-                                                    <span><i class="fa fa-bitcoin"></i></span>Crypto payment accepted
-                                                </p> --}}
-                                            @if (!empty($value->security_deposit))
-                                                <p>
-                                                    <span><i class="fa fa-info"></i></span>Security Deposit : AED
-                                                    {{ $value->security_deposit }}
-                                                </p>
-                                            @endif
-
-                                            {{-- <p>
-                                                    <span><i class="fa fa-money"></i></span>Refunded in 30 days
-                                                </p> --}}
-                                        </div>
-
-                                        <div class="price_tag mb-0">
-                                            @if (!empty($value->daily_discount_price))
-                                                <del>AED {{ $value->price_per_day }}</del>
-                                            @endif
-                                            <span>
-                                                @if (!empty($value->daily_discount_price))
-                                                    <h2 class="clr_primary">AED {{ $value->daily_discount_price }} /
-                                                        day</h2>
-                                                @else
-                                                    <h2 class="clr_primary">AED {{ $value->price_per_day }} / day</h2>
-                                                @endif
-                                            </span>
-                                            <span>
-                                                <i class="fa fa-road"></i>
-                                                <span>{{ $value->per_day_mileage }} km</span></span>
-                                        </div>
-                                        <div class="price_tag ms-0 ms-md-2">
-
-                                            @php
-                                                $minMileage = null;
-                                            @endphp
-                                            @foreach ($value->get_mileage as $mileage)
-                                                @php
-                                                    $mileageValues = [
-                                                        $mileage->one_month,
-                                                        $mileage->three_months,
-                                                        $mileage->six_months,
-                                                        $mileage->nine_months,
-                                                        $mileage->twelve_months,
-                                                    ];
-                                                    $nonNullMileageValues = array_filter(
-                                                        $mileageValues,
-                                                        fn($v) => !is_null($v),
-                                                    );
-
-                                                    if (!empty($nonNullMileageValues)) {
-                                                        $currentMinMileage = min($nonNullMileageValues);
-                                                        if ($minMileage === null || $currentMinMileage < $minMileage) {
-                                                            $minMileage = $currentMinMileage;
-                                                        }
-                                                    }
-                                                @endphp
-                                            @endforeach
-
-                                            @if ($minMileage !== null)
-                                                AED {{ $minMileage }} / Month
-                                            @else
-                                                AED {{ $value->weekly_rent }} / Week
-                                                <i class="fa fa-road"></i>
-                                                <span>{{ $value->weekly_mileage }} km</span>
-                                            @endif
-
-
-                                            {{-- @if (!empty($value->weekly_discount_price))
-                                                    <del>AED {{$value->weekly_rent}}</del>
-                                                @endif
-                                                @if (!empty($value->weekly_discount_price))
-                                                <span>
-                                                    <h2 class="clr_primary">AED {{ $value->weekly_discount_price }} / week</h2>
-                                                </span>
-                                                @else
-
-                                                @endif --}}
-
-                                            {{-- <span>
-                                                    <i class="fa fa-road"></i>
-                                                    <span>{{ $value->weekly_mileage }} km</span>
-                                                </span> --}}
-                                        </div>
-
-                                    </div>
-
-                                    <div class="company_tag d-flex justify-content-between mt-2 flex-wrap">
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <a class="clr_primary" href="#">
-                                                    <i class="fa fa-map-marker"></i>
-                                                    {{ $value->city ?? '' }}
-                                                </a>
-                                            </div>
-                                            <div class="ms-5">
-                                                <img width="50px"
-                                                     src="{{ asset('company_logo') }}/{{ $value->get_user->company_logo ?? '' }}"
-                                                     alt=""/>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="mt-3 d-flex justify-content-end">
-                                                <div>
-                                                    <a href="javascript:void(0);" class="phonelead" id="phoneshare">
-                                                        <button class="yellow_btn d-flex my_wp">
-                                                            <div class="d-flex align-items-center">
-                                                                <div>
-                                                                    <svg class="mr-auto d-block"
-                                                                         xmlns="http://www.w3.org/2000/svg"
-                                                                         viewBox="0 0 512 512" fill="#fff"
-                                                                         width="25" class="p-2" height="25">
-                                                                        <path
-                                                                            d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <div>
-                                                                    <span class="d-none numm text-light my_wp_num"
-                                                                          style="overflow: hidden">
-                                                                        &nbsp; {{ $value->get_user->contact ?? '' }}
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                {{-- <a href="{{$details->get_user->whatsapp_number ?? ''}}"><span><i class="fab fa-whatsapp"></i></span></a> --}}
-                                                <a href="javascript:void(0);" class="socialShareLink">
-                                                    <div class="ms-1 ">
-                                                        <button class="wp_btn d-flex my_wp1">
-                                                            <div class="d-flex align-items-center">
-                                                                <div>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                         viewBox="0 0 450 512" fill="#fff"
-                                                                         width="26" height="26">
-                                                                        <path
-                                                                            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <div>
-                                                                    <span class="d-none numm1 text-light my_wp_num1"
-                                                                          style="overflow: hidden">
-                                                                        &nbsp;
-                                                                        {{ $value->get_user->whatsapp_number ?? '' }}
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </button>
-                                                    </div>
-                                                </a>
-
-                                                @if(!Auth::check())
-
-                                                    <div class="ms-1">
-                                                        <button class="tel_btn d-flex" data-bs-toggle="modal"
-                                                                data-bs-target="#login"
-                                                                href="#offcanvasExample" role="button"
-                                                                aria-controls="offcanvasExample">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="ml_1">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                         viewBox="0 0 512 512" fill="#fff" width="20"
-                                                                         height="20">
-                                                                        <path
-                                                                            d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1l-50.86 76.29C226.3 508.5 219.8 512 212.8 512C201.3 512 192 502.7 192 491.2v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </button>
-                                                    </div>
-                                                @else
-                                                    <div class="ms-1">
-                                                        <button class="tel_btn d-flex carEnquiry"
-                                                                data-id="{{$value->id}}" data-bs-toggle="offcanvas"
-                                                                href="#offcanvasExample" role="button"
-                                                                aria-controls="offcanvasExample">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="ml_1">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                         viewBox="0 0 512 512" fill="#fff" width="20"
-                                                                         height="20">
-                                                                        <path
-                                                                            d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1l-50.86 76.29C226.3 508.5 219.8 512 212.8 512C201.3 512 192 502.7 192 491.2v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </button>
-                                                    </div>
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {{-- <div class="Social_media">
-                                            <a href="#"><span><i class="fa fa-phone"></i></span></a>
-                                            <a href="#"><span><i class="fab fa-whatsapp"></i></span></a>
-                                            <a href="#"><span><i class="fa fa-share"></i></span></a>
-                                        </div> --}}
-
-
+                <div class="col-lg-9">
+                    <div class="container-fluid">
+                        <div class="contentArea">
+                            <div class="row">
+                                <div class="col-12">
+                                    @if (!empty($get_brand))
+                                        <h2 class="secHeading">RENT A {{ strtoupper($get_brand->brand_name) }} IN DUBAI,
+                                            UAE</h2>
+                                    @else
+                                        <h2 class="secHeading">RENT A CAR IN DUBAI ON DAY, WEEK, MONTH-BASIS</h2>
+                                    @endif
+                                    <p>
+                                        Hire cars directly from local car rental companies at the best rate
+                                    </p>
                                 </div>
                             </div>
-                        @endforeach
-                    @else
-                        <h1 class="text-center mt-5">No data Found</h1>
-                    @endif
+                            <div class="row carRow">
+                                @if (count($cars) > 0)
+                                    @foreach ($cars as $key => $value)
+                                        <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+                                            {{-- dd{{$value}} --}}
+                                            <div class="carCard fullCard">
+                                                <a class="imgCont"
+                                                   href="{{ route('car-details', ['slug' => $value->slug]) }}">
+                                                    <img
+                                                        src="{{ asset('images/') }}/{{ $value->get_images[0]->images }}"
+                                                        alt=""/>
+                                                </a>
+                                                <div class="wishlistCont">
+                                                    @if (Auth::check())
+                                                        @php
+                                                            $wishlistProduct = Auth::user()
+                                                                ->wishlist()
+                                                                ->where('product_id', $value->id)
+                                                                ->first();
+                                                        @endphp
+                                                        @if ($wishlistProduct)
+                                                            <button class="themeBtn wishlist-button"
+                                                                    data-product-id="{{ $value->id }}">
+                                                                <i class="fa fa-heart red_heart"></i>
+                                                            </button>
+                                                        @else
+                                                            <button class="themeBtn wishlist-button"
+                                                                    data-product-id="{{ $value->id }}">
+                                                                <i class="fa fa-heart"></i>
+                                                            </button>
+                                                        @endif
+                                                    @else
+                                                        <button class="themeBtn wishlist-button"
+                                                                data-product-id="{{ $value->id }}">
+                                                            <i class="fa fa-heart"></i>
+                                                        </button>
+                                                    @endif
+                                                </div>
+                                                <a href="{{ route('car-details', ['slug' => $value->slug]) }}">
+                                                    <div class="content">
+                                                        <h2 class="title">{{ $value->get_brand_name->brand_name ?? '' }}
+                                                            {{ $value->model_name ?? '' }} {{ $value->make_year ?? '' }}</h2>
+                                                        <div class="rent_details">
+                                                            <p class="price">
+                                                                AED {{ $value->price_per_day ?? '' }} / Day
+                                                            </p>
+                                                            <p class="price">
+                                                                Mileage {{ $value->per_day_mileage ?? '' }}KM / Day
+                                                            </p>
+                                                        </div>
+                                                        <div class="tags">
+                                                        <span
+                                                            class="properties_border">{{ $value->category ?? '' }}</span>
+                                                            <span class="properties_border">{{ $value->car_doors ?? '' }}
+                                                                            <svg stroke="currentColor"
+                                                                                 fill="currentColor" stroke-width="0"
+                                                                                 viewBox="0 0 512 512" height="1em"
+                                                                                 width="1em"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path
+                                                                                    d="M149.6 41L42.88 254.4c23.8 24.3 53.54 58.8 78.42 97.4 24.5 38.1 44.1 79.7 47.1 119.2h270.3L423.3 41H149.6zM164 64h230l8 192H74l90-192zm86.8 17.99l-141 154.81L339.3 81.99h-88.5zM336 279h64v18h-64v-18z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </span>
+                                                            <span class="properties_border">{{ $value->passengers ?? '' }}
+                                                                            <svg stroke="currentColor"
+                                                                                 fill="currentColor" stroke-width="0"
+                                                                                 viewBox="0 0 24 24" height="1em"
+                                                                                 width="1em"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path fill="none"
+                                                                                      d="M0 0h24v24H0V0z"></path>
+                                                                                <path
+                                                                                    d="M15 5v7H9V5h6m0-2H9c-1.1 0-2 .9-2 2v9h10V5c0-1.1-.9-2-2-2zm7 7h-3v3h3v-3zM5 10H2v3h3v-3zm15 5H4v6h2v-4h12v4h2v-6z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </span>
+                                                            <span class="properties_border">{{ $value->bags ?? '' }}
+                                                                            <svg stroke="currentColor"
+                                                                                 fill="currentColor" stroke-width="0"
+                                                                                 viewBox="0 0 24 24" height="1em"
+                                                                                 width="1em"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path fill="none"
+                                                                                      d="M0 0h24v24H0z"></path>
+                                                                                <path
+                                                                                    d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM9.5 18H8V9h1.5v9zm3.25 0h-1.5V9h1.5v9zm.75-12h-3V3.5h3V6zM16 18h-1.5V9H16v9z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </span>
+                                                        </div>
+                                                        <div class="other_details">
+                                                            <div class="right_details_area">
+                                                                <p class=""><i
+                                                                        class="fa fa-check-circle text_light_green"
+                                                                        aria-hidden="true"></i> &nbsp;
+                                                                    {{ $value->days }} day rental available</p>
+                                                                <p class=""><i class="fa fa-info-circle bg_yellow"
+                                                                               aria-hidden="true"></i> &nbsp;
+                                                                    Deposit: AED {{ $value->security_deposit ?? '' }}
+                                                                </p>
+                                                                @if (!empty($value->insurance_per_day))
+                                                                    <p class=""><i
+                                                                            class="fa fa-check-circle text_light_green"
+                                                                            aria-hidden="true"></i> &nbsp; Insurance
+                                                                        Included
+                                                                    </p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
 
-                </div>
-            </div>
-
-            {{-- <nav aria-label="Page navigation">
-                    <ul class="pagination d-flex flex-wrap">
-                        <li class="page-item">
-                            <a class="page-link" href="#">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav> --}}
-        </div>
-
-        </div>
-        <div class="text-center  mb-3">
-            Showing {{ $cars->firstItem() }} to {{ $cars->lastItem() }}
-            of total {{ $cars->total() }} Cars
-        </div>
-        {{ $cars->links() }}
-    </section>
-
-    <section class="bg_lime ">
-        <div class="content_wrap">
-            <p>
-                The demand for comfort on trips is more of a compulsion. The integrity
-                and exclusiveness of BMW does not require any mention and certainly
-                fits you for any trip. Get easy BMW car rental in Dubai with
-                OneClickDrive, the hub for luxury car rentals. We have a wide range of
-                BMW models to choose from in accordance with your needs.
-            </p>
-            <h2>BMW Car Advantages:</h2>
-            <p>
-                Symbol of Luxury: Needless to say, BMW is all about luxury. It is one
-                of the most common and widely preferred luxury cars. BMW is used by
-                both middle class and upper class people. The style it abbreviates is
-                on another level. The materials they are manufactured with are top
-                notch even if you judge the lowest models. BMW is a premium car with
-                all luxury and comfort that easily surpasses other car brands in
-                popularity.
-            </p>
-            <p>
-                Sign of Versatility: BMW hits a level where it can not be compared to
-                any other car brands. This is no doubt the best vehicle with the best
-                technology in every segment. There are full electric BMW cars that are
-                sure to tempt you like no other.
-            </p>
-            <p>
-                Dynamic Capabilities: BMW is known to be the greatest road car brand
-                in the world, today. You cannot think of anything beyond BMW on the
-                road. The unique front engine car wheel drive platform in BMW models,
-                helps the vehicles in maintaining 50/50 distribution of weight that
-                adds to neutral handling and predictable sterling.
-            </p>
-            <p>
-                Reliability: If reliability is concerned, BMW is the first name. The
-                car brand is known for its warranty and amazing customer support
-                system. BMW is more of a treasure that will keep going forever with
-                proper maintenance.
-            </p>
-            <p>
-                Equipment: You might think that BMW is more expensive than many other
-                ordinary car brands that provide you with many fascinating deals. But
-                when compared with the specifications of BMW, it is so much equipped,
-                having numerous specs that lacks in any other manufacturer model. The
-                specification BMW offers blows competition out of the water. It is a
-                sign of perfection.
-            </p>
-            <h2>Best BMW Car Models to Rent In Dubai:</h2>
-            <p>
-                Rent a BMW in Dubai with the help of OneClickDrive very easily by
-                choosing from your favorite model. Amongst numerous models that we
-                provide for hire, BMW 4 Series Convertible, BMW X6 SUV and BMW 730-li
-                are no doubt the best and are widely popular. There are various other
-                model options available directly on the website and mobile app.
-            </p>
-            <h2>Best BMW Car Rental Deals and Offers:</h2>
-            <p>
-                OneClickDrive gives you the convenience to choose from various rent
-                options. We have amazing offers for daily, weekly and monthly basis.
-                Book BMW cars for rent starting from AED 299/day.
-            </p>
-            <h2>Why OneClickDrive?</h2>
-            <p>
-                Booking a car for a trip to some unknown country is always a risky
-                task. It is more challenging to find an authentic car rental company
-                that would provide you with trustworthy and dedicated service. Well,
-                your hassle of searching for a loyal car rental service for your next
-                trip to Dubai comes to an end. Besides travelers, residents of UAE can
-                directly book by comparing the rates from over 100+ car rental
-                suppliers and finalize the best deal. OneClickDrive ensures quality
-                car rental service all over Dubai and you can rent your favorite car
-                model at the most competitive rates. BMW car hire in Dubai is now
-                easier and hassle free as you can rent your car in just one click.
-                Nearly all models are available and you get them at unbelievable
-                rental rates.
-            </p>
-        </div>
-    </section>
+                                                        <div class="left_details_area">
+                                                            <div class="customBadge"></div>
+                                                            <img
+                                                                src="{{ asset('company_logo/') }}/{{ $value->get_user->company_logo ?? '' }}"
+                                                                alt=""/>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
 
 
-    <section>
-        <div class="content_wrap">
-            <h2>Frequently Asked Questions</h2>
-            <div class="collapse_wrap">
-                <div class="collapse_items">
-                    <div id="faq-one" class="custom_collapse">
-                        <button onclick="onOpenCollapse('faq-one')">
-                            <span> Why is driving a BMW recommended in Dubai? </span>
-                            <i id="faq-one-arrow" class="fa fa-angle-down"></i>
-                        </button>
-                        <div id="faq-one-content" class="collapse_content">
-                            <p>
-                                Among the popular car choices, BMW is definitely a favorite.
-                                In Dubai, more so, as itâ€™s perfect for Sheikh Zayed Road as
-                                well as on the highways stretching across the Emirates. Being
-                                one of the most scenic places for those seeking a luxurious
-                                adventure on wheels, BMWs are the most-in-demand cars in
-                                Dubai. Youâ€™ll be driving alongside exotic cars such as
-                                Porsche, Mercedes Benz, Audi, not to mention a range of sports
-                                cars.Many tourists and residents in Dubai rent a BMW to soak
-                                the pleasure of driving a luxurious sedan. The spacious cabin,
-                                extra legroom, advanced driving and safety features are what
-                                BMW vehicles are most known for.
-                            </p>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="col-12">
+                                        <h1 class="text-center mt-5">No data Found</h1>
+                                    </div>
+                                @endif
+
+                                <div class="col-12">
+                                    <div class="text-center  mb-3">
+                                        Showing {{ $cars->firstItem() }} to {{ $cars->lastItem() }}
+                                        of total {{ $cars->total() }} Cars
+                                    </div>
+                                    <div class="paginationCont">
+                                        {{ $cars->links() }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="collapse_items">
-                    <div id="faq-two" class="custom_collapse">
-                        <button onclick="onOpenCollapse('faq-two')">
-                            <span>
-                                Can I take the BMW rental car to Abu Dhabi from Dubai?
-                            </span>
-                            <i id="faq-two-arrow" class="fa fa-angle-down"></i>
-                        </button>
-                        <div id="faq-two-content" class="collapse_content">
-                            <p>
-                                Yes, you can! Most customers rent a luxury sedan in Dubai to
-                                visit Abu Dhabi and other emirates. Itâ€™s definitely the best
-                                way to explore the UAE. Car rental companies allow their
-                                vehicles to be driven anywhere in the UAE, barring a few
-                                locations such as Jebel Hafeet, Jebel Jais and desert areas.
-                                Be sure to plan your drives in advance to make the most of it.
-                                Google Maps is your best friend!If youâ€™re planning a trip to
-                                the Grand Mosque, Louvre or Yas Marina, consider renting for 2
-                                or more days to offset the additional mileage charge you will
-                                incur. As most car rentals, including luxury and sports cars,
-                                come with a standard mileage limit of 250-km per day. Dubai to
-                                Abu Dhabi is a good 150-km away so youâ€™ll probably be clocking
-                                over 300 km on the journey back.Best practice: Consult with
-                                the car rental agency regarding your trip plan for
-                                suggestions. Additional mileage packages may be available.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse_items">
-                    <div id="faq-three" class="custom_collapse">
-                        <button onclick="onOpenCollapse('faq-three')">
-                            <span>
-                                Which type of BMW cars are available for rent in Dubai?
-                            </span>
-                            <i id="faq-three-arrow" class="fa fa-angle-down"></i>
-                        </button>
-                        <div id="faq-three-content" class="collapse_content">
-                            <p>
-                                OneClickDrive.com works with several car rental companies
-                                across the world. In Dubai, we work with quite a few BMW car
-                                rental providers. You can choose among cars with a range of
-                                engine sizes and additional features, including GPS
-                                navigation, safety and performance enhancements. The BMW sedan
-                                comes in various 4-door sedan, convertible models with
-                                advanced features. Different models including: BMW 2-series,
-                                3-series, 550i, 550 mpower, 730li, 750li, X5, X6 and more. If
-                                youâ€™re looking for a rare BMW car model, contact our suppliers
-                                who have listed a BMW. They might be able to cater to your
-                                distinguished needs.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
 
-
-    <section>
+    <section class="py-3 aboutSec">
         <div class="container">
-            <em>
-                <b class="clr_danger">Note:</b> The above listings including the
-                prices are updated by the respective car rental company. Incase the
-                car is not available at the price mentioned (exclusive of VAT), please
-                inform us and weâ€™ll get back to you with the best alternative. Happy
-                renting!
-            </em>
+            <div class="row">
+                <div class="col-12">
+                    <div class="aboutContent contentWrap">
+                        <p>
+                            The demand for comfort on trips is more of a compulsion. The integrity
+                            and exclusiveness of BMW does not require any mention and certainly
+                            fits you for any trip. Get easy BMW car rental in Dubai with
+                            OneClickDrive, the hub for luxury car rentals. We have a wide range of
+                            BMW models to choose from in accordance with your needs.
+                        </p>
+                        <h2 class="secHeading">BMW Car Advantages:</h2>
+                        <p>
+                            Symbol of Luxury: Needless to say, BMW is all about luxury. It is one
+                            of the most common and widely preferred luxury cars. BMW is used by
+                            both middle class and upper class people. The style it abbreviates is
+                            on another level. The materials they are manufactured with are top
+                            notch even if you judge the lowest models. BMW is a premium car with
+                            all luxury and comfort that easily surpasses other car brands in
+                            popularity.
+                        </p>
+                        <p>
+                            Sign of Versatility: BMW hits a level where it can not be compared to
+                            any other car brands. This is no doubt the best vehicle with the best
+                            technology in every segment. There are full electric BMW cars that are
+                            sure to tempt you like no other.
+                        </p>
+                        <p>
+                            Dynamic Capabilities: BMW is known to be the greatest road car brand
+                            in the world, today. You cannot think of anything beyond BMW on the
+                            road. The unique front engine car wheel drive platform in BMW models,
+                            helps the vehicles in maintaining 50/50 distribution of weight that
+                            adds to neutral handling and predictable sterling.
+                        </p>
+                        <p>
+                            Reliability: If reliability is concerned, BMW is the first name. The
+                            car brand is known for its warranty and amazing customer support
+                            system. BMW is more of a treasure that will keep going forever with
+                            proper maintenance.
+                        </p>
+                        <p>
+                            Equipment: You might think that BMW is more expensive than many other
+                            ordinary car brands that provide you with many fascinating deals. But
+                            when compared with the specifications of BMW, it is so much equipped,
+                            having numerous specs that lacks in any other manufacturer model. The
+                            specification BMW offers blows competition out of the water. It is a
+                            sign of perfection.
+                        </p>
+                        <h2 class="secHeading">Best BMW Car Models to Rent In Dubai:</h2>
+                        <p>
+                            Rent a BMW in Dubai with the help of OneClickDrive very easily by
+                            choosing from your favorite model. Amongst numerous models that we
+                            provide for hire, BMW 4 Series Convertible, BMW X6 SUV and BMW 730-li
+                            are no doubt the best and are widely popular. There are various other
+                            model options available directly on the website and mobile app.
+                        </p>
+                        <h2 class="secHeading">Best BMW Car Rental Deals and Offers:</h2>
+                        <p>
+                            OneClickDrive gives you the convenience to choose from various rent
+                            options. We have amazing offers for daily, weekly and monthly basis.
+                            Book BMW cars for rent starting from AED 299/day.
+                        </p>
+                        <h2 class="secHeading">Why OneClickDrive?</h2>
+                        <p>
+                            Booking a car for a trip to some unknown country is always a risky
+                            task. It is more challenging to find an authentic car rental company
+                            that would provide you with trustworthy and dedicated service. Well,
+                            your hassle of searching for a loyal car rental service for your next
+                            trip to Dubai comes to an end. Besides travelers, residents of UAE can
+                            directly book by comparing the rates from over 100+ car rental
+                            suppliers and finalize the best deal. OneClickDrive ensures quality
+                            car rental service all over Dubai and you can rent your favorite car
+                            model at the most competitive rates. BMW car hire in Dubai is now
+                            easier and hassle free as you can rent your car in just one click.
+                            Nearly all models are available and you get them at unbelievable
+                            rental rates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-3 faqSec">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="aboutContent">
+                        <h2 class="secHeading">Frequently Asked Questions</h2>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                        Why is driving a BMW recommended in Dubai?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            Among the popular car choices, BMW is definitely a favorite. In Dubai, more
+                                            so,
+                                            as itâ€™s perfect for Sheikh Zayed Road as well as on the highways
+                                            stretching
+                                            across the Emirates. Being one of the most scenic places for those seeking a
+                                            luxurious adventure on wheels, BMWs are the most-in-demand cars in Dubai.
+                                            Youâ€™ll be driving alongside exotic cars such as Porsche, Mercedes Benz,
+                                            Audi,
+                                            not to mention a range of sports cars.Many tourists and residents in Dubai
+                                            rent
+                                            a BMW to soak the pleasure of driving a luxurious sedan. The spacious cabin,
+                                            extra legroom, advanced driving and safety features are what BMW vehicles
+                                            are
+                                            most known for.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                        Can I take the BMW rental car to Abu Dhabi from Dubai?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            Yes, you can! Most customers rent a luxury sedan in Dubai to visit Abu Dhabi
+                                            and
+                                            other emirates. Itâ€™s definitely the best way to explore the UAE. Car
+                                            rental
+                                            companies allow their vehicles to be driven anywhere in the UAE, barring a
+                                            few
+                                            locations such as Jebel Hafeet, Jebel Jais and desert areas. Be sure to plan
+                                            your drives in advance to make the most of it. Google Maps is your best
+                                            friend!If youâ€™re planning a trip to the Grand Mosque, Louvre or Yas
+                                            Marina,
+                                            consider renting for 2 or more days to offset the additional mileage charge
+                                            you
+                                            will incur. As most car rentals, including luxury and sports cars, come with
+                                            a
+                                            standard mileage limit of 250-km per day. Dubai to Abu Dhabi is a good
+                                            150-km
+                                            away so youâ€™ll probably be clocking over 300 km on the journey back.Best
+                                            practice: Consult with the car rental agency regarding your trip plan for
+                                            suggestions. Additional mileage packages may be available.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                        Which type of BMW cars are available for rent in Dubai?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            OneClickDrive.com works with several car rental companies across the world.
+                                            In
+                                            Dubai, we work with quite a few BMW car rental providers. You can choose
+                                            among
+                                            cars with a range of engine sizes and additional features, including GPS
+                                            navigation, safety and performance enhancements. The BMW sedan comes in
+                                            various
+                                            4-door sedan, convertible models with advanced features. Different models
+                                            including: BMW 2-series, 3-series, 550i, 550 mpower, 730li, 750li, X5, X6
+                                            and
+                                            more. If youâ€™re looking for a rare BMW car model, contact our suppliers
+                                            who
+                                            have listed a BMW. They might be able to cater to your distinguished needs.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aboutContent">
+                        <p>
+                            <span>note:</span> The above listings including the
+                            prices are updated by the respective car rental company. Incase the
+                            car is not available at the price mentioned (exclusive of VAT), please
+                            inform us and weâ€™ll get back to you with the best alternative. Happy
+                            renting!
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1367,298 +1145,299 @@
         </div>
     </div>
 
-    {{--    <script>--}}
+@section('script')
 
-    {{--        $('.carEnquiry').on('click', function () {--}}
-    {{--            var id = $(this).attr("data-id");--}}
-    {{--            var car_id = $("#car_id").val(id);--}}
-    {{--            $.ajax({--}}
-    {{--                url: '{{ route('get-car-details') }}',--}}
-    {{--                type: 'GET',--}}
-    {{--                data: {--}}
-    {{--                    id: id--}}
-    {{--                },--}}
-    {{--                success: function (response) {--}}
-    {{--                    $("#car_title").html('');--}}
-    {{--                    $("#min_booking").html('');--}}
-    {{--                    $("#car_company").html('');--}}
-    {{--                    $("#text para").html('');--}}
-    {{--                    console.log(response.details.id);--}}
-    {{--                    if (response.status == 200) {--}}
-    {{--                        $("#vendor_id").val(response.details.user_id);--}}
-    {{--                        $("#car_title").html(response.details.get_brand_name.brand_name + ' ' + response.details.model_name + ' ' + response.details.make_year);--}}
-    {{--                        $("#min_booking").html('Minimum' + ' ' + response.details.days + ' ' + 'day booking');--}}
-    {{--                        $("#car_company").html(response.details.get_user.company_name);--}}
-    {{--                        $("#text_para").html('Your inquiry will be sent to' + ' ' + response.details.get_user.company_name + ' ' + 'without any obligation or cost to you. You agree to be contacted by OneTapDrive and its partners.');--}}
-    {{--                        console.log(response.details.get_images[0].images);--}}
-    {{--                        if (response.details.get_images && response.details.get_images.length > 0) {--}}
-    {{--                            var basePath = 'https://onetapdrive.com/public/images/';--}}
-    {{--                            var imagePath = basePath + response.details.get_images[0].images;--}}
-    {{--                            $("#car_image").attr("src", imagePath);--}}
-    {{--                        }--}}
-    {{--                    }--}}
-    {{--                }--}}
-    {{--            });--}}
-    {{--        });--}}
-    {{--    </script>--}}
+    <script>
 
-    {{--    <script>--}}
-    {{--        $("#carEnquiry").validate({--}}
-    {{--            rules: {--}}
-    {{--                name: {--}}
-    {{--                    required: true,--}}
-    {{--                    maxlength: 100--}}
+        $('.carEnquiry').on('click', function () {
+            var id = $(this).attr("data-id");
+            var car_id = $("#car_id").val(id);
+            $.ajax({
+                url: '{{ route('get-car-details') }}',
+                type: 'GET',
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    $("#car_title").html('');
+                    $("#min_booking").html('');
+                    $("#car_company").html('');
+                    $("#text para").html('');
+                    console.log(response.details.id);
+                    if (response.status == 200) {
+                        $("#vendor_id").val(response.details.user_id);
+                        $("#car_title").html(response.details.get_brand_name.brand_name + ' ' + response.details.model_name + ' ' + response.details.make_year);
+                        $("#min_booking").html('Minimum' + ' ' + response.details.days + ' ' + 'day booking');
+                        $("#car_company").html(response.details.get_user.company_name);
+                        $("#text_para").html('Your inquiry will be sent to' + ' ' + response.details.get_user.company_name + ' ' + 'without any obligation or cost to you. You agree to be contacted by OneTapDrive and its partners.');
+                        console.log(response.details.get_images[0].images);
+                        if (response.details.get_images && response.details.get_images.length > 0) {
+                            var basePath = 'https://onetapdrive.com/public/images/';
+                            var imagePath = basePath + response.details.get_images[0].images;
+                            $("#car_image").attr("src", imagePath);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
-    {{--                },--}}
-    {{--                email: {--}}
-    {{--                    required: true,--}}
-    {{--                    maxlength: 100--}}
-    {{--                },--}}
-    {{--                contact: {--}}
-    {{--                    required: true--}}
-    {{--                },--}}
+    <script>
+        $("#carEnquiry").validate({
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 100
 
-    {{--            },--}}
-    {{--            messages: {--}}
-    {{--                name: {--}}
-    {{--                    required: 'Name field is required'--}}
-    {{--                },--}}
-    {{--                email: {--}}
-    {{--                    required: 'Email field is required'--}}
-    {{--                },--}}
-    {{--                contact: {--}}
-    {{--                    required: 'Contact field is required'--}}
-    {{--                },--}}
-    {{--            },--}}
+                },
+                email: {
+                    required: true,
+                    maxlength: 100
+                },
+                contact: {
+                    required: true
+                },
 
-    {{--            submitHandler: function (form, e) {--}}
+            },
+            messages: {
+                name: {
+                    required: 'Name field is required'
+                },
+                email: {
+                    required: 'Email field is required'
+                },
+                contact: {
+                    required: 'Contact field is required'
+                },
+            },
 
-    {{--                e.preventDefault();--}}
-    {{--                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');--}}
-    {{--                var form = $("#carEnquiry");--}}
-    {{--                // var name = $("#name").val();--}}
-    {{--                $.ajax({--}}
-    {{--                    type: 'POST',--}}
-    {{--                    url: "{{route('send-enquiry')}}",--}}
-    {{--                    data: form.serialize(),--}}
-    {{--                    dataType: 'JSON',--}}
-    {{--                    /* remind that 'data' is the response of the AjaxController */--}}
-    {{--                    success: function (response, data) {--}}
-    {{--                        if (response.status == 200) {--}}
-    {{--                            swal({--}}
-    {{--                                title: "Enquiry!",--}}
-    {{--                                text: response.message,--}}
-    {{--                                type: "success",--}}
-    {{--                                icon: "success",--}}
-    {{--                            }).then(function () {--}}
-    {{--                            });--}}
-    {{--                            $('#carEnquiry')[0].reset();--}}
-    {{--                        }--}}
+            submitHandler: function (form, e) {
 
-    {{--                        if (response.status == 400) {--}}
-    {{--                            $.each(response.errors, function (prefix, val) {--}}
-    {{--                                toastr.error(val[0]);--}}
-    {{--                            });--}}
-    {{--                        }--}}
+                e.preventDefault();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                var form = $("#carEnquiry");
+                // var name = $("#name").val();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{route('send-enquiry')}}",
+                    data: form.serialize(),
+                    dataType: 'JSON',
+                    /* remind that 'data' is the response of the AjaxController */
+                    success: function (response, data) {
+                        if (response.status == 200) {
+                            swal({
+                                title: "Enquiry!",
+                                text: response.message,
+                                type: "success",
+                                icon: "success",
+                            }).then(function () {
+                            });
+                            $('#carEnquiry')[0].reset();
+                        }
 
-    {{--                    }--}}
-    {{--                });--}}
-
-    {{--            }--}}
-    {{--        });--}}
-
-    {{--    </script>--}}
-
+                        if (response.status == 400) {
+                            $.each(response.errors, function (prefix, val) {
+                                toastr.error(val[0]);
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 
 
 
-    {{--    <script>--}}
-    {{--        $(document).ready(function () {--}}
-    {{--            $('.wishlist-button').on('click', function () {--}}
-    {{--                var button = $(this);--}}
-    {{--                var productId = $(this).data('product-id');--}}
-    {{--                var heartIcon = button.find('.fa-heart');--}}
 
-    {{--                $.ajaxSetup({--}}
-    {{--                    headers: {--}}
-    {{--                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-    {{--                    }--}}
-    {{--                });--}}
+    <script>
+        $(document).ready(function () {
+            $('.wishlist-button').on('click', function () {
+                var button = $(this);
+                var productId = $(this).data('product-id');
+                var heartIcon = button.find('.fa-heart');
 
-    {{--                $.ajax({--}}
-    {{--                    url: '{{ route('wishlist.add') }}',--}}
-    {{--                    type: 'GET',--}}
-    {{--                    data: {--}}
-    {{--                        product_id: productId--}}
-    {{--                    },--}}
-    {{--                    success: function (response) {--}}
-    {{--                        if (response.status == 401) {--}}
-    {{--                            toastr.error(response.message);--}}
-    {{--                        }--}}
-    {{--                        if (response.status != 401) {--}}
-    {{--                            if (heartIcon.hasClass('fa-heart')) {--}}
-    {{--                                heartIcon.addClass('red_heart');--}}
-    {{--                                // heartIcon.removeClass('fa-heart');--}}
-    {{--                            } else {--}}
-    {{--                                heartIcon.removeClass('red_heart');--}}
-    {{--                                heartIcon.addClass('fa-heart'); // Add the 'fa-heart' class--}}
-    {{--                            }--}}
-    {{--                        }--}}
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-    {{--                        // Update the heart icon after adding to the wishlist--}}
-    {{--                        if (response.status == 200) {--}}
-    {{--                            toastr.success('Product added to wishlist');--}}
-    {{--                        }--}}
-    {{--                        if (response.status == 202) {--}}
-    {{--                            heartIcon.removeClass('red_heart');--}}
-    {{--                            toastr.success('Product removed from wishlist');--}}
-    {{--                        }--}}
-    {{--                    }--}}
-    {{--                });--}}
-    {{--            });--}}
-    {{--        });--}}
+                $.ajax({
+                    url: '{{ route('wishlist.add') }}',
+                    type: 'GET',
+                    data: {
+                        product_id: productId
+                    },
+                    success: function (response) {
+                        if (response.status == 401) {
+                            toastr.error(response.message);
+                        }
+                        if (response.status != 401) {
+                            if (heartIcon.hasClass('fa-heart')) {
+                                heartIcon.addClass('red_heart');
+                                // heartIcon.removeClass('fa-heart');
+                            } else {
+                                heartIcon.removeClass('red_heart');
+                                heartIcon.addClass('fa-heart'); // Add the 'fa-heart' class
+                            }
+                        }
 
-
-    {{--        document.addEventListener("DOMContentLoaded", function () {--}}
-    {{--            const myWpElements = document.querySelectorAll(".my_wp");--}}
-    {{--            const my_wp_nums = document.querySelectorAll(".my_wp_num");--}}
-
-    {{--            myWpElements.forEach((myWpElement, index) => {--}}
-    {{--                myWpElement.addEventListener("focus", function () {--}}
-    {{--                    my_wp_nums[index].classList.remove("d-none");--}}
-    {{--                    console.log("focus.");--}}
-    {{--                    myWpElement.style.width = "170px";--}}
-    {{--                });--}}
-
-    {{--                myWpElement.addEventListener("blur", function () {--}}
-    {{--                    my_wp_nums[index].classList.add("d-none");--}}
-    {{--                    console.log("blur");--}}
-    {{--                    myWpElement.style.width = "47px";--}}
-    {{--                });--}}
-    {{--            });--}}
-
-    {{--            const myWpElements1 = document.querySelectorAll(".my_wp1");--}}
-    {{--            const my_wp_nums1 = document.querySelectorAll(".my_wp_num1");--}}
-
-    {{--            myWpElements1.forEach((myWpElement1, index) => {--}}
-    {{--                myWpElement1.addEventListener("focus", function () {--}}
-    {{--                    my_wp_nums1[index].classList.remove("d-none");--}}
-    {{--                    console.log("focus.");--}}
-    {{--                    myWpElement1.style.width = "170px";--}}
-    {{--                });--}}
-
-    {{--                myWpElement1.addEventListener("blur", function () {--}}
-    {{--                    my_wp_nums1[index].classList.add("d-none");--}}
-    {{--                    console.log("blur");--}}
-    {{--                    myWpElement1.style.width = "47px";--}}
-    {{--                });--}}
-    {{--            });--}}
-    {{--        });--}}
-    {{--    </script>--}}
-
-    {{--    <script>--}}
-    {{--        $("#carmake").on('change', function () {--}}
-    {{--            var brand = $("#carmake").val();--}}
-    {{--            $("#showbut").css("display", "");--}}
-    {{--            $.ajax({--}}
-    {{--                url: '{{ route('get_car_models') }}',--}}
-    {{--                type: 'GET',--}}
-    {{--                data: {--}}
-    {{--                    brand: brand--}}
-    {{--                },--}}
-    {{--                beforeSend: function () {--}}
-
-    {{--                    console.log("----------- beforeSend -------------");--}}
+                        // Update the heart icon after adding to the wishlist
+                        if (response.status == 200) {
+                            toastr.success('Product added to wishlist');
+                        }
+                        if (response.status == 202) {
+                            heartIcon.removeClass('red_heart');
+                            toastr.success('Product removed from wishlist');
+                        }
+                    }
+                });
+            });
+        });
 
 
-    {{--                    $('#carmodel2').html(`<option   value ="0">Loading....</option>`);--}}
+        document.addEventListener("DOMContentLoaded", function () {
+            const myWpElements = document.querySelectorAll(".my_wp");
+            const my_wp_nums = document.querySelectorAll(".my_wp_num");
 
-    {{--                },--}}
+            myWpElements.forEach((myWpElement, index) => {
+                myWpElement.addEventListener("focus", function () {
+                    my_wp_nums[index].classList.remove("d-none");
+                    console.log("focus.");
+                    myWpElement.style.width = "170px";
+                });
 
-    {{--                success: function (response) {--}}
-    {{--                    if (response.status == 200) {--}}
-    {{--                        $('#carmodel2').html('');--}}
-    {{--                        $('#year2').html();--}}
+                myWpElement.addEventListener("blur", function () {
+                    my_wp_nums[index].classList.add("d-none");
+                    console.log("blur");
+                    myWpElement.style.width = "47px";
+                });
+            });
 
+            const myWpElements1 = document.querySelectorAll(".my_wp1");
+            const my_wp_nums1 = document.querySelectorAll(".my_wp_num1");
 
-    {{--                        if (response != '') {--}}
-    {{--                            console.log("response " + response);--}}
+            myWpElements1.forEach((myWpElement1, index) => {
+                myWpElement1.addEventListener("focus", function () {
+                    my_wp_nums1[index].classList.remove("d-none");
+                    console.log("focus.");
+                    myWpElement1.style.width = "170px";
+                });
 
-    {{--                            $('#carmodel2').append(--}}
-    {{--                                `<option   value ="0">Select Car Model</option>`--}}
-    {{--                            );--}}
-    {{--                            $.each(response.get_models, function (value, i) {--}}
+                myWpElement1.addEventListener("blur", function () {
+                    my_wp_nums1[index].classList.add("d-none");
+                    console.log("blur");
+                    myWpElement1.style.width = "47px";
+                });
+            });
+        });
+    </script>
 
+    <script>
+        $("#carmake").on('change', function () {
+            var brand = $("#carmake").val();
+            $("#showbut").css("display", "");
+            $.ajax({
+                url: '{{ route('get_car_models') }}',
+                type: 'GET',
+                data: {
+                    brand: brand
+                },
+                beforeSend: function () {
 
-    {{--                                $('#carmodel2').append(--}}
-    {{--                                    `<option   value ="${i.model_name}">${i.model_name}</option>`--}}
-    {{--                                );--}}
-    {{--                                $('#year2').append(--}}
-    {{--                                    `<option   value ="${i.make_year}">${i.make_year}</option>--}}
-    {{--                                        `--}}
-    {{--                                )--}}
-    {{--                            });--}}
-
-
-    {{--                            @if (isset($_GET['carmodel']) && !empty($_GET['carmodel']))--}}
-
-    {{--                            console.log("carmodel " + "<?php echo $_GET['carmodel']; ?>");--}}
-    {{--                            $('#carmodel2').val("<?php echo $_GET['carmodel']; ?>");--}}
-    {{--                            $("#carmodel2").change();--}}
-    {{--                            @endif--}}
-
-    {{--                        } else {--}}
-    {{--                            $('#carmodel2').append(--}}
-    {{--                                `<option   value ="">Data Not Found</option>`--}}
-    {{--                            );--}}
-    {{--                        }--}}
-    {{--                    }--}}
-
-    {{--                }--}}
-    {{--            });--}}
-    {{--        })--}}
-
-    {{--        @if (isset($_GET['brand']) && !empty($_GET['brand']))--}}
-
-    {{--        $("#carmake").change();--}}
-    {{--        @endif--}}
-    {{--    </script>--}}
-    {{--    <script>--}}
-    {{--        $("#carmodel2").on('change', function () {--}}
-    {{--            var model_name = $(this).val();--}}
-
-    {{--            $.ajax({--}}
-    {{--                url: '{{ route('get_make_years') }}',--}}
-    {{--                type: 'GET',--}}
-    {{--                data: {--}}
-    {{--                    model_name: model_name--}}
-    {{--                },--}}
-    {{--                beforeSend: function () {--}}
-
-    {{--                    console.log("----------- beforeSend -------------");--}}
+                    console.log("----------- beforeSend -------------");
 
 
-    {{--                    $('#year2').html(`<option   value ="0">Loading....</option>`);--}}
+                    $('#carmodel2').html(`<option   value ="0">Loading....</option>`);
 
-    {{--                },--}}
-    {{--                success: function (response) {--}}
-    {{--                    if (response.status == 200) {--}}
-    {{--                        $('#year2').html('');--}}
-    {{--                        if (response != '') {--}}
-    {{--                            $.each(response.make_year, function (value, i) {--}}
-    {{--                                console.log(i);--}}
-    {{--                                $('#year2').append(--}}
-    {{--                                    `<option   value ="${i.make_year}">${i.make_year}</option>`--}}
-    {{--                                )--}}
-    {{--                            });--}}
-    {{--                        }--}}
-    {{--                    } else {--}}
-    {{--                        $('#year2').append(--}}
-    {{--                            `<option   value ="">Data Not Found</option>`--}}
-    {{--                        );--}}
-    {{--                    }--}}
-    {{--                }--}}
-    {{--            });--}}
-    {{--        })--}}
-    {{--    </script>--}}
+                },
+
+                success: function (response) {
+                    if (response.status == 200) {
+                        $('#carmodel2').html('');
+                        $('#year2').html();
+
+
+                        if (response != '') {
+                            console.log("response " + response);
+
+                            $('#carmodel2').append(
+                                `<option   value ="0">Select Car Model</option>`
+                            );
+                            $.each(response.get_models, function (value, i) {
+
+
+                                $('#carmodel2').append(
+                                    `<option   value ="${i.model_name}">${i.model_name}</option>`
+                                );
+                                $('#year2').append(
+                                    `<option   value ="${i.make_year}">${i.make_year}</option>
+                                            `
+                                )
+                            });
+
+
+                            @if (isset($_GET['carmodel']) && !empty($_GET['carmodel']))
+
+                            console.log("carmodel " + "<?php echo $_GET['carmodel']; ?>");
+                            $('#carmodel2').val("<?php echo $_GET['carmodel']; ?>");
+                            $("#carmodel2").change();
+                            @endif
+
+                        } else {
+                            $('#carmodel2').append(
+                                `<option   value ="">Data Not Found</option>`
+                            );
+                        }
+                    }
+
+                }
+            });
+        })
+
+        @if (isset($_GET['brand']) && !empty($_GET['brand']))
+
+        $("#carmake").change();
+        @endif
+    </script>
+    <script>
+        $("#carmodel2").on('change', function () {
+            var model_name = $(this).val();
+
+            $.ajax({
+                url: '{{ route('get_make_years') }}',
+                type: 'GET',
+                data: {
+                    model_name: model_name
+                },
+                beforeSend: function () {
+
+                    console.log("----------- beforeSend -------------");
+
+
+                    $('#year2').html(`<option   value ="0">Loading....</option>`);
+
+                },
+                success: function (response) {
+                    if (response.status == 200) {
+                        $('#year2').html('');
+                        if (response != '') {
+                            $.each(response.make_year, function (value, i) {
+                                console.log(i);
+                                $('#year2').append(
+                                    `<option   value ="${i.make_year}">${i.make_year}</option>`
+                                )
+                            });
+                        }
+                    } else {
+                        $('#year2').append(
+                            `<option   value ="">Data Not Found</option>`
+                        );
+                    }
+                }
+            });
+        })
+    </script>
+@endsection
+
 @endsection
