@@ -2,7 +2,7 @@
 @section('title', 'Blog Details | OneTapDrive')
 @section('content')
     <section class="blogDetailSec">
-        <div class="container">
+        <div class="container-md">
             <div class="row">
                 <div class="col-md-6">
                     <figure class="blogImg">
@@ -127,7 +127,7 @@
         </div>
     </section>
     <section class="blogSwiperSec">
-        <div class="container">
+        <div class="container-md">
             <div class="row">
                 <div class="col-12">
                     <h2 class="secHeading mb-5 ">
@@ -318,7 +318,7 @@
         </div>
     </section>
     <section class="blogPostSec">
-        <div class="container">
+        <div class="container-lg">
             <div class="row">
                 <div class="col-12">
                     <h2 class="secHeading mb-4 ms-0">Comments</h2>

@@ -24,9 +24,9 @@
         </div>
     </section>
     <section class="aboutSec">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-7">
+        <div class="container-md">
+            <div class="row align-items-center flex-lg-row flex-column-reverse gap-lg-0 gap-4">
+                <div class="col-lg-7">
                     <div class="aboutContent">
                         <h2 class="secHeading">About Us</h2>
                         <p>
@@ -53,7 +53,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-lg-5">
                     <figure class="aboutImg">
                         <img src="{{asset("/web-assets/images/buildin.jpg")}}" alt="">
                     </figure>
@@ -62,8 +62,8 @@
         </div>
     </section>
     <section class="apartSec">
-        <div class="container">
-            <div class="row">
+        <div class="container-lg">
+            <div class="row gap-md-0 gap-5">
                 <div class="col-12">
                     <h2 class="secHeading">
                         What sets us apart
@@ -115,9 +115,9 @@
         </div>
     </section>
     <section class="aboutSec">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-7">
+        <div class="container-md">
+            <div class="row align-items-center gap-lg-0 gap-4">
+                <div class="col-lg-7">
                     <figure class="aboutImg">
                         <iframe
                             width="420"
@@ -127,7 +127,7 @@
                         </iframe>
                     </figure>
                 </div>
-                <div class="col-md-5">
+                <div class="col-lg-5">
                     <div class="aboutContent">
                         <h2 class="secHeading">Mission</h2>
                         <p>
@@ -145,7 +145,7 @@
         </div>
     </section>
     <section class="listingSec">
-        <div class="container">
+        <div class="container-lg">
             <div class="row">
                 <div class="col-12">
                     <h2 class="secHeading mb-5">
@@ -258,7 +258,7 @@
         </div>
     </section>
     <section class="howToSec">
-        <div class="container">
+        <div class="container-lg">
             <div class="row">
                 <div class="col-md-7">
                     <div class="aboutContent">

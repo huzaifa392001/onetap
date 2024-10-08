@@ -1,300 +1,275 @@
-@extends('frontend.layouts.header')
-@section('title', 'Deser Safari Dubai')
+@extends('frontend.layouts.new_header')
+@section('title', 'Desert Safari | OneTapDrive')
 @section('content')
-    <div class="desert_safari_wrapper">
-        <div class="styled_video_banner">
-            <div class="overlay"></div>
-            <video playsinline="" loop="" autoplay="" muted=""
-                src="https://www.oneclickdrive.com/application/views/images/header-vd.mp4?ve=4.4" class="video-main webonly"
-                height="400" width="390"></video>
-            <div class="content_wrapper">
-                <h3>Desert Safari Dubai</h3>
-                <h1>Plan a desert safari adventure today!</h1>
-                <p class="reveal fade_bottom">
-                    Embark on an extraordinary adventure in the mystical desert!
-                    Experience the breathtaking beauty of golden dunes, immerse in rich
-                    Bedouin culture, and create unforgettable memories. Desert Safari
-                    awaits!
-                </p>
-                <p class="reveal fade_bottom">
+    <div class="innerBanner">
+        <video autoplay loop muted playsinline>
+            <source src="https://www.oneclickdrive.com/application/views/images/header-vd.mp4?ve=4.4">
+        </video>
+        <div class="content">
+            <h1>
+                <span>
+                    Desert Safari Dubai
+                </span>
+                Plan a desert safari adventure today!
+            </h1>
+            <p>
+                Embark on an extraordinary adventure in the mystical desert! Experience the breathtaking beauty of
+                golden dunes, immerse in rich Bedouin culture, and create unforgettable memories. Desert Safari awaits!
+            </p>
+            <ul>
+                <li>
                     Exciting Desert Safari Packages for Every Budget
-                </p>
-                <p class="reveal fade_bottom">
+                </li>
+                <li>
                     Wide range of thrilling activities and experiences
-                </p>
-                <p class="reveal fade_bottom">
+                </li>
+                <li>
                     Choose your preferred Dubai desert safari tour
-                </p>
+                </li>
+            </ul>
+            <a href="tel:+971585672509" class="themeBtn">
+                +971585672509
+            </a>
+        </div>
+    </div>
 
-                <button class="styled_button">
-                    <i class="fa fa-phone"></i> <span class="ml-2">+923453456</span>
-                </button>
+    <section class="aboutSec">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="aboutContent">
+                        <h2 class="secHeading">
+                            Exclusive Desert Safari Dubai Packages
+                        </h2>
+                        <p>
+                            Welcome to Dubai, a city that never fails to captivate with its thrilling adventures and
+                            enchanting landscapes. If you're seeking an unforgettable experience filled with
+                            adrenaline-pumping activities, look no further than a desert safari in Dubai. Prepare to
+                            embark on a journey like no other as you delve into the heart of the desert and immerse
+                            yourself in a world of excitement, culture, and natural beauty.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="aboutCard">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/aboutCardBg.png')}}" alt="">
+                            </figure>
+                            <h2>Economy Desert Safari</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>Package Price AED 99</h3>
+                                <p>
+                                    Embark on an exciting adventure without breaking the bank with our Economy Desert
+                                    Safari Package. This budget-friendly option offers a thrilling desert experience at
+                                    a great value.
+                                </p>
+                                <div class="tags">
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/camel.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/thirlling.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/Aromatic-shisha.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/Personal-Chauffeur.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/photography.svg")}}" alt=""/>
+                                    </figure>
+                                </div>
+                                <div class="btnCont">
+                                    <a href="" class="themeBtn">
+                                        Highlight
+                                    </a>
+                                    <a href="" class="themeBtn">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="aboutCard">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/aboutCardBg.png')}}" alt="">
+                            </figure>
+                            <h2>Economy Desert Safari</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>Package Price AED 99</h3>
+                                <p>
+                                    Embark on an exciting adventure without breaking the bank with our Economy Desert
+                                    Safari Package. This budget-friendly option offers a thrilling desert experience at
+                                    a great value.
+                                </p>
+                                <div class="tags">
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/camel.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/thirlling.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/Aromatic-shisha.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/Personal-Chauffeur.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/photography.svg")}}" alt=""/>
+                                    </figure>
+                                </div>
+                                <div class="btnCont">
+                                    <a href="" class="themeBtn">
+                                        Highlight
+                                    </a>
+                                    <a href="" class="themeBtn">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="aboutCard">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/aboutCardBg.png')}}" alt="">
+                            </figure>
+                            <h2>Economy Desert Safari</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>Package Price AED 99</h3>
+                                <p>
+                                    Embark on an exciting adventure without breaking the bank with our Economy Desert
+                                    Safari Package. This budget-friendly option offers a thrilling desert experience at
+                                    a great value.
+                                </p>
+                                <div class="tags">
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/camel.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/thirlling.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/Aromatic-shisha.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/Personal-Chauffeur.svg")}}" alt=""/>
+                                    </figure>
+                                    <figure class="tag">
+                                        <img src="{{asset("/web-assets/images/photography.svg")}}" alt=""/>
+                                    </figure>
+                                </div>
+                                <div class="btnCont">
+                                    <a href="" class="themeBtn">
+                                        Highlight
+                                    </a>
+                                    <a href="" class="themeBtn">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <section>
-            <div class="content_wrap">
-                <h1 class="reveal fade_bottom">
-                    Exclusive Desert Safari Dubai Packages
-                </h1>
-                <p class="reveal fade_bottom">
-                    Welcome to Dubai, a city that never fails to captivate with its
-                    thrilling adventures and enchanting landscapes. If you're seeking an
-                    unforgettable experience filled with adrenaline-pumping activities,
-                    look no further than a desert safari in Dubai. Prepare to embark on
-                    a journey like no other as you delve into the heart of the desert
-                    and immerse yourself in a world of excitement, culture, and natural
-                    beauty.
-                </p>
-                <div class="row">
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/morning-desert-safari.png?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Economy Desert Safari</h2>
-                            <div class="content_wrapper">
-                                <div class="content">
-                                    <h2 class="reveal fade_bottom">
-                                        Package Price <span>AED 99</span>
-                                    </h2>
-                                    <p class="reveal fade_bottom">
-                                        Embark on an exciting adventure without breaking the bank
-                                        with our Economy Desert Safari Package. This
-                                        budget-friendly option offers a thrilling desert
-                                        experience at a great value.
-                                    </p>
-                                    <div class="plans">
-                                        <div>
-                                            <img src="./assets/images/camel.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/thirlling.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/Aromatic-shisha.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/Personal-Chauffeur.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/photography.svg" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content btns">
-                                    <button class="styled_button">Highlight</button>
-                                    <a href="" class="styled_button">
-                                        <i class="fa fa-whatsapp"> </i> Book Now
-                                    </a>
-                                </div>
+    </section>
+
+    <section class="aboutSec">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="aboutContent">
+                        <h2 class="secHeading">
+                            Activities And Experiences:
+                        </h2>
+                        <p>
+                            Desert safari offers a wide range of thrilling activities and experiences thatcater to
+                            different preferences and adventure levels. Here are some of the highlights you can expect:
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="aboutCard activity">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                            </figure>
+                            <h2>Dance Performances</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Dance Performances
+                                </h3>
+                                <p>
+                                    Enjoy mesmerizing performances by talented dancers with graceful moves and
+                                    soul-stirring Arabic music.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/evening-desert.png?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Economy Desert Safari</h2>
-                            <div class="content_wrapper">
-                                <div class="content">
-                                    <h2 class="reveal fade_bottom">
-                                        Package Price <span>AED 99</span>
-                                    </h2>
-                                    <p class="reveal fade_bottom">
-                                        Embark on an exciting adventure without breaking the bank
-                                        with our Economy Desert Safari Package. This
-                                        budget-friendly option offers a thrilling desert
-                                        experience at a great value.
-                                    </p>
-                                    <div class="plans">
-                                        <div>
-                                            <img src="./assets/images/camel.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/thirlling.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/Aromatic-shisha.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/Personal-Chauffeur.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/photography.svg" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content btns">
-                                    <button class="styled_button">Highlight</button>
-                                    <a href="" class="styled_button">
-                                        <i class="fa fa-whatsapp"> </i> Book Now
-                                    </a>
-                                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="aboutCard activity">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/sandboarding.jpeg')}}" alt="">
+                            </figure>
+                            <h2>Sand Boarding</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Sandboarding
+                                </h3>
+                                <p>
+                                    Enjoy mesmerizing performances by talented dancers with graceful moves and
+                                    soul-stirring Arabic music.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/night-desert-safari.png?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Economy Desert Safari</h2>
-                            <div class="content_wrapper">
-                                <div class="content">
-                                    <h2 class="reveal fade_bottom">
-                                        Package Price <span>AED 99</span>
-                                    </h2>
-                                    <p class="reveal fade_bottom">
-                                        Embark on an exciting adventure without breaking the bank
-                                        with our Economy Desert Safari Package. This
-                                        budget-friendly option offers a thrilling desert
-                                        experience at a great value.
-                                    </p>
-                                    <div class="plans">
-                                        <div>
-                                            <img src="./assets/images/camel.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/thirlling.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/Aromatic-shisha.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/Personal-Chauffeur.svg" alt="" />
-                                        </div>
-                                        <div>
-                                            <img src="./assets/images/photography.svg" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content btns">
-                                    <button class="styled_button">Highlight</button>
-                                    <a href="" class="styled_button">
-                                        <i class="fa fa-whatsapp"> </i> Book Now
-                                    </a>
-                                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="aboutCard activity">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                            </figure>
+                            <h2>Dune Bashing</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Dune Bashing
+                                </h3>
+                                <p>
+                                    Enjoy mesmerizing performances by talented dancers with graceful moves and
+                                    soul-stirring Arabic music.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="bg_lime">
-            <div class="content_wrap">
-                <h2 class="reveal fade_bottom">Activities And Experiences:</h2>
-                <p class="reveal fade_bottom">
-                    Desert safari offers a wide range of thrilling activities and
-                    experiences thatcater to different preferences and adventure levels.
-                    Here are some of the highlights you can expect:
-                </p>
-                <div class="row">
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/dance-performance.jpg?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Dance Performances</h2>
-                            <div class="content_wrapper">
-                                <div class="content center">
-                                    <h2 class="underline">Dance Performances</h2>
-                                    <p class="reveal fade_bottom">
-                                        Enjoy mesmerizing performances by talented dancers with
-                                        graceful moves and soul-stirring Arabic music.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/Sandboarding.jpeg?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Sandboarding</h2>
-                            <div class="content_wrapper">
-                                <div class="content center">
-                                    <h2 class="underline">Sandboarding</h2>
-                                    <p class="reveal fade_bottom">
-                                        Enjoy mesmerizing performances by talented dancers with
-                                        graceful moves and soul-stirring Arabic music.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/ObhuD.jpg?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Dune Bashing</h2>
-                            <div class="content_wrapper">
-                                <div class="content center">
-                                    <h2 class="underline">Dune Bashing</h2>
-                                    <p class="reveal fade_bottom">
-                                        Enjoy mesmerizing performances by talented dancers with
-                                        graceful moves and soul-stirring Arabic music.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/dance-performance.jpg?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Buggy Riding</h2>
-                            <div class="content_wrapper">
-                                <div class="content center">
-                                    <h2 class="underline">Buggy Riding</h2>
-                                    <p class="reveal fade_bottom">
-                                        Enjoy mesmerizing performances by talented dancers with
-                                        graceful moves and soul-stirring Arabic music.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/Sandboarding.jpeg?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">Camel Riding</h2>
-                            <div class="content_wrapper">
-                                <div class="content center">
-                                    <h2 class="underline">Camel Riding</h2>
-                                    <p class="reveal fade_bottom">
-                                        Enjoy mesmerizing performances by talented dancers with
-                                        graceful moves and soul-stirring Arabic music.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 p-2 reveal fade_bottom">
-                        <div style="
-                background-image: url('https://www.oneclickdrive.com/application/views/images/ObhuD.jpg?ve=4.4');
-              "
-                            class="styled_desert_card">
-                            <h2 class="reveal fade_bottom">BBQ Buffet</h2>
-                            <div class="content_wrapper">
-                                <div class="content center">
-                                    <h2 class="underline">BBQ Buffet</h2>
-                                    <p class="reveal fade_bottom">
-                                        Enjoy mesmerizing performances by talented dancers with
-                                        graceful moves and soul-stirring Arabic music.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
+    <div class="desert_safari_wrapper">
         <section>
             <div class="container">
                 <div class="section_heading">
@@ -313,7 +288,7 @@
                         <div class="item">
                             <div class="styled_card_v3">
                                 <img src="https://www.oneclickdrive.com/application/views/img/yacht-banner.jpg?v=1"
-                                    alt="" />
+                                     alt=""/>
                                 <div class="card_overlay flex_center">
                                     Yatch rental in dubai
                                 </div>
@@ -329,7 +304,7 @@
                     <div class="item">
                         <div class="styled_card_5 m_10">
                             <img src="https://www.oneclickdrive.com/application/views/images/desert-safari.png?ve=4.4"
-                                alt="" />
+                                 alt=""/>
                             <div class="content_wrapper">
                                 <h2 class="underline">Morning Safari Dubai</h2>
                                 <p>
@@ -534,7 +509,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".brands_carousel").owlCarousel({
                 items: 6, // The number of items you want to see on the screen.
                 loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.
@@ -557,7 +532,7 @@
             });
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".owl_four_items").owlCarousel({
                 items: 4, // The number of items you want to see on the screen.
                 loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.
@@ -580,7 +555,7 @@
             });
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".owl_one_item").owlCarousel({
                 items: 1, // The number of items you want to see on the screen.
                 loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.
@@ -589,7 +564,7 @@
             });
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".owl_three_items").owlCarousel({
                 items: 3, // The number of items you want to see on the screen.
                 loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.

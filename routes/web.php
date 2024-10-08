@@ -364,7 +364,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('contact-us', [FrontendController::class, 'contact'])->name('contact-us');
 Route::get('blogs', [FrontendController::class, 'blogs'])->name('blogs');
 Route::get('blog-details', [FrontendController::class, 'blogDetails'])->name('blog-details');
-Route::get('brands', [FrontendController::class, 'allbrands'])->name('brands');
+Route::get('allBrands', [FrontendController::class, 'Brands'])->name('brands');
 Route::get('faq', [FrontendController::class, 'faqs'])->name('faq');
 Route::get('car-with-driver/{service_type?}', [FrontendController::class, 'carwithDriver'])->name('car-with-driver');
 Route::get('country-driving-license', [FrontendController::class, 'drivingLicense'])->name('country-driving-license');

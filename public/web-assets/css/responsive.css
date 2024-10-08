@@ -360,6 +360,22 @@
     .blogCard figure {
         height: 250px;
     }
+
+    .enquirySec .aboutContent {
+        text-align: center;
+    }
+
+    .enquirySec .aboutContent.contentWrap .secHeading {
+        margin: 0 auto 2rem;
+    }
+
+    .enquirySec .aboutContent.contentWrap ul li {
+        justify-content: center;
+    }
+
+    .enquirySec .aboutContent.contentWrap ul {
+        margin: 1rem 0 2rem;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -464,6 +480,20 @@
     .contentSec .contentImg {
         display: none;
     }
+
+    .gallerySec img {
+        width: 47%;
+        flex: 0 1 47%;
+        height: 250px;
+    }
+
+    .blogDetailSec .mainDetails h1 {
+        margin-top: 2rem;
+    }
+
+    .sliderBanner .swiper-slide {
+        height: 300px;
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -499,6 +529,30 @@
 
     .benefitSec .secHeading {
         margin: 0 auto 1rem;
+    }
+
+    .gallerySec img {
+        width: calc(100% - 10px);
+        flex: 0 1 calc(100% - 10px);
+        height: 250px;
+    }
+
+    .commentBox.reply {
+        width: 95%;
+    }
+
+    .addComment .btnCont {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .sliderBanner .swiper-slide .content p {
+        text-align: center;
+        font-size: 1.125rem;
+    }
+
+    .sliderBanner .swiper-slide .content h2 {
+        text-align: center;
     }
 }
 

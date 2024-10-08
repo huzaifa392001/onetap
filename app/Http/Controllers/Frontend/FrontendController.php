@@ -327,13 +327,21 @@ class FrontendController extends Controller
         return view('frontend.blog-details');
     }
 
-    public function allbrands(Request $request)
+    public function Brands()
     {
-        notify()->success('Welcome to Laravel Notify');
+                $brands = Brand::where('status', 1)->get();
+
+        return view('frontend.brands', get_defined_vars());
+
+    }
+
+    public function allBrands()
+    {
+//        notify()->success('Welcome to Laravel Notify');
         // connectify('success', 'Connection Found', 'Success Message Here');
 
 
-        $brands = Brand::where('status', 1)->get();
+//        $brands = Brand::where('status', 1)->get();
         // notify()->success(__('Role has been changed.'));
 
         return view('frontend.brands', get_defined_vars());

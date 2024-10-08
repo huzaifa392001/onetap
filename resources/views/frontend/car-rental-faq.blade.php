@@ -3,7 +3,7 @@
 @section('content')
 
     <section class="faqDetailsSec">
-        <div class="container">
+        <div class="container-md">
             <div class="row">
                 <div class="col-12">
                     <div class="aboutContent contentWrap">
@@ -35,7 +35,7 @@
     </section>
 
     <section class="py-3 faqSec">
-        <div class="container">
+        <div class="container-md">
             <div class="row">
                 <div class="col-12">
                     <div class="aboutContent">

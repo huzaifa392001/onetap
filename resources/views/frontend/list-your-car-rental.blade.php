@@ -46,7 +46,7 @@
     <section class="enquirySec">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="aboutContent contentWrap">
                         <h2 class="secHeading">
                             JOIN NOW
@@ -79,7 +79,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <form action="" class="enquiryForm">
                         <div class="container-fluid">
                             <div class="row">
@@ -180,7 +180,7 @@
     </section>
 
     <section class="whyJoinSec">
-        <div class="container">
+        <div class="container-lg">
             <div class="row align-items-center">
                 <div class="col-12">
                     <h2 class="secHeading">Why Join OneTapDrive?</h2>
@@ -278,7 +278,7 @@
     </section>
 
     <section class="py-3 faqSec">
-        <div class="container">
+        <div class="container-lg">
             <div class="row">
                 <div class="col-12">
                     <div class="aboutContent">
@@ -396,7 +396,7 @@
 
     <section class="listYourCarBanner">
         <div class="content">
-            <div class="container">
+            <div class="container-md">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="addCard">
