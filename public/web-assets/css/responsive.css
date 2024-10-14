@@ -90,7 +90,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 2rem 0;
+        padding: 2rem 0 0;
         gap: 1.5rem;
     }
 
@@ -335,10 +335,6 @@
     }
 
     .carRow .carCard .content h2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
     }
 
     .carRow .carCard.fullCard {
@@ -375,6 +371,47 @@
 
     .enquirySec .aboutContent.contentWrap ul {
         margin: 1rem 0 2rem;
+    }
+
+    .carCard.fullCard.serviceCard {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carCard.fullCard.serviceCard .imgCont {
+        min-height: 0;
+        height: 200px;
+        border: none;
+        border-bottom: 1px solid var(--theme-color);
+    }
+
+    .carCard.fullCard.serviceCard .wishlistCont {
+        left: auto;
+        right: 10px;
+    }
+
+    .carCard.fullCard.serviceCard .contentWrap {
+        min-height: 0;
+        width: 100%;
+    }
+
+    .carCard.fullCard.serviceCard .btnCont {
+        position: unset;
+        justify-content: end;
+        margin: auto 10px 10px 0;
+    }
+
+    .carCard.fullCard.serviceCard .btnCont .themeBtn,
+    .carCard.fullCard.serviceCard .btnCont .themeBtn.enquiry {
+        flex: 0 1 50px;
+    }
+
+    .carCard.fullCard.serviceCard .left_details_area {
+        margin: 1rem 0 0;
+    }
+
+    .carCard.serviceCard.fullCard .content .rent_details {
+        flex-direction: row;
     }
 }
 
@@ -494,6 +531,18 @@
     .sliderBanner .swiper-slide {
         height: 300px;
     }
+
+    .carCard.fullCard.serviceCard .content .other_details .right_details_area {
+        display: block;
+    }
+
+    .carCard.fullCard.serviceCard .content .other_details .right_details_area p + p {
+        margin: 5px 0 0;
+    }
+
+    .carCard.fullCard.serviceCard .imgCont {
+        flex: 0 1 auto;
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -553,6 +602,33 @@
 
     .sliderBanner .swiper-slide .content h2 {
         text-align: center;
+    }
+
+    .brandSwiper .swiper-slide > a .content p {
+        display: none;
+    }
+
+    .brandSwiper .swiper-slide > a .content h3 {
+        font-size: 0.9rem;
+    }
+
+    .categoryCard {
+        box-shadow: none;
+    }
+
+    .categoryCard .cardContent p {
+        color: var(--theme-color);
+    }
+
+    #category-container .themeBtn {
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .brandSwiper .swiper-slide > a img {
+        height: 70px;
+        width: 70px;
     }
 }
 

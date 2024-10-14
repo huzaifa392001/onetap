@@ -2,6 +2,21 @@ $(function () {
     showDropdown()
     allSlider()
     menuToggler()
+    Fancybox.bind("[data-fancybox]", {
+        buttons: [
+            "slideShow",
+            "thumbs",
+            "zoom",
+            "fullScreen",
+            "share",
+            "close"
+        ],
+        thumbs: {
+            autoStart: true // Display thumbnails on open
+        },
+        loop: false,
+        protect: true
+    });
 })
 
 $(window).on("load", () => {
@@ -47,7 +62,7 @@ function showDropdown() {
 
 function allSlider() {
     const brandSwiper = new Swiper(".brandSwiper", {
-        slidesPerView: 3,
+        slidesPerView: 4,
         loop: true,
         spaceBetween: 20,
         // autoplay: {

@@ -35,7 +35,7 @@
 
     <section class="aboutSec">
         <div class="container">
-            <div class="row">
+            <div class="row cardRow">
                 <div class="col-12">
                     <div class="aboutContent">
                         <h2 class="secHeading">
@@ -191,7 +191,7 @@
 
     <section class="aboutSec">
         <div class="container">
-            <div class="row">
+            <div class="row cardRow">
                 <div class="col-12">
                     <div class="aboutContent">
                         <h2 class="secHeading">
@@ -266,47 +266,237 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <div class="desert_safari_wrapper">
-        <section>
-            <div class="container">
-                <div class="section_heading">
-                    <h1 class="reveal fade_bottom">Beyond Car Rentals</h1>
-                    <button class="styled_button animate_width">All Brands</button>
+                <div class="col-md-4">
+                    <div class="aboutCard activity">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                            </figure>
+                            <h2>Buggy Riding</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Buggy Riding
+                                </h3>
+                                <p>
+                                    Enjoy mesmerizing performances by talented dancers with graceful moves and
+                                    soul-stirring Arabic music.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="space_y">
-                    <p class="reveal fade_bottom">
-                        Explore our suite of curated services such as chauffeur, buggy and
-                        safe driver provided by exclusive partners and managed by
-                        WheelsOnClick.
-                    </p>
+                <div class="col-md-4">
+                    <div class="aboutCard activity">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/sandboarding.jpeg')}}" alt="">
+                            </figure>
+                            <h2>Camel Riding</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Camel Riding
+                                </h3>
+                                <p>
+                                    Enjoy mesmerizing performances by talented dancers with graceful moves and
+                                    soul-stirring Arabic music.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="reveal fade_bottom">
-                    <div class="owl-carousel owl_four_items owl-theme">
-                        <div class="item">
-                            <div class="styled_card_v3">
-                                <img src="https://www.oneclickdrive.com/application/views/img/yacht-banner.jpg?v=1"
-                                     alt=""/>
-                                <div class="card_overlay flex_center">
-                                    Yatch rental in dubai
-                                </div>
+                <div class="col-md-4">
+                    <div class="aboutCard activity">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                            </figure>
+                            <h2>BBQ Buffet</h2>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    BBQ Buffet
+                                </h3>
+                                <p>
+                                    Enjoy mesmerizing performances by talented dancers with graceful moves and
+                                    soul-stirring Arabic music.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="bg_lime">
-            <div class="content_wrap">
-                <div class="owl-carousel owl_four_items owl-theme">
-                    <div class="item">
-                        <div class="styled_card_5 m_10">
-                            <img src="https://www.oneclickdrive.com/application/views/images/desert-safari.png?ve=4.4"
-                                 alt=""/>
-                            <div class="content_wrapper">
-                                <h2 class="underline">Morning Safari Dubai</h2>
+        </div>
+    </section>
+
+    <section class="aboutSec">
+        <div class="container">
+            <div class="row cardRow">
+                <div class="col-12">
+                    <div class="aboutContent flexContent">
+                        <div>
+                            <h2 class="secHeading">
+                                Beyond Car Rentals
+                            </h2>
+                            <p>
+                                Explore our suite of curated services such as chauffeur, buggy and safe driver provided
+                                by exclusive partners and managed by <a
+                                    href="https://onetapdrive.com">onetapdrive.com</a>.
+                            </p>
+                        </div>
+                        <a href="{{route('brands')}}" class="themeBtn">
+                            All Brands
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="aboutCard rental">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/yatch.webp')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="aboutCard rental">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/yatch.webp')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="aboutCard rental">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/yatch.webp')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="aboutCard rental">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/yatch.webp')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row cardRow">
+                <div class="col-md-3">
+                    <div class="aboutCard rental full">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
+                                <p>
+                                    A morning desert safari in Dubai presents a serene and
+                                    captivating experience. These safaris commence early,
+                                    typically around 4:30 a.m, allowing you to witness the
+                                    magical sunrise over the vast expanse of sand dunes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="aboutCard rental full">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
+                                <p>
+                                    A morning desert safari in Dubai presents a serene and
+                                    captivating experience. These safaris commence early,
+                                    typically around 4:30 a.m, allowing you to witness the
+                                    magical sunrise over the vast expanse of sand dunes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="aboutCard rental full">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
+                                <p>
+                                    A morning desert safari in Dubai presents a serene and
+                                    captivating experience. These safaris commence early,
+                                    typically around 4:30 a.m, allowing you to witness the
+                                    magical sunrise over the vast expanse of sand dunes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="aboutCard rental full">
+                        <div class="bg">
+                            <figure>
+                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="front">
+                            <div class="content">
+                                <h3>
+                                    Yatch rental in dubai
+                                </h3>
                                 <p>
                                     A morning desert safari in Dubai presents a serene and
                                     captivating experience. These safaris commence early,
@@ -318,11 +508,15 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="desert_safari_bg">
-            <div class="content_wrap">
-                <h2>Additional Information On What To Wear In Desert Safari</h2>
+    <section class="bannerSec desertBanner">
+        <div class="content">
+            <div class="container-lg">
+                <h2>
+                    Additional Information On What To Wear In Desert Safari
+                </h2>
                 <p>
                     To fully enjoy your desert safari experience, it's important to be
                     comfortable and protected in the desert environment. Here are a few
@@ -357,234 +551,174 @@
                     </li>
                 </ul>
             </div>
-        </section>
-        <section class="bg_lime">
-            <div class="content_wrap">
-                <h2>Desert Safari Price</h2>
-                <p>
-                    The price of a desert safari in Dubai can vary depending on the
-                    package and the inclusions offered by different tour operators.
-                    However, to give you a general idea, the prices typically range from
-                    around 200 AED to 600 AED per person for a standard desert safari
-                    experience.
-                </p>
-                <p>
-                    Keep in mind that prices may vary based on factors such as the
-                    duration of the safari, the activities included (such as dune
-                    bashing, camel riding, sandboarding, etc.), the type of vehicle used
-                    (4x4 vehicle), the quality of the camp facilities, and additional
-                    services like BBQ dinner, belly dance performances, and henna
-                    painting.
-                </p>
-                <p>
-                    It's important to check with different tour operators or websites to
-                    compare prices and find the best deal that suits your budget and
-                    preferences.
-                </p>
-                <h2>Desert Safari Booking</h2>
-                <p>Booking a desert safari in Dubai is a straightforward process:</p>
-                <p>
-                    Online Booking: Many tour operators offer online booking services
-                    through their websites. Simply visit the website of your preferred
-                    tour operator, choose the desert safari package that suits your
-                    preferences, select your desired date and time, and make the payment
-                    online. You will receive a confirmation of your booking via email.
-                    Don't forget to also be on the lookout for the best desert safari
-                    dubai deals.
-                </p>
-                <h2>Before booking, it's recommended to:</h2>
-                <p>
-                    Research and compare different tour operators to ensure they are
-                    licensed, reputable, and offer the services and experiences you
-                    desire. Read customer reviews and check their cancellation and
-                    refund policies. Additionally, consider the package inclusions, such
-                    as activities, transportation, meals, and entertainment, to ensure
-                    they align with your preferences.
-                </p>
-                <p>
-                    <strong class="clr_primary">Note:</strong> Booking your desert
-                    safari in advance is advisable, especially during peak tourist
-                    seasons, to secure your preferred date and time. Desert safaris are
-                    popular activities in Dubai, and early booking ensures availability
-                    and a seamless experience during your visit.
-                </p>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section>
-            <div class="content_wrap">
-                <h2>Frequently Asked Questions</h2>
-                <div class="collapse_wrap">
-                    <div class="collapse_items">
-                        <div id="faq-one" class="custom_collapse">
-                            <button onclick="onOpenCollapse('faq-one')">
-                                <span> Why is driving a BMW recommended in Dubai? </span>
-                                <i id="faq-one-arrow" class="fa fa-angle-down"></i>
-                            </button>
-                            <div id="faq-one-content" class="collapse_content">
-                                <p>
-                                    Among the popular car choices, BMW is definitely a favorite.
-                                    In Dubai, more so, as it’s perfect for Sheikh Zayed Road as
-                                    well as on the highways stretching across the Emirates.
-                                    Being one of the most scenic places for those seeking a
-                                    luxurious adventure on wheels, BMWs are the most-in-demand
-                                    cars in Dubai. You’ll be driving alongside exotic cars such
-                                    as Porsche, Mercedes Benz, Audi, not to mention a range of
-                                    sports cars.Many tourists and residents in Dubai rent a BMW
-                                    to soak the pleasure of driving a luxurious sedan. The
-                                    spacious cabin, extra legroom, advanced driving and safety
-                                    features are what BMW vehicles are most known for.
-                                </p>
-                            </div>
-                        </div>
+    <section class="aboutSec">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="aboutContent contentWrap">
+                        <h2 class="secHeading">Desert Safari Price</h2>
+                        <p>
+                            The price of a desert safari in Dubai can vary depending on the
+                            package and the inclusions offered by different tour operators.
+                            However, to give you a general idea, the prices typically range from
+                            around 200 AED to 600 AED per person for a standard desert safari
+                            experience.
+                        </p>
+                        <p>
+                            Keep in mind that prices may vary based on factors such as the
+                            duration of the safari, the activities included (such as dune
+                            bashing, camel riding, sandboarding, etc.), the type of vehicle used
+                            (4x4 vehicle), the quality of the camp facilities, and additional
+                            services like BBQ dinner, belly dance performances, and henna
+                            painting.
+                        </p>
+                        <p>
+                            It's important to check with different tour operators or websites to
+                            compare prices and find the best deal that suits your budget and
+                            preferences.
+                        </p>
+                        <h2 class="secHeading">Desert Safari Booking</h2>
+                        <p>Booking a desert safari in Dubai is a straightforward process:</p>
+                        <p>
+                            Online Booking: Many tour operators offer online booking services
+                            through their websites. Simply visit the website of your preferred
+                            tour operator, choose the desert safari package that suits your
+                            preferences, select your desired date and time, and make the payment
+                            online. You will receive a confirmation of your booking via email.
+                            Don't forget to also be on the lookout for the best desert safari
+                            dubai deals.
+                        </p>
+                        <h2 class="secHeading">Before booking, it's recommended to:</h2>
+                        <p>
+                            Research and compare different tour operators to ensure they are
+                            licensed, reputable, and offer the services and experiences you
+                            desire. Read customer reviews and check their cancellation and
+                            refund policies. Additionally, consider the package inclusions, such
+                            as activities, transportation, meals, and entertainment, to ensure
+                            they align with your preferences.
+                        </p>
+                        <p>
+                            <strong class="clr_primary">Note:</strong> Booking your desert
+                            safari in advance is advisable, especially during peak tourist
+                            seasons, to secure your preferred date and time. Desert safaris are
+                            popular activities in Dubai, and early booking ensures availability
+                            and a seamless experience during your visit.
+                        </p>
                     </div>
-                    <div class="collapse_items">
-                        <div id="faq-two" class="custom_collapse">
-                            <button onclick="onOpenCollapse('faq-two')">
-                                <span>
-                                    Can I take the BMW rental car to Abu Dhabi from Dubai?
-                                </span>
-                                <i id="faq-two-arrow" class="fa fa-angle-down"></i>
-                            </button>
-                            <div id="faq-two-content" class="collapse_content">
-                                <p>
-                                    Yes, you can! Most customers rent a luxury sedan in Dubai to
-                                    visit Abu Dhabi and other emirates. It’s definitely the best
-                                    way to explore the UAE. Car rental companies allow their
-                                    vehicles to be driven anywhere in the UAE, barring a few
-                                    locations such as Jebel Hafeet, Jebel Jais and desert areas.
-                                    Be sure to plan your drives in advance to make the most of
-                                    it. Google Maps is your best friend!If you’re planning a
-                                    trip to the Grand Mosque, Louvre or Yas Marina, consider
-                                    renting for 2 or more days to offset the additional mileage
-                                    charge you will incur. As most car rentals, including luxury
-                                    and sports cars, come with a standard mileage limit of
-                                    250-km per day. Dubai to Abu Dhabi is a good 150-km away so
-                                    you’ll probably be clocking over 300 km on the journey
-                                    back.Best practice: Consult with the car rental agency
-                                    regarding your trip plan for suggestions. Additional mileage
-                                    packages may be available.
-                                </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-3 faqSec">
+        <div class="container-md">
+            <div class="row">
+                <div class="col-12">
+                    <div class="aboutContent">
+                        <h2 class="secHeading">Frequently Asked Questions</h2>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                        Why is driving a BMW recommended in Dubai?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            Among the popular car choices, BMW is definitely a favorite. In Dubai, more
+                                            so,
+                                            as itâ€™s perfect for Sheikh Zayed Road as well as on the highways
+                                            stretching
+                                            across the Emirates. Being one of the most scenic places for those seeking a
+                                            luxurious adventure on wheels, BMWs are the most-in-demand cars in Dubai.
+                                            Youâ€™ll be driving alongside exotic cars such as Porsche, Mercedes Benz,
+                                            Audi,
+                                            not to mention a range of sports cars.Many tourists and residents in Dubai
+                                            rent
+                                            a BMW to soak the pleasure of driving a luxurious sedan. The spacious cabin,
+                                            extra legroom, advanced driving and safety features are what BMW vehicles
+                                            are
+                                            most known for.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="collapse_items">
-                        <div id="faq-three" class="custom_collapse">
-                            <button onclick="onOpenCollapse('faq-three')">
-                                <span>
-                                    Which type of BMW cars are available for rent in Dubai?
-                                </span>
-                                <i id="faq-three-arrow" class="fa fa-angle-down"></i>
-                            </button>
-                            <div id="faq-three-content" class="collapse_content">
-                                <p>
-                                    WheelsOnClick.com works with several car rental companies
-                                    across the world. In Dubai, we work with quite a few BMW car
-                                    rental providers. You can choose among cars with a range of
-                                    engine sizes and additional features, including GPS
-                                    navigation, safety and performance enhancements. The BMW
-                                    sedan comes in various 4-door sedan, convertible models with
-                                    advanced features. Different models including: BMW 2-series,
-                                    3-series, 550i, 550 mpower, 730li, 750li, X5, X6 and more.
-                                    If you’re looking for a rare BMW car model, contact our
-                                    suppliers who have listed a BMW. They might be able to cater
-                                    to your distinguished needs.
-                                </p>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                        Can I take the BMW rental car to Abu Dhabi from Dubai?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            Yes, you can! Most customers rent a luxury sedan in Dubai to visit Abu Dhabi
+                                            and
+                                            other emirates. Itâ€™s definitely the best way to explore the UAE. Car
+                                            rental
+                                            companies allow their vehicles to be driven anywhere in the UAE, barring a
+                                            few
+                                            locations such as Jebel Hafeet, Jebel Jais and desert areas. Be sure to plan
+                                            your drives in advance to make the most of it. Google Maps is your best
+                                            friend!If youâ€™re planning a trip to the Grand Mosque, Louvre or Yas
+                                            Marina,
+                                            consider renting for 2 or more days to offset the additional mileage charge
+                                            you
+                                            will incur. As most car rentals, including luxury and sports cars, come with
+                                            a
+                                            standard mileage limit of 250-km per day. Dubai to Abu Dhabi is a good
+                                            150-km
+                                            away so youâ€™ll probably be clocking over 300 km on the journey back.Best
+                                            practice: Consult with the car rental agency regarding your trip plan for
+                                            suggestions. Additional mileage packages may be available.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                        Which type of BMW cars are available for rent in Dubai?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            OneClickDrive.com works with several car rental companies across the world.
+                                            In
+                                            Dubai, we work with quite a few BMW car rental providers. You can choose
+                                            among
+                                            cars with a range of engine sizes and additional features, including GPS
+                                            navigation, safety and performance enhancements. The BMW sedan comes in
+                                            various
+                                            4-door sedan, convertible models with advanced features. Different models
+                                            including: BMW 2-series, 3-series, 550i, 550 mpower, 730li, 750li, X5, X6
+                                            and
+                                            more. If youâ€™re looking for a rare BMW car model, contact our suppliers
+                                            who
+                                            have listed a BMW. They might be able to cater to your distinguished needs.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br>
-                <p>
-                    Don't miss out on the unforgettable Desert Safari experience.
-                    Reserve your spot now and let the adventure begin!
-                </p>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- include the JavaScript file for Owl Carousel -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $(".brands_carousel").owlCarousel({
-                items: 6, // The number of items you want to see on the screen.
-                loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.
-                autoplay: true, // Autoplay option.
-                autoplayHoverPause: true, // Pause on mouse hover.
-                responsive: {
-                    0: {
-                        items: 1, // 1 item on screens smaller than 480px
-                    },
-                    768: {
-                        items: 2, // 2 items on screens between 768px and 991px
-                    },
-                    992: {
-                        items: 4, // 3 items on screens between 992px and 1199px
-                    },
-                    1200: {
-                        items: 6, // 3 items on screens larger than 1200px
-                    }
-                }
-            });
-        });
-
-        $(document).ready(function () {
-            $(".owl_four_items").owlCarousel({
-                items: 4, // The number of items you want to see on the screen.
-                loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.
-                autoplay: true, // Autoplay option.
-                autoplayHoverPause: true, // Pause on mouse hover.
-                responsive: {
-                    0: {
-                        items: 1, // 1 item on screens smaller than 480px
-                    },
-                    768: {
-                        items: 2, // 2 items on screens between 768px and 991px
-                    },
-                    992: {
-                        items: 3, // 3 items on screens between 992px and 1199px
-                    },
-                    1200: {
-                        items: 4, // 3 items on screens larger than 1200px
-                    }
-                }
-            });
-        });
-
-        $(document).ready(function () {
-            $(".owl_one_item").owlCarousel({
-                items: 1, // The number of items you want to see on the screen.
-                loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.
-                autoplay: true, // Autoplay option.
-                autoplayHoverPause: true, // Pause on mouse hover.
-            });
-        });
-
-        $(document).ready(function () {
-            $(".owl_three_items").owlCarousel({
-                items: 3, // The number of items you want to see on the screen.
-                loop: true, // Infinite loop. Duplicate last and first items to get loop illusion.
-                autoplay: true, // Autoplay option.
-                autoplayHoverPause: true, // Pause on mouse hover.
-                responsive: {
-                    0: {
-                        items: 1, // 1 item on screens smaller than 480px
-                    },
-                    768: {
-                        items: 2, // 2 items on screens between 768px and 991px
-                    },
-                    992: {
-                        items: 3, // 3 items on screens between 992px and 1199px
-                    },
-                    1200: {
-                        items: 3, // 3 items on screens larger than 1200px
-                    }
-                }
-            });
-        });
-    </script>
 @endsection

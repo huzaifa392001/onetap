@@ -636,7 +636,7 @@ span.swiper-pagination-bullet {
     right: 10px;
 }
 
-.carCard .wishlistCont .themeBtn {
+.wishlistCont .themeBtn {
     border-radius: 100%;
     padding: 0;
     width: 40px;
@@ -687,9 +687,6 @@ span.swiper-pagination-bullet {
     font-weight: 600;
     color: var(--text-color);
     padding: 0 0.5rem;
-}
-
-.carCard .content .other_details {
 }
 
 .carCard .content .other_details .right_details_area {
@@ -2000,7 +1997,7 @@ footer ul li .map iframe {
     box-shadow: 0 0 15px 5px #0002;
 }
 
-.aboutCard .bg figure img {
+.aboutCard .bg figure img, .aboutCard .bg figure {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -2111,4 +2108,638 @@ footer ul li .map iframe {
     background: linear-gradient(to right, var(--theme-color), transparent);
     width: 100%;
     height: 2px;
+}
+
+
+.replyModal .inputCont input, .replyModal .inputCont textarea {
+    border: 1px solid #0005;
+    color: #000;
+}
+
+.replyModal .inputCont.disclaimer span {
+    color: #000;
+    font-size: 14px;
+}
+
+.replyModal .btnCont {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.replyModal .headingCont h3 {
+    color: #000;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.replyModal .headingCont button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #0008;
+    color: #fff;
+    border-radius: 100%;
+}
+
+.replyModal .headingCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardRow {
+    gap: 1.25rem 0;
+}
+
+.aboutContent.flexContent {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.aboutContent.flexContent div:first-child {
+    flex: 0 1 85%;
+}
+
+.aboutCard.rental .front {
+    clip-path: none;
+    height: fit-content;
+    inset: auto;
+    bottom: 0;
+    transform: translateY(100%);
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(5px);
+    text-align: center;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aboutCard.rental:hover .front {
+    transform: translateY(0);
+}
+
+.aboutCard.rental .bg::before {
+    content: none;
+}
+
+.aboutCard.rental .front h3 {
+    color: var(--white);
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-weight: 900;
+}
+
+.aboutCard.rental {
+    height: 250px;
+    transition: all 0.3s ease;
+}
+
+.aboutCard.rental:hover {
+    transform: translateY(-10px);
+}
+
+.cardRow + .cardRow {
+    margin-top: 5rem;
+}
+
+.aboutCard.rental.full {
+    overflow: visible;
+    box-shadow: none;
+}
+
+.aboutCard.rental.full .bg figure {
+    border-radius: 20px;
+    overflow: hidden;
+    height: 200px;
+}
+
+.aboutCard.rental.full .front {
+    background: var(--white);
+    box-shadow: 0 0 15px #0002;
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%) translateY(75%);
+    border-radius: 20px;
+    display: block;
+    text-align: left;
+}
+
+.aboutCard.rental.full .front h3 {
+    color: var(--black);
+    position: relative;
+    padding: 0 0 5px;
+    display: inline-block;
+    width: fit-content;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.aboutCard.rental.full .front h3::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background: linear-gradient(to right, transparent, var(--theme-color));
+    height: 3px;
+    border-radius: 10px;
+}
+
+.cardRow:has(.aboutCard.rental.full) {
+    margin-bottom: 15rem;
+}
+
+.aboutCard.rental.full .front .content p {
+    font-weight: 400;
+    line-height: 1.8;
+    color: #444444;
+    font-size: 1rem;
+}
+
+.bannerSec.desertBanner {
+    height: 450px;
+    background-image: url("../images/desertBg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bannerSec.desertBanner .content {
+    justify-content: start;
+    align-items: center;
+    text-align: left;
+}
+
+.bannerSec.desertBanner .content h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.bannerSec.desertBanner .content p, .bannerSec.desertBanner .content ul li {
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.bannerSec.desertBanner .content ul {
+    margin-top: 1rem;
+    list-style: disc;
+    list-style-position: inside;
+}
+
+.carCard.fullCard.serviceCard .btnCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    gap: 0.5rem;
+}
+
+.carCard.fullCard.serviceCard .btnCont .themeBtn {
+    flex: 0 1 47.5%;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--theme-color);
+    color: var(--secondary-color);
+}
+
+.carCard.fullCard.serviceCard .btnCont .themeBtn.enquiry {
+    flex: 0 1 100%;
+}
+
+.carCard.fullCard.serviceCard .btnCont .themeBtn i {
+    font-size: 1.5rem;
+}
+
+
+.carCard.fullCard.serviceCard {
+    display: flex;
+}
+
+.carCard.fullCard.serviceCard .imgCont {
+    flex: 0 1 350px;
+    border-right: 2px solid var(--theme-color);
+    border-bottom: none;
+    min-height: 250px;
+    height: auto;
+}
+
+.carCard.fullCard.serviceCard .favCont {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.favCont button {
+    border: none;
+    background: none;
+    margin: 0;
+    background: #ddd;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+    gap: 0.25rem;
+    border-radius: 5px;
+}
+
+.carCard.fullCard.serviceCard .left_details_area {
+    position: unset;
+    margin: auto 0 0 0;
+}
+
+.carCard.fullCard.serviceCard .contentWrap {
+    min-height: 250px;
+    width: calc(100% - 350px);
+    flex: 0 1 calc(100% - 350px);
+    padding-left: 1rem;
+    display: block;
+    height: auto;
+    margin: 0 0 1rem;
+}
+
+.carCard.serviceCard .content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--theme-color);
+}
+
+.carCard.fullCard.serviceCard .btnCont .themeBtn.whatsapp {
+    background: #5cb85c;
+    color: var(--white);
+}
+
+.carCard.fullCard.serviceCard .btnCont .themeBtn.enquiry {
+    background: var(--secondary-color);
+    color: var(--theme-color);
+}
+
+.favCont button.featured,
+.favCont button.premium {
+    background: var(--black);
+    color: var(--white);
+}
+
+.carCard.fullCard.serviceCard .wishlistCont {
+    left: 300px;
+    right: auto;
+}
+
+.carCard.fullCard.serviceCard .content .tags span {
+    font-size: 1rem;
+    border: 1px solid #d3cdcd;
+    font-weight: 400;
+    padding: 0 0.75rem;
+}
+
+.carCard.fullCard.serviceCard .content .tags {
+    border-block: 1px solid #0002;
+    padding: 0.5rem 0;
+    margin: 1rem 0;
+}
+
+.carCard.fullCard.serviceCard .content .other_details .right_details_area {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.carCard.fullCard.serviceCard .content .other_details .right_details_area p span {
+    background: #ddd;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-right: 5px;
+}
+
+.carCard.fullCard.serviceCard .contentWrap .content {
+    height: 100%;
+    padding: 1rem 0.5rem 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.carCard.fullCard.serviceCard .content .other_details .right_details_area p {
+    flex: 0 1 49%;
+}
+
+.carCard.fullCard.serviceCard .content .rent_details p span.colored {
+    color: var(--theme-color);
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.carCard.fullCard.serviceCard .content .rent_details p.duration {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1rem;
+    color: var(--bs-danger);
+}
+
+.productDetailSec .aboutContent.contentWrap .secHeading {
+    margin: 0 0 1rem;
+}
+
+.productDetailSec .aboutContent.contentWrap h6 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.productDetailSec .imgCont {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 15px #0002;
+}
+
+.productDetailSec .imgCont .imgTags {
+    position: absolute;
+    top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.productDetailSec .imgCont > a {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.productDetailSec .imgCont > a img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 15px #0006);
+}
+
+.fancybox__container {
+    z-index: 1111111;
+}
+
+.prodContent > h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.prodContent {
+    margin: 1rem 0 0;
+}
+
+.prodContent .tags {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.prodContent .tags > span {
+    border-radius: 5px;
+    color: #000;
+    font-size: 1rem;
+    border: 1px solid #d3cdcd;
+    font-weight: 600;
+    padding: 0.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.prodContent .tags > span img {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+}
+
+.prodContent .priceCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-block: 1px solid #0002;
+    margin: 1rem 0;
+    padding: 1rem 0;
+}
+
+.prodContent .priceCont h4 {
+    font-size: 1.75rem;
+    color: var(--theme-color);
+    font-weight: 900;
+    margin: 0;
+}
+
+.prodContent .priceCont .details {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.prodContent .priceCont .details p {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.descriptionCont {
+    margin-top: 1rem;
+}
+
+.descriptionCont > h6 {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.descriptionCont .descriptionContent h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.descriptionCont .descriptionContent p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.descriptionCont .descriptionContent h3 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.descriptionCont .descriptionContent p + * {
+    margin: 1rem 0 0;
+}
+
+.descriptionCont .descriptionContent p a {
+    display: block;
+    color: var(--theme-color);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.modal {
+    z-index: 1111111;
+    backdrop-filter: blur(5px);
+}
+
+.descriptionCont .fespecbox {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    margin-bottom: 1em;
+    gap: 24px;
+}
+
+.descriptionCont .fespecbox li {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    padding: 0;
+    border: 0;
+    background: no-repeat;
+    line-height: 1em;
+    margin: 8px 0;
+    width: fit-content;
+    gap: 10px;
+    max-width: 80px;
+    min-width: 72px;
+    transition: 0.3s;
+}
+
+.descriptionCont .fespecbox li figure {
+    padding: 0;
+    width: 56px;
+    height: 56px;
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0;
+    transition: 0.3s;
+}
+
+.descriptionCont .fespecbox li span {
+    font-size: 0.875rem;
+    line-height: 16px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.descriptionCont .fespecbox li:hover {
+    color: var(--theme-color);
+}
+
+.descriptionCont .fespecbox li figure img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(.8);
+}
+
+.descriptionCont .fespecbox li:hover figure img {
+    filter: brightness(4.5);
+}
+
+.descriptionCont .fespecbox li:hover figure {
+    background: var(--theme-color);
+}
+
+.aboutContent.contentWrap.fullDescription h3 {
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.aboutContent.contentWrap.fullDescription .specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 0;
+    margin: 0 -7px;
+}
+
+.aboutContent.contentWrap.fullDescription .specs > * {
+    flex: 0 1 33.3333333%;
+    width: 33.3333333%;
+    padding: 0 7px;
+}
+
+.aboutContent.contentWrap.fullDescription .specs .spec_icon span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.aboutContent.contentWrap.fullDescription *:not(ul) + h3 {
+    margin-top: 1.5rem;
+    border-top: 1px solid #0002;
+    padding-top: 0.5rem;
+}
+
+.aboutContent.contentWrap.fullDescription ul li {
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px solid #0002;
+    padding: 0.25rem 0;
+}
+
+.aboutContent.contentWrap.fullDescription ul li .colorBox .color {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: 1px solid #0002;
+}
+
+.aboutContent.contentWrap.fullDescription ul li .colorBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aboutContent.contentWrap.fullDescription ul li .colorBox span {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.aboutContent.contentWrap.fullDescription ul + h3 {
+    margin-top: 1.5rem;
+}
+
+.aboutContent.contentWrap.fullDescription p {
+    font-weight: 400;
+}
+
+.aboutContent.contentWrap.fullDescription ul li a p {
+    color: var(--theme-color);
+    font-weight: 700;
+}
+
+.aboutContent.contentWrap.fullDescription ul li p i {
+    color: var(--theme-color);
 }

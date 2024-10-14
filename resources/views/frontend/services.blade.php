@@ -30,7 +30,7 @@
     <section class="productsSec">
         <div class="container-lg">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <div class="filterCont">
                         <form method="GET" action="{{ route('services') }}">
                             <div id="filters" class="filters">
@@ -722,15 +722,32 @@
                             <div class="row carRow">
                                 @if (count($cars) > 0)
                                     @foreach ($cars as $key => $value)
-                                        <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+                                        <div class="col-lg-12 col-sm-6">
                                             {{-- dd{{$value}} --}}
-                                            <div class="carCard fullCard">
+                                            <div class="carCard fullCard serviceCard">
                                                 <a class="imgCont"
                                                    href="{{ route('car-details', ['slug' => $value->slug]) }}">
                                                     <img
                                                         src="{{ asset('images/') }}/{{ $value->get_images[0]->images }}"
                                                         alt=""/>
                                                 </a>
+                                                <div class="favCont">
+                                                    @if (!empty($value->is_admin_approve == 1))
+                                                        <button>
+                                                            <i class="fa fa-check fs_13"></i> Verified
+                                                        </button>
+                                                    @endif
+                                                    @if ($value->is_featured == 1)
+                                                        <button class="featured">
+                                                            <i class="fa fa-star fs_13 mb-1 text-light"></i> Featured
+                                                        </button>
+                                                    @endif
+                                                    @if ($value->is_featured == 2)
+                                                        <button class="premium">
+                                                            <i class="fa fa-star fs_13 mb-1 text-light"></i> Premium
+                                                        </button>
+                                                    @endif
+                                                </div>
                                                 <div class="wishlistCont">
                                                     @if (Auth::check())
                                                         @php
@@ -757,18 +774,11 @@
                                                         </button>
                                                     @endif
                                                 </div>
-                                                <a href="{{ route('car-details', ['slug' => $value->slug]) }}">
+                                                <a href="{{ route('car-details', ['slug' => $value->slug]) }}"
+                                                   class="contentWrap">
                                                     <div class="content">
                                                         <h2 class="title">{{ $value->get_brand_name->brand_name ?? '' }}
                                                             {{ $value->model_name ?? '' }} {{ $value->make_year ?? '' }}</h2>
-                                                        <div class="rent_details">
-                                                            <p class="price">
-                                                                AED {{ $value->price_per_day ?? '' }} / Day
-                                                            </p>
-                                                            <p class="price">
-                                                                Mileage {{ $value->per_day_mileage ?? '' }}KM / Day
-                                                            </p>
-                                                        </div>
                                                         <div class="tags">
                                                         <span
                                                             class="properties_border">{{ $value->category ?? '' }}</span>
@@ -810,21 +820,87 @@
                                                                             </svg>
                                                                         </span>
                                                         </div>
+                                                        <div class="rent_details">
+
+                                                            @php
+                                                                $minMileage = null;
+                                                            @endphp
+                                                            @foreach ($value->get_mileage as $mileage)
+                                                                @php
+                                                                    $mileageValues = [
+                                                                        $mileage->one_month,
+                                                                        $mileage->three_months,
+                                                                        $mileage->six_months,
+                                                                        $mileage->nine_months,
+                                                                        $mileage->twelve_months,
+                                                                    ];
+                                                                    $nonNullMileageValues = array_filter(
+                                                                        $mileageValues,
+                                                                        fn($v) => !is_null($v),
+                                                                    );
+
+                                                                    if (!empty($nonNullMileageValues)) {
+                                                                        $currentMinMileage = min($nonNullMileageValues);
+                                                                        if ($minMileage === null || $currentMinMileage < $minMileage) {
+                                                                            $minMileage = $currentMinMileage;
+                                                                        }
+                                                                    }
+                                                                @endphp
+                                                            @endforeach
+
+                                                            @if ($minMileage !== null)
+                                                                <p class="price">
+                                                                    <span class="colored">
+                                                                        AED {{ $minMileage }} / Month
+                                                                    </span>
+                                                                </p>
+                                                            @else
+                                                                <p class="price">
+                                                                    <span class="colored">
+                                                                        AED {{ $value->weekly_rent }} / Week
+                                                                    </span>
+                                                                </p>
+                                                                <p class="price duration">
+                                                                    <i class="fa fa-road"></i>
+                                                                    <span>{{ $value->weekly_mileage }} km</span>
+                                                                </p>
+                                                            @endif
+
+                                                        </div>
                                                         <div class="other_details">
                                                             <div class="right_details_area">
-                                                                <p class=""><i
-                                                                        class="fa fa-check-circle text_light_green"
-                                                                        aria-hidden="true"></i> &nbsp;
-                                                                    {{ $value->days }} day rental available</p>
-                                                                <p class=""><i class="fa fa-info-circle bg_yellow"
-                                                                               aria-hidden="true"></i> &nbsp;
-                                                                    Deposit: AED {{ $value->security_deposit ?? '' }}
-                                                                </p>
-                                                                @if (!empty($value->insurance_per_day))
-                                                                    <p class=""><i
-                                                                            class="fa fa-check-circle text_light_green"
-                                                                            aria-hidden="true"></i> &nbsp; Insurance
-                                                                        Included
+                                                                @if (!empty($value->delivery_days))
+                                                                    <p>
+                                                                        <span><i class="fa fa-check"></i></span>
+                                                                        Delivery :
+                                                                        {{ $value->delivery_days }}
+                                                                    </p>
+                                                                @endif
+                                                                @if ($value->daily_availablity == 'Yes')
+                                                                    <p>
+                                                                        <span><i class="fa fa-check"></i></span> 1 day
+                                                                        rental
+                                                                        available
+                                                                    </p>
+                                                                @endif
+
+                                                                @if ($value->insurance_per_day)
+                                                                    <p>
+                                                                        <span><i class="fa fa-check"></i></span>
+                                                                        Insurance
+                                                                        included
+                                                                    </p>
+                                                                @endif
+
+
+                                                                {{-- <p>
+                                                                        <span><i class="fa fa-bitcoin"></i></span>Crypto payment accepted
+                                                                    </p> --}}
+                                                                @if (!empty($value->security_deposit))
+                                                                    <p>
+                                                                        <span><i class="fa fa-info"></i></span>Security
+                                                                        Deposit : AED
+                                                                        {{ $value->security_deposit }}
                                                                     </p>
                                                                 @endif
                                                             </div>
@@ -838,9 +914,18 @@
                                                         </div>
                                                     </div>
                                                 </a>
+                                                <div class="btnCont">
+                                                    <button class="themeBtn">
+                                                        <i class="fas fa-phone"></i>
+                                                    </button>
+                                                    <button class="themeBtn whatsapp">
+                                                        <i class="fab fa-whatsapp"></i>
+                                                    </button>
+                                                    <button class="themeBtn enquiry carEnquiry">
+                                                        <i class="fas fa-paper-plane"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-
-
                                         </div>
                                     @endforeach
                                 @else

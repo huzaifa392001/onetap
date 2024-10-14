@@ -327,7 +327,8 @@
                             <div class="user">
                                 <h4>Somine</h4>
                                 <h6>Aug 21, 2024</h6>
-                                <a href="" class="themeBtn">
+                                <a href="javascript:;" class="themeBtn" data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal">
                                     Reply
                                     <i class="fas fa-reply"></i>
                                 </a>
@@ -364,7 +365,8 @@
                             <div class="user">
                                 <h4>Somine</h4>
                                 <h6>Aug 21, 2024</h6>
-                                <a href="" class="themeBtn">
+                                <a href="javascript:;" class="themeBtn" data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal">
                                     Reply
                                     <i class="fas fa-reply"></i>
                                 </a>
@@ -401,7 +403,8 @@
                             <div class="user">
                                 <h4>Somine</h4>
                                 <h6>Aug 21, 2024</h6>
-                                <a href="" class="themeBtn">
+                                <a href="javascript:;" class="themeBtn" data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal">
                                     Reply
                                     <i class="fas fa-reply"></i>
                                 </a>
@@ -497,5 +500,63 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade replyModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="addComment">
+                        <form action="">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="headingCont">
+                                            <h3>Leave a Reply</h3>
+                                            <button class="closeBtn" data-bs-dismiss="modal">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="inputCont">
+                                            <input type="text" placeholder="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="inputCont">
+                                            <input type="email" placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="inputCont">
+                                            <input type="text" placeholder="Website">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="inputCont">
+                                            <textarea name="" id="" cols="30" rows="10"
+                                                      placeholder="Leave your Comment"></textarea>
+                                        </div>
+                                        <div class="btnCont">
+                                            <div class="inputCont disclaimer">
+                                                <input type="checkbox" name="" id="">
+                                                <span>
+                                                     Save my name, email, and website in this browser for the next time I comment.
+                                                </span>
+                                            </div>
+                                            <button class="themeBtn">Post comment <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

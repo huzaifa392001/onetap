@@ -57,7 +57,8 @@
                         <div class="col-lg-3 col-4 category-item"
                              data-two="{{ $category->category }}"
                              @if ($index >= $initialCount) style="display:none;" @endif>
-                            <a href="{{ route('services', ['category' => [$category->category]]) }}" class="categoryCard">
+                            <a href="{{ route('services', ['category' => [$category->category]]) }}"
+                               class="categoryCard">
                                 <div class="cardImg">
                                     @if ($category->category == 'Coupe') <img
                                         src="{{ asset('category/Coupe.png') }}" alt/>
@@ -97,10 +98,10 @@
                                 <div class="cardContent">
                                     <h3>{{ $category->category }}</h3>
                                     <p>{{ $category->car_count }} Cars</p>
-{{--                                    <a class="themeBtn"--}}
-{{--                                       href="{{ route('services', ['category' => [$category->category]]) }}">--}}
-{{--                                        View All Cars--}}
-{{--                                    </a>--}}
+                                    {{--                                    <a class="themeBtn"--}}
+                                    {{--                                       href="{{ route('services', ['category' => [$category->category]]) }}">--}}
+                                    {{--                                        View All Cars--}}
+                                    {{--                                    </a>--}}
                                 </div>
                             </a>
                         </div>
@@ -115,9 +116,9 @@
                             <div class="cardContent">
                                 <h3>Car With Driver</h3>
                                 <p>{{ $car_with_driver_count }} Cars</p>
-{{--                                <a class="themeBtn" href="{{ route('car-with-driver') }}">--}}
-{{--                                    View All Cars--}}
-{{--                                </a>--}}
+                                {{--                                <a class="themeBtn" href="{{ route('car-with-driver') }}">--}}
+                                {{--                                    View All Cars--}}
+                                {{--                                </a>--}}
                             </div>
                         </a>
                     </div>
@@ -883,6 +884,7 @@
         </div>
     </section>
 
+@section('script')
     <script>
         const autoCompleteTags = <?php echo json_encode($carsFilter); ?>;
         const searchInput = document.getElementById('search_input');
@@ -1031,4 +1033,5 @@
             }
         });
     </script>
+@endsection
 @endsection
