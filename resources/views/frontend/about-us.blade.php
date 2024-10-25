@@ -2,11 +2,11 @@
 @section('title', 'About Us | OneTapDrive')
 @section('content')
     <section class="heroSec">
-        <img src="{{asset("web-assets/images/hero_bg.webp")}}" alt="">
+        <img src="{{asset("web-assets/images/hero_bg.jpg")}}" alt="">
         <div class="content">
             <div class="container-lg">
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
                         <h1>
                             Welcome to
                             <span>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-5">
                     <figure class="aboutImg">
-                        <img src="{{asset("/web-assets/images/buildin.jpg")}}" alt="">
+                        <img src="{{asset("/web-assets/images/buildin.webp")}}" alt="">
                     </figure>
                 </div>
             </div>
@@ -332,7 +332,7 @@
                 </div>
                 <div class="col-md-5">
                     <figure class="iphoneVideo">
-                        <img src="{{asset('/web-assets/images/iphone.png')}}" alt="">
+                        <img src="{{asset('/web-assets/images/iphone.webp')}}" alt="">
                         <video autoplay loop muted>
                             <source src="{{asset("/web-assets/images/about-video.mp4")}}">
                         </video>
@@ -343,7 +343,7 @@
     </section>
     <section class="gallerySec">
         @foreach(range(0, 8) as $index)
-            <img src="{{ asset('/web-assets/images/cars/' . $index+1 . '.jpg') }}" alt="Image {{ $index }}">
+            <img src="{{ asset('/web-assets/images/cars/' . $index+1 . '.webp') }}" alt="Image {{ $index }}">
         @endforeach
     </section>
 @endsection

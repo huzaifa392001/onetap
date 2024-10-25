@@ -1,8 +1,8 @@
 <header class="desktopMenu">
-    <div class="container">
+    <div class="container-xl">
         <nav>
             <a class="logo" href="{{ route('home') }}">
-                <img src="{{asset("web-assets/images/logo.png")}}" alt="">
+                <img src="{{asset("web-assets/images/logo.webp")}}" alt="">
             </a>
             <ul class="mainMenu">
                 <li>
@@ -123,83 +123,100 @@
                                        href="{{ route('services', ['slug' => $brand->slug]) }}">
                                         <img src="{{ asset('brands/' . $brand->brand_image) }}"
                                              alt="">
-                                        {{ $brand->brand_name }}</a>
+                                        <span>
+                                            {{ $brand->brand_name }}
+                                        </span>
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <a href="" data-menu="catMenu2">
-                        Car with Drivers
-                        <i class="fas fa-caret-down"></i>
-                    </a>
-                    <div id="catMenu2" class="category-menu small">
-                        <div class="catRow">
-                            <div class="catCol">
-                                <ul>
-                                    @foreach ($services as $service_type)
-                                        <li>
-                                            <a class="dropdown-item"
-                                               href="{{route('car-with-driver',['service_type' => $service_type])}}">
-                                                {{$service_type}} <strong class="float-end">»</strong></a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                @if (!empty($services) && count($services) > 0)
+                    <li>
+                        <a href="" data-menu="catMenu2">
+                            Car with Drivers
+                            <i class="fas fa-caret-down"></i>
+                        </a>
+                        <div id="catMenu2" class="category-menu small">
+                            <div class="catRow">
+                                <div class="catCol">
+                                    <ul>
+                                        @foreach ($services as $service_type)
+                                            <li>
+                                                <a class="dropdown-item"
+                                                   href="{{ route('car-with-driver', ['service_type' => $service_type]) }}">
+                                                    {{ $service_type }} <strong class="float-end">»</strong>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                @endif
+
             </ul>
-            @if (!Auth::check())
-                <a class="themeBtn" href="#" data-bs-toggle="modal" data-bs-target="#login">
-                    Login / Signup
-                </a>
-            @endif
-            @if (Auth::check())
-                <li class="ms-2">
-                    <div class="dropdown">
-                        <img class="user_img" data-bs-toggle="dropdown" aria-expanded="false"
-                             src="{{ asset('web-assets/images/user.png') }}" alt="">
-                        <span class="text-light">&nbsp; {{Auth::user()->name}}</span>
-                        <ul class="dropdown-menu new_dropdown_menu">
-                            @if (Auth::check() && Auth::user()->role == 3)
-                                <li><a class="dropdown-item"
-                                       href="{{ route('my-profile') }}">Dashboard</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ route('wishlist') }}">Wishlist</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ route('user-logout') }}">Logout</a></li>
-                            @endif
-                            @if (Auth::check() && Auth::user()->role == 2)
-                                <li><a class="dropdown-item"
-                                       href="{{ route('vendor-dashboard') }}">Dashboard</a></li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('rent-car.index') }}">
-                                        Car Listing
-                                    </a>
-                                </li>
-                                <li>
-                                    <form id="logout-form" action="{{ route('vendor-logout') }}"
-                                          method="POST">
-                                        @csrf
-                                        <button class="dropdown-item" type="submit">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </li>
-                            @endif
-
-                            @if (Auth::check() && Auth::user()->role == 1)
-                                <li><a class="dropdown-item"
-                                       href="{{ route('admin-home') }}">Dashboard</a></li>
-
-                            @endif
-                            {{-- <li><a class="dropdown-item" href="#">Something </a></li> --}}
-                        </ul>
+            <div class="headerSearchBar">
+                <form action="">
+                    <div class="inputCont">
+                        <input type="search" placeholder="Search">
+                        <button class="serachBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
-                </li>
-            @endif
+                </form>
+                @if (!Auth::check())
+                    <a class="themeBtn" href="#" data-bs-toggle="modal" data-bs-target="#login">
+                        Login / Signup
+                    </a>
+                @endif
+                @if (Auth::check())
+                    <li class="ms-2">
+                        <div class="dropdown">
+                            <img class="user_img" data-bs-toggle="dropdown" aria-expanded="false"
+                                 src="{{ asset('web-assets/images/user.webp') }}" alt="">
+                            <span class="text-light">&nbsp; {{Auth::user()->name}}</span>
+                            <ul class="dropdown-menu new_dropdown_menu">
+                                @if (Auth::check() && Auth::user()->role == 3)
+                                    <li><a class="dropdown-item"
+                                           href="{{ route('my-profile') }}">Dashboard</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="{{ route('wishlist') }}">Wishlist</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="{{ route('user-logout') }}">Logout</a></li>
+                                @endif
+                                @if (Auth::check() && Auth::user()->role == 2)
+                                    <li><a class="dropdown-item"
+                                           href="{{ route('vendor-dashboard') }}">Dashboard</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('rent-car.index') }}">
+                                            Car Listing
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <form id="logout-form" action="{{ route('vendor-logout') }}"
+                                              method="POST">
+                                            @csrf
+                                            <button class="dropdown-item" type="submit">
+                                                Logout
+                                            </button>
+                                        </form>
+                                    </li>
+                                @endif
+
+                                @if (Auth::check() && Auth::user()->role == 1)
+                                    <li><a class="dropdown-item"
+                                           href="{{ route('admin-home') }}">Dashboard</a></li>
+
+                                @endif
+                                {{-- <li><a class="dropdown-item" href="#">Something </a></li> --}}
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+            </div>
         </nav>
     </div>
 </header>
@@ -237,6 +254,48 @@
             </button>
             <ul>
                 <li>
+                    @if (!Auth::check())
+                        <a class="themeBtn" href="#" data-bs-toggle="modal" data-bs-target="#login">
+                            Login / Signup
+                        </a>
+                    @endif
+                    @if (Auth::check())
+                        <div class="userCont">
+                            <img class="user_img" data-bs-toggle="dropdown" aria-expanded="false"
+                                 src="{{ asset('web-assets/images/user.webp') }}" alt="">
+                            <span>Huzaifa Iqbal</span>
+                        </div>
+                    @endif
+                </li>
+                @if (Auth::check() && Auth::user()->role == 3)
+                    <li><a class="dropdown-item"
+                           href="{{ route('my-profile') }}">Dashboard</a></li>
+                    <li><a class="dropdown-item"
+                           href="{{ route('wishlist') }}">Wishlist</a></li>
+                @endif
+                @if (Auth::check() && Auth::user()->role == 2)
+                    <li><a class="dropdown-item"
+                           href="{{ route('vendor-dashboard') }}">Dashboard</a></li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('rent-car.index') }}">
+                            Car Listing
+                        </a>
+                    </li>
+                    <li>
+                        <form id="logout-form" action="{{ route('vendor-logout') }}"
+                              method="POST">
+                            @csrf
+                            <button class="dropdown-item" type="submit">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                @endif
+                @if (Auth::check() && Auth::user()->role == 1)
+                    <li><a class="dropdown-item"
+                           href="{{ route('admin-home') }}">Dashboard</a></li>
+                @endif
+                <li>
                     <a href="{{ route('home') }}"><span>Home</span></a>
                 </li>
                 <li>
@@ -262,6 +321,32 @@
                 <li>
                     <a href="{{ route('contact-us') }}"><span>Contact Us</span></a>
                 </li>
+                @if (Auth::check() && Auth::user()->role == 3)
+                    <li>
+                        <a class="logoutBtn" href="{{ route('user-logout') }}">
+                            Logout
+                        </a>
+                    </li>
+                @endif
+                @if (Auth::check() && Auth::user()->role == 2)
+                    <li>
+                        <form id="logout-form" action="{{ route('vendor-logout') }}"
+                              method="POST">
+                            @csrf
+                            <button class="logoutBtn" type="submit">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                @endif
+                @if (Auth::check() && Auth::user()->role == 1)
+                    <li>
+                        <a class="logoutBtn"
+                           href="{{ route('admin-home') }}">
+                            Dashboard
+                        </a>
+                    </li>
+                @endif
             </ul>
             <div class="subMenu" id="rent">
                 <button class="subMenuCloseBtn">

@@ -54,7 +54,7 @@
                     <div class="aboutCard">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/aboutCardBg.png')}}" alt="">
+                                <img src="{{asset('/web-assets/images/aboutCardBg.webp')}}" alt="">
                             </figure>
                             <h2>Economy Desert Safari</h2>
                         </div>
@@ -99,7 +99,7 @@
                     <div class="aboutCard">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/aboutCardBg.png')}}" alt="">
+                                <img src="{{asset('/web-assets/images/aboutCardBg.webp')}}" alt="">
                             </figure>
                             <h2>Economy Desert Safari</h2>
                         </div>
@@ -144,7 +144,7 @@
                     <div class="aboutCard">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/aboutCardBg.png')}}" alt="">
+                                <img src="{{asset('/web-assets/images/aboutCardBg.webp')}}" alt="">
                             </figure>
                             <h2>Economy Desert Safari</h2>
                         </div>
@@ -207,7 +207,7 @@
                     <div class="aboutCard activity">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                                <img src="{{asset('/web-assets/images/dance.webp')}}" alt="">
                             </figure>
                             <h2>Dance Performances</h2>
                         </div>
@@ -228,7 +228,7 @@
                     <div class="aboutCard activity">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/sandboarding.jpeg')}}" alt="">
+                                <img src="{{asset('/web-assets/images/sandboarding.webp')}}" alt="">
                             </figure>
                             <h2>Sand Boarding</h2>
                         </div>
@@ -249,7 +249,7 @@
                     <div class="aboutCard activity">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                                <img src="{{asset('/web-assets/images/dance.webp')}}" alt="">
                             </figure>
                             <h2>Dune Bashing</h2>
                         </div>
@@ -270,7 +270,7 @@
                     <div class="aboutCard activity">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                                <img src="{{asset('/web-assets/images/dance.webp')}}" alt="">
                             </figure>
                             <h2>Buggy Riding</h2>
                         </div>
@@ -291,7 +291,7 @@
                     <div class="aboutCard activity">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/sandboarding.jpeg')}}" alt="">
+                                <img src="{{asset('/web-assets/images/sandboarding.webp')}}" alt="">
                             </figure>
                             <h2>Camel Riding</h2>
                         </div>
@@ -312,7 +312,7 @@
                     <div class="aboutCard activity">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/dance.jpg')}}" alt="">
+                                <img src="{{asset('/web-assets/images/dance.webp')}}" alt="">
                             </figure>
                             <h2>BBQ Buffet</h2>
                         </div>
@@ -423,7 +423,7 @@
                     <div class="aboutCard rental full">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                                <img src="{{asset('/web-assets/images/jeep.webp')}}" alt="">
                             </figure>
                         </div>
                         <div class="front">
@@ -445,7 +445,7 @@
                     <div class="aboutCard rental full">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                                <img src="{{asset('/web-assets/images/jeep.webp')}}" alt="">
                             </figure>
                         </div>
                         <div class="front">
@@ -467,7 +467,7 @@
                     <div class="aboutCard rental full">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                                <img src="{{asset('/web-assets/images/jeep.webp')}}" alt="">
                             </figure>
                         </div>
                         <div class="front">
@@ -489,7 +489,7 @@
                     <div class="aboutCard rental full">
                         <div class="bg">
                             <figure>
-                                <img src="{{asset('/web-assets/images/jeep.png')}}" alt="">
+                                <img src="{{asset('/web-assets/images/jeep.webp')}}" alt="">
                             </figure>
                         </div>
                         <div class="front">

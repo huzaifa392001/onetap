@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="logo">
-                    <img src="{{asset("/web-assets/images/logo.png")}}" alt="">
+                    <img src="{{asset("/web-assets/images/logo.webp")}}" alt="">
                     <p>
                         Find the best deals for budget and luxury / sports car rentals, chauffeur service and driver on
                         hire service. Headquartered in Dubai, our services are available in select cities across the

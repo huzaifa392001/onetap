@@ -3,11 +3,11 @@
 @section('content')
 
     <section class="heroSec">
-        <img src="{{asset("web-assets/images/hero_bg.webp")}}" alt="">
+        <img loading="lazy" src="{{asset("web-assets/images/hero_bg.jpg")}}" alt="">
         <div class="content">
             <div class="container-lg">
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
                         <h1>
                             Find Your Best
                             <span>
@@ -29,13 +29,13 @@
         </div>
     </section>
 
-    <form class="searchBar desktop" action="{{route('services')}}">
-        <div class="inputCont">
-            <input type="search" id="search_input" placeholder="Search" type="text" name="search_input">
-            <button class="themeBtn" type="submit">Search</button>
-        </div>
-        <div class="suggestions"></div>
-    </form>
+{{--    <form class="searchBar desktop" action="{{route('services')}}">--}}
+{{--        <div class="inputCont">--}}
+{{--            <input type="search" id="search_input" placeholder="Search" type="text" name="search_input">--}}
+{{--            <button class="themeBtn" type="submit">Search</button>--}}
+{{--        </div>--}}
+{{--        <div class="suggestions"></div>--}}
+{{--    </form>--}}
 
     <section class="categorySec">
         <div class="container-lg">
@@ -61,37 +61,37 @@
                                class="categoryCard">
                                 <div class="cardImg">
                                     @if ($category->category == 'Coupe') <img
-                                        src="{{ asset('category/Coupe.png') }}" alt/>
+                                        src="{{ asset('category/Coupe.webp') }}" alt/>
                                     @elseif($category->category == 'Sedan') <img
                                         src="{{ asset('category/sedan-car2.webp') }}" alt/>
-                                    @elseif($category->category == 'Suv') <img src="{{ asset('category/Suv.png') }}"
+                                    @elseif($category->category == 'Suv') <img loading="lazy" src="{{ asset('category/Suv.webp') }}"
                                                                                alt/>
                                     @elseif($category->category == '7 Seater') <img
-                                        src="{{ asset('category/7 Seater.png') }}" alt/>
+                                        src="{{ asset('category/7-Seater.webp') }}" alt/>
                                     @elseif($category->category == 'Compact') <img
-                                        src="{{ asset('category/Compact.png') }}" alt/>
+                                        src="{{ asset('category/Compact.webp') }}" alt/>
                                     @elseif($category->category == 'Crossover') <img
-                                        src="{{ asset('category/Crossover.png') }}" alt/>
+                                        src="{{ asset('category/Crossover.webp') }}" alt/>
                                     @elseif($category->category == 'Luxury') <img
-                                        src="{{ asset('category/luxury.png') }}" alt/>
+                                        src="{{ asset('category/luxury.webp') }}" alt/>
                                     @elseif($category->category == 'ELECTRIC') <img
-                                        src="{{ asset('category/ELECTRIC.png') }}" alt/>
+                                        src="{{ asset('category/ELECTRIC.webp') }}" alt/>
                                     @elseif($category->category == 'SPORT') <img
-                                        src="{{ asset('category/SPORT.png') }}" alt/>
+                                        src="{{ asset('category/SPORT.webp') }}" alt/>
                                     @elseif($category->category == 'MONTHLY') <img
-                                        src="{{ asset('category/MONTHLY.png') }}" alt/>
+                                        src="{{ asset('category/MONTHLY.webp') }}" alt/>
                                     @elseif($category->category == 'LOW PRICE') <img
-                                        src="{{ asset('category/LOW PRICE.png') }}" alt/>
+                                        src="{{ asset('category/LOW-PRICE.webp') }}" alt/>
                                     @elseif($category->category == 'Hatchback') <img
-                                        src="{{ asset('category/Hatchback.png') }}" alt/>
+                                        src="{{ asset('category/Hatchback.webp') }}" alt/>
                                     @elseif($category->category == 'SUPER CAR') <img
-                                        src="{{ asset('category/SUPER CAR.png') }}" alt/>
+                                        src="{{ asset('category/SUPER-CAR.webp') }}" alt/>
                                     @elseif($category->category == 'CarWithDriver') <img
-                                        src="{{ asset('category/CarWithDriver.png') }}" alt/>
+                                        src="{{ asset('category/Car-With-Driver.webp') }}" alt/>
                                     @elseif($category->category == 'CONVERTIBLE')
-                                        <img src="{{ asset('category/Ferrari FF 2023.png') }}" alt/>
+                                        <img loading="lazy" src="{{ asset('category/Ferrari-FF-2023.webp') }}" alt/>
                                     @else
-                                        <img src="{{ asset('images/') }}/{{ $category->get_images[0]->images }}"
+                                        <img loading="lazy" src="{{ asset('images/') }}/{{ $category->get_images[0]->images }}"
                                              alt=""/>
                                     @endif
                                 </div>
@@ -111,7 +111,7 @@
                     <div class="col-lg-3 col-4" data-two="CarWithDriver">
                         <a href="{{ route('car-with-driver') }}" class="categoryCard">
                             <div class="cardImg">
-                                <img src="{{ asset('category/Car With Driver.png') }}" alt/>
+                                <img loading="lazy" src="{{ asset('category/Car-With-Driver.webp') }}" alt/>
                             </div>
                             <div class="cardContent">
                                 <h3>Car With Driver</h3>
@@ -134,7 +134,7 @@
     </section>
 
     <section class="bannerSec">
-        <img src="{{asset('/web-assets/images/mercedes.webp')}}" alt="">
+        <img loading="lazy" src="{{asset('/web-assets/images/mercedes.webp')}}" alt="">
         <div class="content">
             <div class="container-lg">
                 <h2>
@@ -167,23 +167,15 @@
                 <div class="col-12">
                     <div class="brandSwiper swiper">
                         <div class="swiper-wrapper">
-                            @php
-                                $uniqueBrands = [];
-                            @endphp
-
-                            @foreach ($cars as $car_brands)
+                            @foreach ($brands as $brand)
                                 @php
-                                    $brand = $car_brands->get_brand_name;
-                                    if (!in_array($brand->brand_name, $uniqueBrands)) {
-                                        array_push($uniqueBrands, $brand->brand_name);
-                                        $car_count = App\Models\BackendModels\Product::where('brand_id', $brand->id)->count();
-                                    } else {
-                                        continue; // Skip this brand if it's already displayed
-                                    }
+                                    // Get the count of cars associated with the current brand
+                                    $car_count = App\Models\BackendModels\Product::where('brand_id', $brand->id)->count();
                                 @endphp
                                 <div class="swiper-slide">
                                     <a href="{{ route('services', ['slug' => $brand->slug]) }}">
-                                        <img src="{{ asset('brands/') }}/{{ $brand->brand_image }}" alt=""/>
+                                        <img src="{{ asset('brands/' . $brand->brand_image) }}"
+                                             alt="">
                                         <div class="content">
                                             <h3>{{ $brand->brand_name ?? '' }}</h3>
                                             <p>{{ $car_count }} Cars</p>
@@ -192,7 +184,6 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="swiper-pagination"></div>
                     </div>
                 </div>
             </div>
@@ -216,7 +207,7 @@
                                         <div class="carCard">
                                             <a class="imgCont"
                                                href="{{ route('car-details', ['slug' => $value->slug]) }}">
-                                                <img src="{{ asset('images/') }}/{{ $value->get_images[0]->images }}"
+                                                <img loading="lazy" src="{{ asset('images/') }}/{{ $value->get_images[0]->images }}"
                                                      alt=""/>
                                             </a>
                                             <div class="wishlistCont">
@@ -343,7 +334,7 @@
             <div class="row">
                 <div class="col">
                     <div>
-                        <img class="rounded" width="100%" src="{{ asset('web-assets/images/addnew.jpg') }}" alt="">
+                        <img class="rounded" width="100%" src="{{ asset('web-assets/images/addnew.webp') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -365,46 +356,46 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <h2 class="secHeading">
-                        Testimonials
-                    </h2>
-                    <div class="swiper testiSwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testimonialCard">
-                                    <div class="userInfo">
-                                        <figure>
-                                            <img src="{{asset('/web-assets/images/user.png')}}" alt="">
-                                        </figure>
-                                        <div class="info">
-                                            <h4>John Doe</h4>
-                                            <p>May 25 2023</p>
-                                            <div class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        <span>Service Was Excellent</span>
-                                        In publishing and graphic design, Lorem ipsum is a placeholder text
-                                        commonly used to demonstrate the visual form of a document or a typeface
-                                        without relying on meaningful content. Lorem ipsum may be used as a
-                                        placeholder before final copy is available.
-                                    </p>
-                                    <div class="source">
-                                        <span>Source: </span>
-                                        <img src="{{asset("/web-assets/images/google.png")}}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-md-7">--}}
+{{--                    <h2 class="secHeading">--}}
+{{--                        Testimonials--}}
+{{--                    </h2>--}}
+{{--                    <div class="swiper testiSwiper">--}}
+{{--                        <div class="swiper-wrapper">--}}
+{{--                            <div class="swiper-slide">--}}
+{{--                                <div class="testimonialCard">--}}
+{{--                                    <div class="userInfo">--}}
+{{--                                        <figure>--}}
+{{--                                            <img loading="lazy" src="{{asset('/web-assets/images/user.webp')}}" alt="">--}}
+{{--                                        </figure>--}}
+{{--                                        <div class="info">--}}
+{{--                                            <h4>John Doe</h4>--}}
+{{--                                            <p>May 25 2023</p>--}}
+{{--                                            <div class="rating">--}}
+{{--                                                <i class="fas fa-star"></i>--}}
+{{--                                                <i class="fas fa-star"></i>--}}
+{{--                                                <i class="fas fa-star"></i>--}}
+{{--                                                <i class="fas fa-star"></i>--}}
+{{--                                                <i class="fas fa-star"></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <p>--}}
+{{--                                        <span>Service Was Excellent</span>--}}
+{{--                                        In publishing and graphic design, Lorem ipsum is a placeholder text--}}
+{{--                                        commonly used to demonstrate the visual form of a document or a typeface--}}
+{{--                                        without relying on meaningful content. Lorem ipsum may be used as a--}}
+{{--                                        placeholder before final copy is available.--}}
+{{--                                    </p>--}}
+{{--                                    <div class="source">--}}
+{{--                                        <span>Source: </span>--}}
+{{--                                        <img loading="lazy" src="{{asset("/web-assets/images/google-logo.webp")}}" alt="">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>
@@ -426,7 +417,7 @@
                                         <div class="carCard fullCard">
                                             <a class="imgCont"
                                                href="{{ route('car-details', ['slug' => $value->slug]) }}">
-                                                <img src="{{ asset('images/') }}/{{ $value->get_images[0]->images }}"
+                                                <img loading="lazy" src="{{ asset('images/') }}/{{ $value->get_images[0]->images }}"
                                                      alt=""/>
                                             </a>
                                             <div class="wishlistCont">
@@ -553,7 +544,7 @@
             <div class="row">
                 <div class="col">
                     <div>
-                        <img width="100%" src="{{ asset('web-assets/images/add.png') }}" alt="">
+                        <img width="100%" src="{{ asset('web-assets/images/add.webp') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -574,7 +565,7 @@
                             <h4>For UAE Residents</h4>
                         </div>
                         <figure>
-                            <img src="{{asset('/web-assets/images/01.png')}}" alt="">
+                            <img loading="lazy" src="{{asset('/web-assets/images/01.webp')}}" alt="">
                         </figure>
                         <ul>
                             <li>
@@ -597,7 +588,7 @@
                             <h4>For Tourists visiting the UAE</h4>
                         </div>
                         <figure>
-                            <img src="{{asset('/web-assets/images/02.png')}}" alt="">
+                            <img loading="lazy" src="{{asset('/web-assets/images/02.webp')}}" alt="">
                         </figure>
                         <ul>
                             <li>
@@ -621,7 +612,7 @@
                 </div>
                 <div class="col-xl-6 col-md-4">
                     <figure class="carImg">
-                        <img src="{{asset("/web-assets/images/car2.png")}}" alt="">
+                        <img loading="lazy" src="{{asset("/web-assets/images/car2.webp")}}" alt="">
                     </figure>
                 </div>
             </div>
@@ -633,7 +624,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <figure class="contentImg">
-                        <img src="{{asset('/web-assets/images/rent-vector.jpg')}}" alt="">
+                        <img loading="lazy" src="{{asset('/web-assets/images/rent-vector.webp')}}" alt="">
                     </figure>
                 </div>
                 <div class="col-md-7">
@@ -677,7 +668,7 @@
                 <div class="col-md-4">
                     <div class="benefitCard">
                         <figure>
-                            <img src="{{asset('/web-assets/images/seat-belt.png')}}" alt="">
+                            <img loading="lazy" src="{{asset('/web-assets/images/seat-belt.webp')}}" alt="">
                         </figure>
                         <h4>Sit back and relax</h4>
                         <p>
@@ -690,7 +681,7 @@
                 <div class="col-md-4">
                     <div class="benefitCard">
                         <figure>
-                            <img src="{{asset('/web-assets/images/price-tag.png')}}" alt="">
+                            <img loading="lazy" src="{{asset('/web-assets/images/price-tag.webp')}}" alt="">
                         </figure>
                         <h4>Pre-decided Rates</h4>
                         <p>
@@ -702,7 +693,7 @@
                 <div class="col-md-4">
                     <div class="benefitCard">
                         <figure>
-                            <img src="{{asset('/web-assets/images/counter.png')}}" alt="">
+                            <img loading="lazy" src="{{asset('/web-assets/images/counter.webp')}}" alt="">
                         </figure>
                         <h4>Top-Class Concierge</h4>
                         <p>
@@ -869,7 +860,7 @@
     </section>
 
     <section class="bannerSec">
-        <img src="{{asset('/web-assets/images/mercedes.webp')}}" alt="">
+        <img loading="lazy" src="{{asset('/web-assets/images/mercedes.webp')}}" alt="">
         <div class="content">
             <div class="container-lg">
                 <h2>
@@ -886,80 +877,76 @@
 
 @section('script')
     <script>
-        const autoCompleteTags = <?php echo json_encode($carsFilter); ?>;
-        const searchInput = document.getElementById('search_input');
-        const suggestionsContainer = document.querySelector('.suggestions');
-        let suggestionIndex = -1;
+        $(function(){
+            const autoCompleteTags = <?php echo json_encode($carsFilter); ?>;
+            const searchInput = document.getElementById('search_input');
+            const suggestionsContainer = document.querySelector('.suggestions');
+            let suggestionIndex = -1;
 
-        // Debounce to prevent excessive filtering on fast typing
-        function debounce(func, delay) {
-            let timeout;
-            return function (...args) {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), delay);
-            };
-        }
-
-        function updateSuggestions(input) {
-            const filteredTags = autoCompleteTags.filter(tag => tag.toLowerCase().includes(input));
-            const html = filteredTags.map(tag => `<div class="suggestion">${tag}</div>`).join('');
-            suggestionsContainer.innerHTML = html;
-            suggestionsContainer.style.display = filteredTags.length ? 'block' : 'none';
-            suggestionIndex = -1;
-        }
-
-        searchInput.addEventListener('input', debounce((e) => {
-            const input = e.target.value.trim().toLowerCase();
-            if (input.length > 0) {
-                updateSuggestions(input);
-            } else {
-                suggestionsContainer.style.display = 'none';
+            // Debounce to prevent excessive filtering on fast typing
+            function debounce(func, delay) {
+                let timeout;
+                return function (...args) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(this, args), delay);
+                };
             }
-        }, 300)); // Adjust delay as needed
 
-        // Handle suggestion click and input setting
-        suggestionsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('suggestion')) {
-                searchInput.value = e.target.textContent.trim();
-                suggestionsContainer.style.display = 'none';
+            function updateSuggestions(input) {
+                const filteredTags = autoCompleteTags.filter(tag => tag.toLowerCase().includes(input));
+                const html = filteredTags.map(tag => `<div class="suggestion">${tag}</div>`).join('');
+                suggestionsContainer.innerHTML = html;
+                suggestionsContainer.style.display = filteredTags.length ? 'block' : 'none';
+                suggestionIndex = -1;
             }
-        });
 
-        // Hide suggestions when clicking outside of input or suggestions
-        document.addEventListener('click', (e) => {
-            if (!suggestionsContainer.contains(e.target) && e.target !== searchInput) {
-                suggestionsContainer.style.display = 'none';
+            searchInput.addEventListener('input', debounce((e) => {
+                const input = e.target.value.trim().toLowerCase();
+                if (input.length > 0) {
+                    updateSuggestions(input);
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+            }, 300)); // Adjust delay as needed
+
+            // Handle suggestion click and input setting
+            suggestionsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('suggestion')) {
+                    searchInput.value = e.target.textContent.trim();
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+
+            // Hide suggestions when clicking outside of input or suggestions
+            document.addEventListener('click', (e) => {
+                if (!suggestionsContainer.contains(e.target) && e.target !== searchInput) {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+
+            // Handle keyboard navigation and selection of suggestions
+            searchInput.addEventListener('keydown', (e) => {
+                const suggestions = document.querySelectorAll('.suggestion');
+                if (suggestions.length === 0) return;
+
+                if (e.key === 'ArrowDown') {
+                    suggestionIndex = (suggestionIndex + 1) % suggestions.length;
+                    updateHighlightedSuggestion(suggestions);
+                } else if (e.key === 'ArrowUp') {
+                    suggestionIndex = (suggestionIndex - 1 + suggestions.length) % suggestions.length;
+                    updateHighlightedSuggestion(suggestions);
+                } else if (e.key === 'Enter' && suggestionIndex >= 0) {
+                    searchInput.value = suggestions[suggestionIndex].textContent.trim();
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+
+            function updateHighlightedSuggestion(suggestions) {
+                suggestions.forEach(suggestion => suggestion.classList.remove('highlighted'));
+                if (suggestionIndex >= 0) {
+                    suggestions[suggestionIndex].classList.add('highlighted');
+                }
             }
-        });
-
-        // Handle keyboard navigation and selection of suggestions
-        searchInput.addEventListener('keydown', (e) => {
-            const suggestions = document.querySelectorAll('.suggestion');
-            if (suggestions.length === 0) return;
-
-            if (e.key === 'ArrowDown') {
-                suggestionIndex = (suggestionIndex + 1) % suggestions.length;
-                updateHighlightedSuggestion(suggestions);
-            } else if (e.key === 'ArrowUp') {
-                suggestionIndex = (suggestionIndex - 1 + suggestions.length) % suggestions.length;
-                updateHighlightedSuggestion(suggestions);
-            } else if (e.key === 'Enter' && suggestionIndex >= 0) {
-                searchInput.value = suggestions[suggestionIndex].textContent.trim();
-                suggestionsContainer.style.display = 'none';
-            }
-        });
-
-        function updateHighlightedSuggestion(suggestions) {
-            suggestions.forEach(suggestion => suggestion.classList.remove('highlighted'));
-            if (suggestionIndex >= 0) {
-                suggestions[suggestionIndex].classList.add('highlighted');
-            }
-        }
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
             $('.wishlist-button').on('click', function () {
                 var button = $(this);
                 var productId = $(this).data('product-id');
@@ -1002,36 +989,34 @@
                     }
                 });
             });
-        });
-    </script>
-    <script>
-        document.getElementById('toggle-button').addEventListener('click', function () {
-            var categoryItems = document.querySelectorAll('.category-item');
-            var isShowingAll = this.getAttribute('data-showing-all') === 'true';
+            document.getElementById('toggle-button').addEventListener('click', function () {
+                var categoryItems = document.querySelectorAll('.category-item');
+                var isShowingAll = this.getAttribute('data-showing-all') === 'true';
 
-            categoryItems.forEach(function (item, index) {
-                if (index >= {{ $initialCount }}) {
-                    item.style.display = isShowingAll ? 'none' : 'block';
-                }
+                categoryItems.forEach(function (item, index) {
+                    if (index >= {{ $initialCount }}) {
+                        item.style.display = isShowingAll ? 'none' : 'block';
+                    }
+                });
+
+                this.innerText = isShowingAll ? 'Show More' : 'Show Less';
+                this.setAttribute('data-showing-all', isShowingAll ? 'false' : 'true');
             });
 
-            this.innerText = isShowingAll ? 'Show More' : 'Show Less';
-            this.setAttribute('data-showing-all', isShowingAll ? 'false' : 'true');
-        });
+            let search_btn = document.getElementById("search_btn");
+            let view_btn = document.getElementById("view_btn");
+            let search_input = document.getElementById("search_input");
 
-        let search_btn = document.getElementById("search_btn");
-        let view_btn = document.getElementById("view_btn");
-        let search_input = document.getElementById("search_input");
-
-        search_input.addEventListener('keyup', function (event) {
-            if (search_input.value.trim() !== "") {
-                search_btn.classList.remove("d-none");
-                view_btn.classList.add("d-none");
-            } else {
-                search_btn.classList.add("d-none");
-                view_btn.classList.remove("d-none");
-            }
-        });
+            search_input.addEventListener('keyup', function (event) {
+                if (search_input.value.trim() !== "") {
+                    search_btn.classList.remove("d-none");
+                    view_btn.classList.add("d-none");
+                } else {
+                    search_btn.classList.add("d-none");
+                    view_btn.classList.remove("d-none");
+                }
+            });
+        })
     </script>
 @endsection
 @endsection

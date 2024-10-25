@@ -11,7 +11,7 @@
                     <div class="blogCard">
                         <figure>
                             <img
-                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.jpeg"
+                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.webp"
                                 alt="">
                         </figure>
                         <div class="content">
@@ -41,7 +41,7 @@
                     <div class="blogCard">
                         <figure>
                             <img
-                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.jpeg"
+                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.webp"
                                 alt="">
                         </figure>
                         <div class="content">
@@ -71,7 +71,7 @@
                     <div class="blogCard">
                         <figure>
                             <img
-                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.jpeg"
+                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.webp"
                                 alt="">
                         </figure>
                         <div class="content">
@@ -101,7 +101,7 @@
                     <div class="blogCard">
                         <figure>
                             <img
-                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.jpeg"
+                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.webp"
                                 alt="">
                         </figure>
                         <div class="content">
@@ -131,7 +131,7 @@
                     <div class="blogCard">
                         <figure>
                             <img
-                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.jpeg"
+                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.webp"
                                 alt="">
                         </figure>
                         <div class="content">
@@ -161,7 +161,7 @@
                     <div class="blogCard">
                         <figure>
                             <img
-                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.jpeg"
+                                src="https://blog.oneclickdrive.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-19-at-11.23.49-AM-1024x768.webp"
                                 alt="">
                         </figure>
                         <div class="content">

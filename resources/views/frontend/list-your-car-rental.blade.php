@@ -466,7 +466,7 @@
 
     <section class="gallerySec">
         @foreach(range(0, 8) as $index)
-            <img src="{{ asset('/web-assets/images/cars/' . $index+1 . '.jpg') }}" alt="Image {{ $index }}">
+            <img src="{{ asset('/web-assets/images/cars/' . $index+1 . '.webp') }}" alt="Image {{ $index }}">
         @endforeach
     </section>
 

@@ -1,5 +1,6 @@
 @extends('frontend.layouts.new_header')
 @section('title', 'Services | OneTapDrive')
+
 @section('content')
 
     <section class="linkingSec">
@@ -29,6 +30,38 @@
 
     <section class="productsSec">
         <div class="container-lg">
+            <div class="row adsRow">
+                <div class="col-lg-3">
+                    <div class="mobileAdd">
+                        <img src="{{asset("/web-assets/images/appBanner.jpg")}}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="adsBannerCont">
+                        <div class="swiper-button-prev"></div>
+                        <div class="adsBannerSlider swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <figure class="addBanner">
+                                        <img src="{{asset('/web-assets/images/ads/1.jpg')}}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="swiper-slide">
+                                    <figure class="addBanner">
+                                        <img src="{{asset('/web-assets/images/ads/2.jpg')}}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="swiper-slide">
+                                    <figure class="addBanner">
+                                        <img src="{{asset('/web-assets/images/ads/3.jpg')}}" alt="">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-3">
                     <div class="filterCont">
@@ -45,7 +78,7 @@
                                         <div id="location" class="custom_collapse"
                                              @if (isset($_GET['city']) && !empty($_GET['city'])) style="height: 118px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('location')">
-                                                <span class="fw-bold"> Location </span>
+                                                <span> Location </span>
                                                 <i id="location-arrow" class="fa fa-angle-down"></i>
                                             </button>
 
@@ -84,15 +117,15 @@
                                                     @endforeach
 
                                                 </select>
+                                                <button class="updateBtn">update</button>
                                             </div>
-
                                         </div>
 
                                         <!-- Car Brand / Model -->
                                         <div id="carBrand" class="custom_collapse"
                                              @if (isset($_GET['brand']) && !empty($_GET['brand'])) style="height: 240px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('carBrand')">
-                                                <span class="fw-bold"> Car Brand / Model </span>
+                                                <span> Car Brand / Model </span>
                                                 <i id="carBrand-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <form method="GET" action="{{ route('services') }}">
@@ -177,6 +210,7 @@
                                                     <button style="display: none" id="showbut"><span
                                                             class="badge badge-primary bg_orange mt-2 cursor_pointer">Update</span>
                                                     </button>
+                                                    <button class="updateBtn">update</button>
 
 
                                                 </div>
@@ -189,7 +223,7 @@
                                         <div id="modelYear" class="custom_collapse"
                                              @if (isset($_GET['year']) && !empty($_GET['year'])) style="height: 118px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('modelYear')">
-                                                <span class="fw-bold"> Model Year </span>
+                                                <span> Model Year </span>
                                                 <i id="modelYear-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="modelYear-content" class="collapse_content">
@@ -197,6 +231,7 @@
                                                     <option value="" selected="selected">Select</option>
                                                     {{-- <option value="2022">2022</option> --}}
                                                 </select>
+                                                <button class="updateBtn">update</button>
                                                 {{-- <button><span class="badge badge-primary bg_orange mt-2 cursor_pointer">Update</span></button> --}}
                                             </div>
                                         </div>
@@ -205,61 +240,73 @@
                                         <div id="seats" class="custom_collapse"
                                              @if (isset($_GET['passengers']) && !empty($_GET['passengers'])) style="height: 188px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('seats')">
-                                                <span class="fw-bold"> No. of Seats </span>
+                                                <span> No. of Seats </span>
                                                 <i id="seats-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="seats-content" class="collapse_content">
-                                                <div class="form-check ms-3">
-                                                    <input class="form-check-input" type="checkbox" value="1-2"
-                                                           id="flexCheckChecked"
-                                                           name="passengers[]"
-                                                    @if (isset($_GET['passengers']) && !empty($_GET['passengers'])) @php
+                                                <div class="form-check">
+                                                    <div class="checkboxInput">
+                                                        <input type="checkbox" value="1-2"
+                                                               id="flexCheckChecked"
+                                                               name="passengers[]"
+                                                        @if (isset($_GET['passengers']) && !empty($_GET['passengers'])) @php
 
-                                                        $valueToCheck = '1-2';
-                                                        $arrayToCheck = $_GET['passengers'];
+                                                            $valueToCheck = '1-2';
+                                                            $arrayToCheck = $_GET['passengers'];
 
-                                                        if (in_array($valueToCheck, $arrayToCheck)) {
-                                                            echo "checked";
-                                                        }
+                                                            if (in_array($valueToCheck, $arrayToCheck)) {
+                                                                echo "checked";
+                                                            }
 
-                                                    @endphp @endif>&nbsp;
+                                                        @endphp @endif>
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
                                                     <label class="form-check-label" for="flexCheckChecked">
                                                         1-2 Seats
                                                     </label>
+                                                    <button class="updateBtn">update</button>
                                                 </div>
-                                                <div class="form-check ms-3">
-                                                    <input class="form-check-input" type="checkbox" value="4-5"
-                                                           id="flexCheckChecked2" name="passengers[]"
-                                                    @if (isset($_GET['passengers']) && !empty($_GET['passengers'])) @php
+                                                <div class="form-check">
+                                                    <div class="checkboxInput">
+                                                        <input type="checkbox" value="4-5"
+                                                               id="flexCheckChecked2" name="passengers[]"
+                                                        @if (isset($_GET['passengers']) && !empty($_GET['passengers'])) @php
 
-                                                        $valueToCheck = '4-5';
-                                                        $arrayToCheck = $_GET['passengers'];
+                                                            $valueToCheck = '4-5';
+                                                            $arrayToCheck = $_GET['passengers'];
 
-                                                        if (in_array($valueToCheck, $arrayToCheck)) {
-                                                            echo "checked";
-                                                        }
+                                                            if (in_array($valueToCheck, $arrayToCheck)) {
+                                                                echo "checked";
+                                                            }
 
-                                                    @endphp @endif>&nbsp;
+                                                        @endphp @endif>
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
                                                     <label class="form-check-label" for="flexCheckChecked2">
                                                         4-5 Seats
                                                     </label>
+                                                    <button class="updateBtn">update</button>
                                                 </div>
-                                                <div class="form-check ms-3">
-                                                    <input class="form-check-input" type="checkbox" value="6-7"
-                                                           id="flexCheckChecked3" name="passengers[]"
-                                                    @if (isset($_GET['passengers']) && !empty($_GET['passengers'])) @php
+                                                <div class="form-check">
+                                                    <div class="checkboxInput">
+                                                        <input type="checkbox" value="6-7"
+                                                               id="flexCheckChecked3" name="passengers[]"
+                                                        @if (isset($_GET['passengers']) && !empty($_GET['passengers'])) @php
 
-                                                        $valueToCheck = '6-7';
-                                                        $arrayToCheck = $_GET['passengers'];
+                                                            $valueToCheck = '6-7';
+                                                            $arrayToCheck = $_GET['passengers'];
 
-                                                        if (in_array($valueToCheck, $arrayToCheck)) {
-                                                            echo "checked";
-                                                        }
+                                                            if (in_array($valueToCheck, $arrayToCheck)) {
+                                                                echo "checked";
+                                                            }
 
-                                                    @endphp @endif>&nbsp;
+                                                        @endphp @endif>
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
                                                     <label class="form-check-label" for="flexCheckChecked3">
                                                         6-7 Seats
                                                     </label>
+                                                    <button class="updateBtn">update</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -268,10 +315,10 @@
                                         <div id="vehicleType" class="custom_collapse"
                                              @if (isset($_GET['category']) && !empty($_GET['category'])) style="height: 260px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('vehicleType')">
-                                                <span class="fw-bold"> Vehicle Type </span>
+                                                <span> Vehicle Type </span>
                                                 <i id="vehicleType-arrow" class="fa fa-angle-down"></i>
                                             </button>
-                                            <div id="vehicleType-content" class="collapse_content">
+                                            <div id="vehicleType-content" class="collapse_content checkboxCollapse">
                                                 @php
                                                     $categories = [];
 
@@ -297,7 +344,7 @@
 
                                                 @if (!empty($uniqueCategories))
                                                     @foreach ($uniqueCategories as $category)
-                                                        <div class="form-check ms-3">
+                                                        <div class="form-check">
 
                                                             @if (isset($_GET['category']) && !empty($_GET['category']))
                                                                 @php
@@ -311,13 +358,17 @@
                                                                 @endphp
                                                             @endif
 
-                                                            <input class="form-check-input" type="checkbox"
-                                                                   name="category[]"
-                                                                   value="{{ $category }}" id="{{ $category }}"
-                                                                {{ $checked }}>&nbsp;
+                                                            <div class="checkboxInput">
+                                                                <input class="" type="checkbox"
+                                                                       name="category[]"
+                                                                       value="{{ $category }}" id="{{ $category }}"
+                                                                    {{ $checked }}>
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
                                                             <label class="form-check-label" for="{{ $category }}">
                                                                 {{ $category }} ({{ $categories[$category] }})
                                                             </label>
+                                                            <button class="updateBtn">update</button>
                                                         </div>
                                                     @endforeach
                                                 @endif
@@ -330,7 +381,7 @@
                                                  (isset($_GET['min_price']) && !empty($_GET['min_price'])) ||
                                                      (isset($_GET['max_price']) && !empty($_GET['max_price']))) style="height: 164px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('priceRange')">
-                                                <span class="fw-bold"> Price Range </span>
+                                                <span> Price Range </span>
                                                 <i id="priceRange-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="priceRange-content" class="collapse_content">
@@ -353,6 +404,9 @@
                                                                    @if (isset($_GET['max_price']) && !empty($_GET['max_price'])) value="{{ $_GET['max_price'] }}" @endif>
                                                         </div>
                                                     </div>
+                                                    <div class="col-12">
+                                                        <button class="updateBtn">update</button>
+                                                    </div>
                                                     {{-- <div class="row">
                                                     <button type="button" class="btn_warning ms-auto">Update</button>
 
@@ -365,7 +419,7 @@
                                         <div id="rentalPeriod" class="custom_collapse"
                                              @if (isset($_GET['min_days_booking']) && !empty($_GET['min_days_booking'])) style="height: 118px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('rentalPeriod')">
-                                                <span class="fw-bold"> Rental Period </span>
+                                                <span> Rental Period </span>
                                                 <i id="rentalPeriod-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="rentalPeriod-content" class="collapse_content">
@@ -405,6 +459,7 @@
                                                         Monthly
                                                     </option>
                                                 </select>
+                                                <button class="updateBtn">update</button>
                                             </div>
                                         </div>
 
@@ -412,7 +467,7 @@
                                         <div id="carFeatures" class="custom_collapse"
                                              @if (isset($_GET['car_features']) && !empty($_GET['car_features'])) style="height: 1412px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('carFeatures')">
-                                                <span class="fw-bold"> Car Features </span>
+                                                <span> Car Features </span>
                                                 <i id="carFeatures-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="carFeatures-content" class="collapse_content">
@@ -444,14 +499,18 @@
                                                         @endif
 
 
-                                                        <div class="form-check ms-3">
-                                                            <input class="form-check-input" name="car_features[]"
-                                                                   type="checkbox"
-                                                                   value="{{ $feature }}" {{ $checked }}
-                                                                   id="Bluetooth">&nbsp;
+                                                        <div class="form-check">
+                                                            <div class="checkboxInput">
+                                                                <input class="" name="car_features[]"
+                                                                       type="checkbox"
+                                                                       value="{{ $feature }}" {{ $checked }}
+                                                                       id="Bluetooth">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
                                                             <label class="form-check-label" for="{{ $feature }}">
                                                                 {{ $feature }}
                                                             </label>
+                                                            <button class="updateBtn">update</button>
                                                         </div>
                                                     @endforeach
                                                 @endif
@@ -462,34 +521,34 @@
                                         <!-- Payment Mode -->
                                     {{-- <div id="paymentMode" class="custom_collapse">
                                         <button type="button" onclick="onOpenCollapse('paymentMode')">
-                                            <span class="fw-bold"> Payment Mode </span>
+                                            <span> Payment Mode </span>
                                             <i id="paymentMode-arrow" class="fa fa-angle-down"></i>
                                         </button>
                                         <div id="paymentMode-content" class="collapse_content">
-                                            <div class="form-check ms-3">
+                                            <div class="form-check">
                                                 <input class="form-check-input" name="payment_method[]" type="checkbox"
-                                                    value="Credit Card" id="Credit_Card">&nbsp;
+                                                    value="Credit Card" id="Credit_Card">
                                                 <label class="form-check-label" for="Credit_Card">
                                                     Credit Card
                                                 </label>
                                             </div>
-                                            <div class="form-check ms-3">
+                                            <div class="form-check">
                                                 <input class="form-check-input" name="payment_method[]" type="checkbox"
-                                                    value="Debit Card" id="Debit_Card">&nbsp;
+                                                    value="Debit Card" id="Debit_Card">
                                                 <label class="form-check-label" for="Debit_Card">
                                                     Debit Card
                                                 </label>
                                             </div>
-                                            <div class="form-check ms-3">
+                                            <div class="form-check">
                                                 <input class="form-check-input" name="payment_method[]" type="checkbox"
-                                                    value="Cash" id="cash">&nbsp;
+                                                    value="Cash" id="cash">
                                                 <label class="form-check-label" for="cash">
                                                     Cash
                                                 </label>
                                             </div>
-                                            <div class="form-check ms-3">
+                                            <div class="form-check">
                                                 <input class="form-check-input" name="payment_method[]" type="checkbox"
-                                                    value="Bitcoin/Crypto" id="Bitcoin/Crypto">&nbsp;
+                                                    value="Bitcoin/Crypto" id="Bitcoin/Crypto">
                                                 <label class="form-check-label" for="Bitcoin/Crypto">
                                                     Bitcoin/Crypto
                                                 </label>
@@ -501,7 +560,7 @@
                                         <div id="transmission" class="custom_collapse"
                                              @if (isset($_GET['transmission']) && !empty($_GET['transmission'])) style="height: 152px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('transmission')">
-                                                <span class="fw-bold"> Transmission </span>
+                                                <span> Transmission </span>
                                                 <i id="transmission-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="transmission-content" class="collapse_content">
@@ -539,14 +598,20 @@
                                                             @endphp
                                                         @endif
 
-                                                        <div class="form-check ms-3">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                   name="transmission[]"
-                                                                   value="{{ $transmission }}" id="{{ $transmission }}"
-                                                                {{ $checked }}>&nbsp;
+                                                        <div class="form-check">
+
+                                                            <div class="checkboxInput">
+                                                                <input type="checkbox"
+                                                                       name="transmission[]"
+                                                                       value="{{ $transmission }}"
+                                                                       id="{{ $transmission }}"
+                                                                    {{ $checked }}>
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
                                                             <label class="form-check-label" for="{{ $transmission }}">
                                                                 {{ $transmission }} ({{ $count }})
                                                             </label>
+                                                            <button class="updateBtn">update</button>
                                                         </div>
                                                     @endforeach
                                                 @endif
@@ -557,7 +622,7 @@
                                         <div id="fuelType" class="custom_collapse"
                                              @if (isset($_GET['fuel_type']) && !empty($_GET['fuel_type'])) style="height: 188px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('fuelType')">
-                                                <span class="fw-bold"> Fuel Type </span>
+                                                <span> Fuel Type </span>
                                                 <i id="fuelType-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="fuelType-content" class="collapse_content">
@@ -594,15 +659,18 @@
                                                             }
 
                                                         @endphp
-
-                                                        <div class="form-check ms-3">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                   name="fuel_type[]"
-                                                                   value="{{ $fuelType }}" id="{{ $fuelType }}"
-                                                                {{ $checked }}>&nbsp;
+                                                        <div class="form-check">
+                                                            <div class="checkboxInput">
+                                                                <input type="checkbox"
+                                                                       name="fuel_type[]"
+                                                                       value="{{ $fuelType }}" id="{{ $fuelType }}"
+                                                                    {{ $checked }}>
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
                                                             <label class="form-check-label" for="{{ $fuelType }}">
-                                                                {{ $fuelType }} ({{ $count }})
+                                                                {{ $feature }}
                                                             </label>
+                                                            <button class="updateBtn">update</button>
                                                         </div>
                                                     @endforeach
                                                 @endif
@@ -613,7 +681,7 @@
                                         <div id="carColors" class="custom_collapse"
                                              @if (isset($_GET['car_colors']) && !empty($_GET['car_colors']))  style="height: 548px;" @endif>
                                             <button type="button" onclick="onOpenCollapse('carColors')">
-                                                <span class="fw-bold"> Car Colors </span>
+                                                <span> Car Colors </span>
                                                 <i id="carColors-arrow" class="fa fa-angle-down"></i>
                                             </button>
                                             <div id="carColors-content" class="collapse_content">
@@ -650,14 +718,18 @@
 
                                                         @endphp
 
-                                                        <div class="form-check ms-3">
-                                                            <input class="form-check-input" name="car_colors[]"
-                                                                   type="checkbox"
-                                                                   value="{{ $color }}" id="{{ $color }}"
-                                                                {{ $checked }}>&nbsp;
+                                                        <div class="form-check">
+                                                            <div class="checkboxInput">
+                                                                <input name="car_colors[]"
+                                                                       type="checkbox"
+                                                                       value="{{ $color }}" id="{{ $color }}"
+                                                                    {{ $checked }}>
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
                                                             <label class="form-check-label" for="{{ $color }}">
                                                                 {{ $color }}
                                                             </label>
+                                                            <button class="updateBtn">update</button>
                                                         </div>
                                                     @endforeach
                                                 @endif
@@ -668,7 +740,7 @@
                                         <!-- Minimum Required Age -->
                                         {{-- <div id="minRequiredAge" class="custom_collapse">
                                         <button type="button" onclick="onOpenCollapse('minRequiredAge')">
-                                            <span class="fw-bold"> Minimum Required Age </span>
+                                            <span> Minimum Required Age </span>
                                             <i id="minRequiredAge-arrow" class="fa fa-angle-down"></i>
                                         </button>
                                         <div id="minRequiredAge-content" class="collapse_content">
@@ -706,8 +778,9 @@
                 <div class="col-lg-9">
                     <div class="container-fluid">
                         <div class="contentArea">
-                            <div class="row">
+                            <div class="row carRow">
                                 <div class="col-12">
+
                                     @if (!empty($get_brand))
                                         <h2 class="secHeading">RENT A {{ strtoupper($get_brand->brand_name) }} IN DUBAI,
                                             UAE</h2>
@@ -718,8 +791,49 @@
                                         Hire cars directly from local car rental companies at the best rate
                                     </p>
                                 </div>
-                            </div>
-                            <div class="row carRow">
+                                <div class="col-md-9">
+                                    <div class="filterTags">
+                                        <button class="filterTag all">
+                                            Clear all filters
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                        <button class="filterTag">
+                                            Sedan
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                        <button class="filterTag">
+                                            4 - 5 Seaters
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="inputCont sort">
+                                        <select autocomplete="off">
+                                            <option selected="selected" value="">
+                                                Sort: Featured
+                                            </option>
+                                            <option value="">
+                                                Daily (low to high)
+                                            </option>
+                                            <option value="">
+                                                Daily (high to low)
+                                            </option>
+                                            <option value="">
+                                                Weekly (low to high)
+                                            </option>
+                                            <option value="">
+                                                Monthly (low to high)
+                                            </option>
+                                            <option value="">
+                                                Passengers (low to high)
+                                            </option>
+                                            <option value="">
+                                                Passengers (high to low)
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
                                 @if (count($cars) > 0)
                                     @foreach ($cars as $key => $value)
                                         <div class="col-lg-12 col-sm-6">
@@ -1230,6 +1344,7 @@
         </div>
     </div>
 
+@endsection
 @section('script')
 
     <script>
@@ -1523,6 +1638,4 @@
             });
         })
     </script>
-@endsection
-
 @endsection

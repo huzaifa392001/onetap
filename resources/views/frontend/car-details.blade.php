@@ -1,8 +1,21 @@
 @extends('frontend.layouts.new_header')
-@section('title', 'Desert Safari | OneTapDrive')
+@section('title', 'Rent ' . $details->get_brand_name->brand_name . " " . $details->model_name . " " . $details->make_year . " | OneTapDrive")
+@section('style')
+    <style>
+        @media (max-width: 991.98px) {
+            .mobileMenu {
+                display: none;
+            }
+
+            .faqSec {
+                margin-bottom: 5rem;
+            }
+        }
+    </style>
+@endsection
 @section('content')
 
-    <section class="linkingSec">
+    <section class="linkingSec d-lg-block d-none">
         <div class="container-lg">
             <div class="row">
                 <div class="col-md-12">
@@ -15,14 +28,6 @@
                             </li>
                             <li class="current"><span>{{$details->model_name}} {{$details->make_year}}</span></li>
                         </ul>
-                        <div class="filter_action">
-                            <button class="styled_button rounded_sm filter_action" id="filterBtn" type="button">
-                                {{-- <div></div>
-                                <div></div>
-                                <div></div> --}}
-                                <i class="fas fa-filter"></i>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -37,9 +42,9 @@
 
             $first_color_name = explode(':', $first_color_entry)[0];
         @endphp
-        <div class="container">
+        <div class="container-xl">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-lg-8">
                     <div class="aboutContent contentWrap">
                         <h2 class="secHeading">
                         <span class="fw-bold">
@@ -61,6 +66,9 @@
                                  class="border_right_radius" alt="Image Gallery">
                         </a>
                         <div class="imgTags">
+                            <a href="{{ url()->previous() }}" class="backBtn">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
                             <div class="favCont">
                                 @if (!empty($details->is_admin_approve == 1))
                                     <button class="">
@@ -137,7 +145,7 @@
                         <div class="priceCont">
                             <div class="price">
                                 @if (!empty($details->daily_discount_price))
-                                    {{--                                    <p class="mb-1">From--}}
+                                    {{--                                    <p>From--}}
                                     {{--                                        <del>AED {{ $details->price_per_day }}</del>--}}
                                     {{--                                    </p>--}}
                                     <h4>AED {{ $details->daily_discount_price }} / Day</h4>
@@ -155,20 +163,6 @@
                                         <i class="fas fa-check"></i>
                                         Insurance included
                                     </p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="descriptionCont">
-                            <h6>
-                                <i class="fas fa-file"></i>
-                                Description & Highlights
-                            </h6>
-                            <div class="descriptionContent">
-                                {!! Str::limit($details->description, 450) !!}
-
-                                @if(!empty($details->description))
-                                    <a data-bs-toggle="modal" data-bs-target="#descriptionModal" href="javascript:;">Read
-                                        More</a>
                                 @endif
                             </div>
                         </div>
@@ -228,13 +222,576 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="descriptionCont">
+                            <h6>
+                                <i class="fas fa-file"></i>
+                                Description & Highlights
+                            </h6>
+                            <div class="descriptionContent">
+                                {!! $details->description !!}
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="specCont">
+                                        <p data-bs-toggle="tooltip" data-bs-placement="top"
+                                           data-bs-title="Car Registration Year">Car Registration Year</p>
+                                        <p class="mb-0 text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
+                                           data-bs-title="{{ $details->make_year }}">
+                                            {{ $details->make_year }}
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="specCont">
+                                        <p data-bs-toggle="tooltip" data-bs-placement="top"
+                                           data-bs-title="Gearbox">Gearbox</p>
+                                        <p class="mb-0 text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
+                                           data-bs-title="{{ $details->transmission }}">
+                                            {{ $details->transmission }}
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="specCont">
+                                        <p data-bs-toggle="tooltip" data-bs-placement="top"
+                                           data-bs-title="Salik / Toll Charges">Salik / Toll Charges</p>
+                                        <p class="mb-0 text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
+                                           data-bs-title="AED 5">
+                                            AED 5
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="bookingBox">
+                        <div class="bookingHeader">
+                            <figure class="logo">
+                                <a href="{{ route('company-profile', ['slug' => $details->get_user->slug]) }}">
+                                    <img class="d-block mx-auto"
+                                         src="{{ asset('company_logo/' . $details->get_user->company_logo) }}" alt="">
+                                </a>
+                                <figcaption>
+                                    BOOK DIRECTLY FROM SUPPLIER
+                                </figcaption>
+                            </figure>
+                            <div class="btnCont">
+
+                                @php
+                                    $currenturl = URL::current();
+                                @endphp
+                                <a href="tel:{{$details->get_user->contact}}" class="themeBtn">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                                <a id="getValueButton"
+                                   href="https://api.whatsapp.com/send?text=<?php echo $currenturl; ?>"
+                                   class="themeBtn whatsapp">
+                                    <input type="hidden" id="myHiddenInput" value="My Hidden Value">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                @if(!Auth::check())
+                                    <button data-bs-toggle="modal" data-bs-target="#login" role="button"
+                                            aria-controls="mailNote_offcanvas" class="themeBtn enquiry">
+                                        <i class="fas fa-envelope"></i>
+                                        {{--                                    <i class="fas fa-paper-plane"></i>--}}
+                                    </button>
+                                @else
+                                    <button data-bs-toggle="offcanvas" role="button"
+                                            aria-controls="mailNote_offcanvas" class="themeBtn enquiry">
+                                        <i class="fas fa-envelope"></i>
+                                    </button>
+                                @endif
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs price_tabs tab mt-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab"
+                                        data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+                                        role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                                    @if (!empty($details->daily_discount_price))
+                                        <p>
+                                            <del>AED {{ $details->price_per_day }}</del>
+                                        </p>
+                                        <h6>AED {{ $details->daily_discount_price }}</h6>
+                                        <p>/ day</p>
+                                    @else
+                                        <h6>AED {{ $details->price_per_day }}</h6>
+                                        <p>/ day</p>
+                                    @endif
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                        aria-controls="profile-tab-pane" aria-selected="false">
+                                    @if (!empty($details->weekly_discount_price))
+                                        <p>
+                                            <del>AED {{ $details->weekly_rent }}</del>
+                                        </p>
+                                        <h6>AED {{ $details->weekly_discount_price }}</h6>
+                                        <p>/ day</p>
+                                    @else
+                                        <h6>AED {{ $details->weekly_rent }}</h6>
+                                        <p>/ week</p>
+                                    @endif
+                                </button>
+                            </li>
+
+                            @php
+                                $minMileage = null;
+                            @endphp
+                            @foreach ($details->get_mileage as $mileage)
+                                @php
+                                    $mileageValues = [
+                                        $mileage->one_month,
+                                        $mileage->three_months,
+                                        $mileage->six_months,
+                                        $mileage->nine_months,
+                                        $mileage->twelve_months,
+                                    ];
+                                    $nonNullMileageValues = array_filter(
+                                        $mileageValues,
+                                        fn($v) => !is_null($v),
+                                    );
+
+                                    if (!empty($nonNullMileageValues)) {
+                                        $currentMinMileage = min($nonNullMileageValues);
+                                        if ($minMileage === null || $currentMinMileage < $minMileage) {
+                                            $minMileage = $currentMinMileage;
+                                        }
+                                    }
+                                @endphp
+                            @endforeach
+
+                            @if (!empty($minMileage))
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="contact-tab"
+                                            data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                                            type="button" role="tab" aria-controls="contact-tab-pane"
+                                            aria-selected="false">
+                                        {{-- <p><del>AED 70</del></p> --}}
+                                        @if ($minMileage !== null)
+                                            <h6>AED {{ $minMileage }}</h6>
+                                        @endif
+                                        <p>/ Month</p>
+                                    </button>
+                                </li>
+                            @endif
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                 aria-labelledby="home-tab" tabindex="0">
+                                <div class="infoBox">
+                                    <p>Included mileage limit</p>
+                                    <p>{{ $details->per_day_mileage }} km</p>
+                                </div>
+                                <div class="infoBox">
+                                    <p>Included mileage limit</p>
+                                    <p>250 km</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                 aria-labelledby="profile-tab" tabindex="0">
+                                <div class="infoBox">
+                                    <p>Included mileage limit</p>
+                                    <p>{{ $details->weekly_mileage }} km</p>
+                                </div>
+                                <div class="infoBox">
+                                    <p>Insurance</p>
+                                    <p>Basic Comprehensive</p>
+                                </div>
+                            </div>
+
+                            @if (!empty($details->get_mileage))
+                                @if (count($details->get_mileage) > 0)
+                                    @php
+                                        // Assuming keys in $details->get_mileage are like 'one_month', 'three_months', etc.
+                                        $mileage_data = $details->get_mileage;
+
+                                        // Define the months and their IDs (adjusted to match actual keys in $mileage_data)
+                                        $months = [
+                                            'one_month' => ['id' => 1, 'name' => 'One month'],
+                                            'three_months' => ['id' => 2, 'name' => 'Three months'],
+                                            'six_months' => ['id' => 3, 'name' => 'Six months'],
+                                            'nine_months' => ['id' => 4, 'name' => 'Nine months'],
+                                            'twelve_months' => ['id' => 5, 'name' => 'Twelve months'],
+                                        ];
+
+                                        // Initialize variables
+                                        $non_null_months = 0;
+                                        $non_null_month_data = [];
+
+                                        // Iterate through each month and check for non-null values
+                                        foreach ($months as $key => $month) {
+                                            // Check if the key exists in $mileage_data and is not null
+                                            if (
+                                                $mileage_data->has($key) &&
+                                                !is_null($mileage_data->{$key})
+                                            ) {
+                                                $non_null_months++;
+                                                $non_null_month_data[] = [
+                                                    'id' => $month['id'],
+                                                    'name' => $month['name'],
+                                                ];
+                                            }
+                                        }
+                                    @endphp
+                                    {{-- {{dd($months)}} --}}
+
+                                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
+                                         aria-labelledby="contact-tab" tabindex="0">
+                                        <div class="infoBox">
+                                            <p>Monthly</p>
+                                            <div class="row">
+                                                <div class="col">
+
+                                                    @php
+                                                        $minMileage = null;
+                                                    @endphp
+                                                    @foreach ($details->get_mileage as $mileage)
+                                                        @php
+                                                            $mileageValues = [
+                                                                $mileage->one_month,
+                                                                $mileage->three_months,
+                                                                $mileage->six_months,
+                                                                $mileage->nine_months,
+                                                                $mileage->twelve_months,
+                                                            ];
+                                                            $nonNullMileageValues = array_filter(
+                                                                $mileageValues,
+                                                                fn($v) => !is_null($v),
+                                                            );
+
+                                                            if (!empty($nonNullMileageValues)) {
+                                                                $currentMinMileage = min(
+                                                                    $nonNullMileageValues,
+                                                                );
+                                                                if (
+                                                                    $minMileage === null ||
+                                                                    $currentMinMileage < $minMileage
+                                                                ) {
+                                                                    $minMileage = $currentMinMileage;
+                                                                }
+                                                            }
+                                                        @endphp
+                                                    @endforeach
+
+
+
+                                                    @php
+                                                        $nonNullMonths = [];
+
+                                                        // Loop through each mileage entry and gather non-null months
+                                                        foreach ($details->get_mileage as $mileage) {
+                                                            if (!is_null($mileage->one_month)) {
+                                                                $nonNullMonths['one_month'] = '1 Month';
+                                                            }
+                                                            if (!is_null($mileage->three_months)) {
+                                                                $nonNullMonths['three_months'] =
+                                                                    '3 Months';
+                                                            }
+                                                            if (!is_null($mileage->six_months)) {
+                                                                $nonNullMonths['six_months'] =
+                                                                    '6 Months';
+                                                            }
+                                                            if (!is_null($mileage->nine_months)) {
+                                                                $nonNullMonths['nine_months'] =
+                                                                    '9 Months';
+                                                            }
+                                                            if (!is_null($mileage->twelve_months)) {
+                                                                $nonNullMonths['twelve_months'] =
+                                                                    '12 Months';
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    <select id="get_month">
+
+                                                        @foreach ($nonNullMonths as $key => $month)
+                                                            {{-- {{   dd($nonNullMonths['id'])}} --}}
+                                                            <option value="{{ $key }}">
+                                                                {{ $month }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            @php
+                                                $uniqueMileages = [];
+
+                                                // Loop through each mileage entry and gather non-null months
+                                                foreach ($details->get_mileage as $mileage) {
+                                                    if (
+                                                        !is_null($mileage->one_month) ||
+                                                        !is_null($mileage->three_months) ||
+                                                        !is_null($mileage->six_months) ||
+                                                        !is_null($mileage->nine_months) ||
+                                                        !is_null($mileage->twelve_months)
+                                                    ) {
+                                                        // Use mileage as key to ensure uniqueness
+                                                        $uniqueMileages[$mileage->id] =
+                                                            $mileage->mileage;
+                                                    }
+                                                }
+                                            @endphp
+
+                                            {{-- <p">1 {{ $month}}</p> --}}
+
+                                        </div>
+                                        <div class="infoBox">
+                                            <p>Included mileage limit</p>
+                                            <select
+                                                class="mileagesdata"
+                                                id="mileageslt">
+                                                @foreach ($uniqueMileages as $id => $mileage)
+                                                    <option value="{{ $id }}">
+                                                        {{ $mileage }} km
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="infoBox">
+                                            <p>Additional mileage charge</p>
+                                            <p>AED {{$details->monthly_extra}} / km</p>
+                                        </div>
+                                    </div>
+                                @endif
+
+                            @endif
+                        </div>
+                        <button class="note" data-bs-toggle="modal" data-bs-target="#noteModal">
+                            Supplier Note: + 5% VAT applicable. {{$details->get_user->company_name ?? ''}} ...
+                        </button>
+                    </div>
+                    <div class="timingCont">
+                        <div class="timingBox"
+                             onclick="tableShow()">
+                            @php
+                                $currentDay = ucfirst(date('l'));
+                                $currentTime = date('H:i:s');
+                            @endphp
+                            @if (!empty($shop_timings))
+                                @foreach ($shop_timings as $time)
+                                    @if ($time['day_of_week'] == $currentDay)
+                                        @if ($time['opening_time'] == $time['closing_time'])
+                                            <p>
+                                                Open 24 Hours
+                                                <i class="fas fa-clock"></i>
+                                            </p>
+                                        @endif
+                                    @else
+                                        @if ($time['day_of_week'] == $currentDay || $time['closing_time'] == $currentTime)
+                                            <p>
+                                                {{ date('g:i A', strtotime($time['opening_time'])) }}-
+                                                {{ date('g:i A', strtotime($time['closing_time'])) }}
+                                                <i class="fas fa-clock"></i>
+                                            </p>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @else
+                                <p>
+                                    Shop Timings not updated
+                                    <i class="fas fa-clock"></i>
+                                </p>
+                            @endif
+                            <p>
+                                Shop Timings
+                                <i class="fas fa-chevron-right" id="arrow_right"></i>
+                            </p>
+                        </div>
+                        <table class="table table-striped mt-2 d-none" id="open_time" cellspacing="0">
+
+                            @php
+                                $currentDay = ucfirst(date('l'));
+                            @endphp
+                            <tbody>
+                            @foreach ($shop_timings as $time)
+                                @if ($time['day_of_week'] == $currentDay)
+                                    <tr style="font-weight:bold;">
+                                        <td>{{ $time['day_of_week'] }}</td>
+                                        <td>
+                                            @if ($time['opening_time'] == $time['closing_time'])
+                                                Open 24 Hours
+                                                @else
+                                                {{ date('g:i A', strtotime($time['opening_time'])) }}
+                                                &mdash;
+                                                {{ date('g:i A', strtotime($time['closing_time'])) }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td>{{ $time['day_of_week'] }}</td>
+                                        <td>
+                                            @if ($time['opening_time'] == $time['closing_time'])
+                                                Open 24 Hours
+                                                @else
+                                                {{ date('g:i A', strtotime($time['opening_time'])) }}
+                                                &mdash;
+                                                {{ date('g:i A', strtotime($time['closing_time'])) }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            {{-- <tr style="font-weight:bold;">
+                                <td>Saturday</td>
+                                <td>9:00am – 9:00pm</td>
+                            </tr> --}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <section class="carsSec">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="secHeading ms-0">
+                        Best Car Rental Deals in Dubai
+                    </h2>
+                </div>
+                <div class="col-12">
+                    <div class="carsSwiper swiper">
+                        <div class="swiper-wrapper">
+                            @if(!empty($cars))
+                                @foreach ($cars as $value)
+                                    <div class="swiper-slide">
+                                        <div class="carCard">
+                                            <a class="imgCont"
+                                               href="{{ route('car-details', ['slug' => $value->slug]) }}">
+                                                <img loading="lazy"
+                                                     src="{{ asset('images/') }}/{{ $value->get_images[0]->images }}"
+                                                     alt=""/>
+                                            </a>
+                                            <div class="wishlistCont">
+                                                @if (Auth::check())
+                                                    @php
+                                                        $wishlistProduct = Auth::user()
+                                                            ->wishlist()
+                                                            ->where('product_id', $value->id)
+                                                            ->first();
+                                                    @endphp
+                                                    @if ($wishlistProduct)
+                                                        <button class="themeBtn wishlist-button"
+                                                                data-product-id="{{ $value->id }}">
+                                                            <i class="fa fa-heart red_heart"></i>
+                                                        </button>
+                                                    @else
+                                                        <button class="themeBtn wishlist-button"
+                                                                data-product-id="{{ $value->id }}">
+                                                            <i class="fa fa-heart"></i>
+                                                        </button>
+                                                    @endif
+                                                @else
+                                                    <button class="themeBtn wishlist-button"
+                                                            data-product-id="{{ $value->id }}">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+                                                @endif
+                                            </div>
+                                            <a href="{{ route('car-details', ['slug' => $value->slug]) }}">
+                                                <div class="content">
+                                                    <h2 class="title">{{ $value->get_brand_name->brand_name ?? '' }}
+                                                        {{ $value->model_name ?? '' }} {{ $value->make_year ?? '' }}</h2>
+                                                    <div class="rent_details">
+                                                        <p class="price">
+                                                            AED {{ $value->price_per_day ?? '' }} / Day
+                                                        </p>
+                                                        <p class="price">
+                                                            Mileage {{ $value->per_day_mileage ?? '' }}KM / Day
+                                                        </p>
+                                                    </div>
+                                                    <div class="tags">
+                                                        <span
+                                                            class="properties_border">{{ $value->category ?? '' }}</span>
+                                                        <span class="properties_border">{{ $value->car_doors ?? '' }}
+                                                                            <svg stroke="currentColor"
+                                                                                 fill="currentColor" stroke-width="0"
+                                                                                 viewBox="0 0 512 512" height="1em"
+                                                                                 width="1em"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path
+                                                                                    d="M149.6 41L42.88 254.4c23.8 24.3 53.54 58.8 78.42 97.4 24.5 38.1 44.1 79.7 47.1 119.2h270.3L423.3 41H149.6zM164 64h230l8 192H74l90-192zm86.8 17.99l-141 154.81L339.3 81.99h-88.5zM336 279h64v18h-64v-18z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </span>
+                                                        <span class="properties_border">{{ $value->passengers ?? '' }}
+                                                                            <svg stroke="currentColor"
+                                                                                 fill="currentColor" stroke-width="0"
+                                                                                 viewBox="0 0 24 24" height="1em"
+                                                                                 width="1em"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path fill="none"
+                                                                                      d="M0 0h24v24H0V0z"></path>
+                                                                                <path
+                                                                                    d="M15 5v7H9V5h6m0-2H9c-1.1 0-2 .9-2 2v9h10V5c0-1.1-.9-2-2-2zm7 7h-3v3h3v-3zM5 10H2v3h3v-3zm15 5H4v6h2v-4h12v4h2v-6z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </span>
+                                                        <span class="properties_border">{{ $value->bags ?? '' }}
+                                                                            <svg stroke="currentColor"
+                                                                                 fill="currentColor" stroke-width="0"
+                                                                                 viewBox="0 0 24 24" height="1em"
+                                                                                 width="1em"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path fill="none"
+                                                                                      d="M0 0h24v24H0z"></path>
+                                                                                <path
+                                                                                    d="M17 6h-2V3c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v3H7c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2 0 .55.45 1 1 1s1-.45 1-1h6c0 .55.45 1 1 1s1-.45 1-1c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM9.5 18H8V9h1.5v9zm3.25 0h-1.5V9h1.5v9zm.75-12h-3V3.5h3V6zM16 18h-1.5V9H16v9z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </span>
+                                                    </div>
+                                                    <div class="other_details">
+                                                        <div class="right_details_area">
+                                                            <p class=""><i
+                                                                    class="fa fa-check-circle text_light_green"
+                                                                    aria-hidden="true"></i> &nbsp;
+                                                                {{ $value->days }} day rental available</p>
+                                                            <p class=""><i class="fa fa-info-circle bg_yellow"
+                                                                           aria-hidden="true"></i> &nbsp;
+                                                                Deposit: AED {{ $value->security_deposit ?? '' }}
+                                                            </p>
+                                                            @if (!empty($value->insurance_per_day))
+                                                                <p class=""><i
+                                                                        class="fa fa-check-circle text_light_green"
+                                                                        aria-hidden="true"></i> &nbsp; Insurance
+                                                                    Included
+                                                                </p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="left_details_area">
+                                                        <div class="customBadge"></div>
+                                                        <img
+                                                            src="{{ asset('company_logo/') }}/{{ $value->get_user->company_logo ?? '' }}"
+                                                            alt=""/>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-3 faqSec">
-        <div class="container-md">
+        <div class="container-lg">
             <div class="row">
                 <div class="col-12">
                     <div class="aboutContent">
@@ -347,579 +904,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-
-
-                        <div class="row">
-                            <div class="col-md-6 mt-3">
-                                <div class="priceingdt d-flex justify-content-between py-2">
-                                    <p class="mb-0" data-bs-toggle="tooltip" data-bs-placement="top"
-                                       data-bs-title="Car Registration Year">Car Registration Year</p>
-                                    <p class="mb-0 text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
-                                       data-bs-title="{{ $details->make_year }}">{{ $details->make_year }}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="priceingdt d-flex justify-content-between py-2">
-                                    <p class="mb-0" data-bs-toggle="tooltip" data-bs-placement="top"
-                                       data-bs-title="Gearbox">Gearbox</p>
-                                    <p class="mb-0 text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
-                                       data-bs-title="{{ $details->transmission }}">{{ $details->transmission }}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="priceingdt d-flex justify-content-between py-2">
-                                    <p class="mb-0" data-bs-toggle="tooltip" data-bs-placement="top"
-                                       data-bs-title="Salik / Toll Charges">Salik / Toll Charges</p>
-                                    <p class="mb-0 text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
-                                       data-bs-title="AED 5">AED 5</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="mt-5">
-
-                            <h3 class="fw-bold">Features & Specs</h3>
-
-
-                        </div>
-
-                        <section class="py-3">
-                            <div class="content_wrap px-0">
-                                <h2>Frequently Asked Questions</h2>
-                                <div class="collapse_wrap">
-                                    <div class="collapse_items">
-                                        <div id="faq-one" class="custom_collapse">
-                                            <button onclick="onOpenCollapse('faq-one')">
-                                                <span> Why is driving a BMW recommended in Dubai? </span>
-                                                <i id="faq-one-arrow" class="fa fa-angle-down"></i>
-                                            </button>
-                                            <div id="faq-one-content" class="collapse_content">
-                                                <p>
-                                                    Among the popular car choices, BMW is definitely a favorite.
-                                                    In Dubai, more so, as itâ€™s perfect for Sheikh Zayed Road as
-                                                    well as on the highways stretching across the Emirates. Being
-                                                    one of the most scenic places for those seeking a luxurious
-                                                    adventure on wheels, BMWs are the most-in-demand cars in
-                                                    Dubai. Youâ€™ll be driving alongside exotic cars such as
-                                                    Porsche, Mercedes Benz, Audi, not to mention a range of sports
-                                                    cars.Many tourists and residents in Dubai rent a BMW to soak
-                                                    the pleasure of driving a luxurious sedan. The spacious cabin,
-                                                    extra legroom, advanced driving and safety features are what
-                                                    BMW vehicles are most known for.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="collapse_items">
-                                        <div id="faq-two" class="custom_collapse">
-                                            <button onclick="onOpenCollapse('faq-two')">
-                                                        <span>
-                                                            Can I take the BMW rental car to Abu Dhabi from Dubai?
-                                                        </span>
-                                                <i id="faq-two-arrow" class="fa fa-angle-down"></i>
-                                            </button>
-                                            <div id="faq-two-content" class="collapse_content">
-                                                <p>
-                                                    Yes, you can! Most customers rent a luxury sedan in Dubai to
-                                                    visit Abu Dhabi and other emirates. Itâ€™s definitely the best
-                                                    way to explore the UAE. Car rental companies allow their
-                                                    vehicles to be driven anywhere in the UAE, barring a few
-                                                    locations such as Jebel Hafeet, Jebel Jais and desert areas.
-                                                    Be sure to plan your drives in advance to make the most of it.
-                                                    Google Maps is your best friend!If youâ€™re planning a trip to
-                                                    the Grand Mosque, Louvre or Yas Marina, consider renting for 2
-                                                    or more days to offset the additional mileage charge you will
-                                                    incur. As most car rentals, including luxury and sports cars,
-                                                    come with a standard mileage limit of 250-km per day. Dubai to
-                                                    Abu Dhabi is a good 150-km away so youâ€™ll probably be clocking
-                                                    over 300 km on the journey back.Best practice: Consult with
-                                                    the car rental agency regarding your trip plan for
-                                                    suggestions. Additional mileage packages may be available.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="collapse_items">
-                                        <div id="faq-three" class="custom_collapse">
-                                            <button onclick="onOpenCollapse('faq-three')">
-                                                        <span>
-                                                            Which type of BMW cars are available for rent in Dubai?
-                                                        </span>
-                                                <i id="faq-three-arrow" class="fa fa-angle-down"></i>
-                                            </button>
-                                            <div id="faq-three-content" class="collapse_content">
-                                                <p>
-                                                    WheelsOnClick.com works with several car rental companies
-                                                    across the world. In Dubai, we work with quite a few BMW car
-                                                    rental providers. You can choose among cars with a range of
-                                                    engine sizes and additional features, including GPS
-                                                    navigation, safety and performance enhancements. The BMW sedan
-                                                    comes in various 4-door sedan, convertible models with
-                                                    advanced features. Different models including: BMW 2-series,
-                                                    3-series, 550i, 550 mpower, 730li, 750li, X5, X6 and more. If
-                                                    youâ€™re looking for a rare BMW car model, contact our suppliers
-                                                    who have listed a BMW. They might be able to cater to your
-                                                    distinguished needs.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-
-                    </div>
-                    <div class="col-md-4">
-                        <div class="detail_col4 pt-4">
-                            <a href="{{ route('company-profile', ['slug' => $details->get_user->slug]) }}"><img
-                                    width="100px" class="d-block mx-auto"
-                                    src="{{ asset('company_logo/' . $details->get_user->company_logo) }}"
-                                    alt=""></a>
-                            <p class="text-center fs_13">BOOK DIRECTLY FROM SUPPLIER</p>
-                            <div class="d-flex justify-content-center gap-2 mt-4">
-                                <button class="yellow_btn d-flex my_wp1 phonelead">
-                                    <div class="d-flex align-items-center">
-                                        <div>
-                                            <svg class="mr-auto d-block" xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 512 512" fill="#fff" width="25"
-                                                 class="p-2" height="25">
-                                                <path
-                                                    d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                                    <span class="d-none numm1 text-light my_wp_num1"
-                                                          style="overflow: hidden">
-                                                        &nbsp;
-                                                        {{$details->get_user->contact}}
-                                                    </span>
-                                        </div>
-                                    </div>
-                                </button>
-                                @php
-                                    $currenturl = URL::current();
-                                @endphp
-                                <a id="getValueButton" target="_blank"
-                                   href="https://api.whatsapp.com/send?text=<?php echo $currenturl; ?>">
-                                    <input type="hidden" id="myHiddenInput" value="My Hidden Value">
-                                    <i
-                                        class="icon fab fa-whatsapp text-light bg_green h5 rounded d-flex align-items-center justify-content-center"></i></a>
-
-                                @if(!Auth::check())
-
-                                    <i
-
-                                        data-bs-toggle="modal" data-bs-target="#login" role="button"
-                                        aria-controls="mailNote_offcanvas"
-                                        class="icon fa-solid fa-envelope text-light bg_grey h5 rounded d-flex align-items-center justify-content-center"></i>
-                                @else
-                                    <i
-                                        data-bs-toggle="offcanvas"
-                                        href="#mailNote_offcanvas" role="button"
-                                        aria-controls="mailNote_offcanvas"
-                                        class="icon fa-solid fa-envelope text-light bg_grey h5 rounded d-flex align-items-center justify-content-center"></i>
-                                @endif
-                            </div>
-
-                            <div>
-                                <ul class="nav nav-tabs price_tabs tab mt-4" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link px-0 active w-100" id="home-tab"
-                                                data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
-                                                role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                                            @if (!empty($details->daily_discount_price))
-                                                <p class="mb-1">
-                                                    <del>AED {{ $details->price_per_day }}</del>
-                                                </p>
-                                                <h3 class="mb-1">AED {{ $details->daily_discount_price }}</h3>
-                                                <p class="mb-1">/ day</p>
-                                            @else
-                                                <h3 class="mb-1">AED {{ $details->price_per_day }}</h3>
-                                                <p class="mb-1">/ day</p>
-                                            @endif
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link px-0 w-100" id="profile-tab" data-bs-toggle="tab"
-                                                data-bs-target="#profile-tab-pane" type="button" role="tab"
-                                                aria-controls="profile-tab-pane" aria-selected="false">
-                                            @if (!empty($details->weekly_discount_price))
-                                                <p class="mb-1">
-                                                    <del>AED {{ $details->weekly_rent }}</del>
-                                                </p>
-                                                <h3 class="mb-1">AED {{ $details->weekly_discount_price }}</h3>
-                                                <p class="mb-1">/ day</p>
-                                            @else
-                                                <h3 class="mb-1">AED {{ $details->weekly_rent }}</h3>
-                                                <p class="mb-1">/ week</p>
-                                            @endif
-                                        </button>
-                                    </li>
-
-                                    @php
-                                        $minMileage = null;
-                                    @endphp
-                                    @foreach ($details->get_mileage as $mileage)
-                                        @php
-                                            $mileageValues = [
-                                                $mileage->one_month,
-                                                $mileage->three_months,
-                                                $mileage->six_months,
-                                                $mileage->nine_months,
-                                                $mileage->twelve_months,
-                                            ];
-                                            $nonNullMileageValues = array_filter(
-                                                $mileageValues,
-                                                fn($v) => !is_null($v),
-                                            );
-
-                                            if (!empty($nonNullMileageValues)) {
-                                                $currentMinMileage = min($nonNullMileageValues);
-                                                if ($minMileage === null || $currentMinMileage < $minMileage) {
-                                                    $minMileage = $currentMinMileage;
-                                                }
-                                            }
-                                        @endphp
-                                    @endforeach
-
-                                    @if (!empty($minMileage))
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link px-0 w-100" id="contact-tab"
-                                                    data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                                                    type="button" role="tab" aria-controls="contact-tab-pane"
-                                                    aria-selected="false">
-                                                {{-- <p class="mb-1"><del>AED 70</del></p> --}}
-                                                @if ($minMileage !== null)
-                                                    <h3 class="mb-1">AED {{ $minMileage }}</h3>
-                                                @endif
-                                                <p class="mb-1">/ Month</p>
-                                            </button>
-                                        </li>
-                                    @endif
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                         aria-labelledby="home-tab" tabindex="0">
-                                        <div class="d-flex justify-content-between px-2 py-2 mt-3">
-                                            <p class="mb-1">Included mileage limit</p>
-                                            <p class="text-dark mb-1">{{ $details->per_day_mileage }} km</p>
-                                        </div>
-                                        <hr class="my-2">
-                                        <div class="d-flex justify-content-between px-2 py-2">
-                                            <p class="mb-1">Included mileage limit</p>
-                                            <p class="text-dark mb-1">250 km</p>
-                                        </div>
-                                        <hr class="mt-2 mb-0">
-                                    </div>
-                                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-                                         aria-labelledby="profile-tab" tabindex="0">
-                                        <div class="d-flex justify-content-between px-2 py-2 mt-3">
-                                            <p class="mb-1">Included mileage limit</p>
-                                            <p class="text-dark mb-1">{{ $details->weekly_mileage }} km</p>
-                                        </div>
-                                        <hr class="my-2">
-                                        <div class="d-flex justify-content-between px-2 py-2">
-                                            <p class="mb-1">Insurance</p>
-                                            <p class="text-dark mb-1">Basic Comprehensive</p>
-                                        </div>
-                                        <hr class="mt-2 mb-0">
-                                    </div>
-
-                                    @if (!empty($details->get_mileage))
-                                        @if (count($details->get_mileage) > 0)
-                                            @php
-                                                // Assuming keys in $details->get_mileage are like 'one_month', 'three_months', etc.
-                                                $mileage_data = $details->get_mileage;
-
-                                                // Define the months and their IDs (adjusted to match actual keys in $mileage_data)
-                                                $months = [
-                                                    'one_month' => ['id' => 1, 'name' => 'One month'],
-                                                    'three_months' => ['id' => 2, 'name' => 'Three months'],
-                                                    'six_months' => ['id' => 3, 'name' => 'Six months'],
-                                                    'nine_months' => ['id' => 4, 'name' => 'Nine months'],
-                                                    'twelve_months' => ['id' => 5, 'name' => 'Twelve months'],
-                                                ];
-
-                                                // Initialize variables
-                                                $non_null_months = 0;
-                                                $non_null_month_data = [];
-
-                                                // Iterate through each month and check for non-null values
-                                                foreach ($months as $key => $month) {
-                                                    // Check if the key exists in $mileage_data and is not null
-                                                    if (
-                                                        $mileage_data->has($key) &&
-                                                        !is_null($mileage_data->{$key})
-                                                    ) {
-                                                        $non_null_months++;
-                                                        $non_null_month_data[] = [
-                                                            'id' => $month['id'],
-                                                            'name' => $month['name'],
-                                                        ];
-                                                    }
-                                                }
-                                            @endphp
-                                            {{-- {{dd($months)}} --}}
-
-                                            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
-                                                 aria-labelledby="contact-tab" tabindex="0">
-                                                <div class="d-flex justify-content-between px-2 py-2 mt-3">
-
-                                                    <p class="mb-1">Monthly</p>
-                                                    <div class="row">
-                                                        <div class="col">
-
-                                                            @php
-                                                                $minMileage = null;
-                                                            @endphp
-                                                            @foreach ($details->get_mileage as $mileage)
-                                                                @php
-                                                                    $mileageValues = [
-                                                                        $mileage->one_month,
-                                                                        $mileage->three_months,
-                                                                        $mileage->six_months,
-                                                                        $mileage->nine_months,
-                                                                        $mileage->twelve_months,
-                                                                    ];
-                                                                    $nonNullMileageValues = array_filter(
-                                                                        $mileageValues,
-                                                                        fn($v) => !is_null($v),
-                                                                    );
-
-                                                                    if (!empty($nonNullMileageValues)) {
-                                                                        $currentMinMileage = min(
-                                                                            $nonNullMileageValues,
-                                                                        );
-                                                                        if (
-                                                                            $minMileage === null ||
-                                                                            $currentMinMileage < $minMileage
-                                                                        ) {
-                                                                            $minMileage = $currentMinMileage;
-                                                                        }
-                                                                    }
-                                                                @endphp
-                                                            @endforeach
-
-
-
-                                                            @php
-                                                                $nonNullMonths = [];
-
-                                                                // Loop through each mileage entry and gather non-null months
-                                                                foreach ($details->get_mileage as $mileage) {
-                                                                    if (!is_null($mileage->one_month)) {
-                                                                        $nonNullMonths['one_month'] = '1 Month';
-                                                                    }
-                                                                    if (!is_null($mileage->three_months)) {
-                                                                        $nonNullMonths['three_months'] =
-                                                                            '3 Months';
-                                                                    }
-                                                                    if (!is_null($mileage->six_months)) {
-                                                                        $nonNullMonths['six_months'] =
-                                                                            '6 Months';
-                                                                    }
-                                                                    if (!is_null($mileage->nine_months)) {
-                                                                        $nonNullMonths['nine_months'] =
-                                                                            '9 Months';
-                                                                    }
-                                                                    if (!is_null($mileage->twelve_months)) {
-                                                                        $nonNullMonths['twelve_months'] =
-                                                                            '12 Months';
-                                                                    }
-                                                                }
-                                                            @endphp
-                                                            <select class="form-select-sm" id="get_month">
-
-                                                                @foreach ($nonNullMonths as $key => $month)
-                                                                    {{-- {{   dd($nonNullMonths['id'])}} --}}
-                                                                    <option value="{{ $key }}">
-                                                                        {{ $month }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-
-                                                    @php
-                                                        $uniqueMileages = [];
-
-                                                        // Loop through each mileage entry and gather non-null months
-                                                        foreach ($details->get_mileage as $mileage) {
-                                                            if (
-                                                                !is_null($mileage->one_month) ||
-                                                                !is_null($mileage->three_months) ||
-                                                                !is_null($mileage->six_months) ||
-                                                                !is_null($mileage->nine_months) ||
-                                                                !is_null($mileage->twelve_months)
-                                                            ) {
-                                                                // Use mileage as key to ensure uniqueness
-                                                                $uniqueMileages[$mileage->id] =
-                                                                    $mileage->mileage;
-                                                            }
-                                                        }
-                                                    @endphp
-
-                                                    {{-- <p class="text-dark mb-1">1 {{ $month}}</p> --}}
-
-                                                </div>
-                                                <hr class="my-2">
-
-                                                <div
-                                                    class="d-flex justify-content-between align-items-center px-2 py-2">
-                                                    <p class="mb-1">Included mileage limit</p>
-                                                    <div>
-
-                                                        <select
-                                                            class="form-select form-select-sm mileagesdata"
-                                                            id="mileageslt" style="width: auto;">
-                                                            @foreach ($uniqueMileages as $id => $mileage)
-                                                                <option value="{{ $id }}">
-                                                                    {{ $mileage }} km
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-
-                                                    {{-- <p class="mb-1">Included mileage limit</p> --}}
-                                                    {{-- <p class="text-dark mb-1">4500 km</p> --}}
-
-                                                </div>
-                                                <hr class="my-2">
-                                                <div class="d-flex justify-content-between px-2 py-2">
-                                                    <p class="mb-1">Additional mileage charge</p>
-                                                    <p class="text-dark mb-1">AED {{$details->monthly_extra}} / km</p>
-                                                </div>
-                                                <hr class="mt-2 mb-0">
-                                            </div>
-                                        @endif
-
-                                    @endif
-                                </div>
-                                <p class="bg-secondary py-2 px-2 text-light fs_13 mb-0" data-bs-toggle="offcanvas"
-                                   href="#suplierNote_offcanvas" role="button"
-                                   aria-controls="suplierNote_offcanvas">Supplier Note: + 5% VAT applicable.
-                                    {{$details->get_user->company_name ?? ''}} ...</p>
-                            </div>
-                        </div>
-
-
-                        <div class="mt-3">
-                            <div class="open_div py-2 px-3 rounded d-flex align-items-center justify-content-between"
-                                 onclick="tableShow()">
-
-
-                                @php
-                                    $currentDay = ucfirst(date('l'));
-                                    $currentTime = date('H:i:s');
-                                @endphp
-
-
-                                @if (!empty($shop_timings))
-                                    @foreach ($shop_timings as $time)
-                                        @if ($time['day_of_week'] == $currentDay)
-                                            @if ($time['opening_time'] == $time['closing_time'])
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fa-solid fa-clock icon_green"></i>&nbsp;&nbsp; <p
-                                                        class="mb-0">
-                                                        Open 24 Hours
-                                                </div>
-                                            @endif
-                                        @else
-                                            @if ($time['day_of_week'] == $currentDay || $time['closing_time'] == $currentTime)
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fa-solid fa-clock icon_green"></i>&nbsp;&nbsp; <p
-                                                        class="mb-0">
-                                                        {{ date('g:i A', strtotime($time['opening_time'])) }}-
-                                                        {{ date('g:i A', strtotime($time['closing_time'])) }}</p>
-                                                </div>
-                                            @endif
-                                        @endif
-                                    @endforeach
-                                @else
-                                    <div class="d-flex align-items-center">
-                                        <i class="fa-solid fa-clock icon_green"></i>&nbsp;&nbsp; <p
-                                            class="mb-0">
-                                            Shop Timings not updated
-                                    </div>
-                                @endif
-                                <div>
-                                    <p class="mb-0">
-                                        <i class="fa-solid fa-chevron-right" id="arrow_right"></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <table class="table table-striped mt-2 d-none" id="open_time" cellspacing="0">
-
-                                @php
-                                    $currentDay = ucfirst(date('l'));
-                                @endphp
-                                <tbody>
-                                @foreach ($shop_timings as $time)
-                                    @if ($time['day_of_week'] == $currentDay)
-                                        <tr style="font-weight:bold;">
-                                            <td>{{ $time['day_of_week'] }}</td>
-                                            <td>
-                                                @if ($time['opening_time'] == $time['closing_time'])
-                                                    Open 24 Hours
-                                                    @else
-                                                    {{ date('g:i A', strtotime($time['opening_time'])) }}
-                                                    &mdash;
-                                                    {{ date('g:i A', strtotime($time['closing_time'])) }}
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td>{{ $time['day_of_week'] }}</td>
-                                            <td>
-                                                @if ($time['opening_time'] == $time['closing_time'])
-                                                    Open 24 Hours
-                                                    @else
-                                                    {{ date('g:i A', strtotime($time['opening_time'])) }}
-                                                    &mdash;
-                                                    {{ date('g:i A', strtotime($time['closing_time'])) }}
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                                {{-- <tr style="font-weight:bold;">
-                                    <td>Saturday</td>
-                                    <td>9:00am – 9:00pm</td>
-                                </tr> --}}
-                                </tbody>
-                            </table>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <em>
-                <b class="clr_danger">Note:</b> The above listings including the
-                prices are updated by the respective car rental company. Incase the
-                car is not available at the price mentioned (exclusive of VAT), please
-                inform us and weâ€™ll get back to you with the best alternative. Happy
-                renting!
-            </em>
         </div>
     </section>
 
@@ -1278,28 +1262,36 @@
         </div>
     </div>
 
-    {{-- off canvas features --}}
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="see_more_feature" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">Car Specs</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div>
-
-                <div>
-
-                    <div class="mt-4">
-                        <h5 class="fw-bold">Listed in</h5>
-
-                    </div>
-
+    <!-- Note Modal -->
+    <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="exampleModalLabel">Note:</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <div class="aboutContent contentWrap fullDescription note">
+                        <p><span>Supplier Note:</span> {{$details->get_user->company_name ?? ''}}</p>
+                        <p>
+                            {{$details->customer_note}}
+                        </p>
 
-
+                        <p>
+                            <span class="text_theme">OneTapDrive Note:</span>
+                            The listing above (including It's pricing, features and other details) is advertised
+                            by {{$details->get_user->company_name ?? ''}}. Please get in touch with the supplier
+                            directly by contacting on the listed phone number, WhatsApp no. or simply Request a Call to
+                            rent this car.
+                        </p>
+                        <p>
+                            Incase the car is not available at the price mentioned,
+                            <span class="text_theme">please report this listing</span>.
+                            Happy renting!
+                        </p>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 
@@ -1388,33 +1380,7 @@
 
     {{-- off canvas mail_offcanvas --}}
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="suplierNote_offcanvas"
-         aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">Note</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div>
-                <p><span class="text_theme">Supplier Note:</span> {{$details->get_user->company_name ?? ''}}</p>
-                <p>
-                    {{$details->customer_note}}
-                </p>
-                <p>
-                    <span class="text_theme">OneTapDrive Note:<span> The listing above (including It's pricing, features
-                            and other details) is advertised by {{$details->get_user->company_name ?? ''}}. Please get in touch with the supplier
-                            directly by contacting on the listed phone number, WhatsApp no. or simply Request a Call to rent
-                            this car.
-                </p>
-                <p>
-                    Incase the car is not available at the price mentioned, <span class="text_theme">please report this
-                        listing</span>. Happy renting!
-                </p>
-
-            </div>
-
-        </div>
-    </div>
+@endsection
 
 @section("script")
     <script>
@@ -1592,19 +1558,6 @@
                 }
             }
 
-            function tableShow() {
-
-                const open_time = document.getElementById('open_time')
-                const arrow_right = document.getElementById('arrow_right')
-                open_time.classList.toggle('d-none')
-                if (open_time.classList.contains('d-none')) {
-                    arrow_right.style.transform = 'rotate(0deg)';
-                } else {
-                    arrow_right.style.transform = 'rotate(84deg)';
-                }
-
-            }
-
             $('.phonelead').on('click', function (e) {
                 e.preventDefault();
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -1643,6 +1596,19 @@
 
             })
         });
+
+        function tableShow() {
+
+            const open_time = document.getElementById('open_time')
+            const arrow_right = document.getElementById('arrow_right')
+            open_time.classList.toggle('d-none')
+            if (open_time.classList.contains('d-none')) {
+                arrow_right.style.transform = 'rotate(0deg)';
+            } else {
+                arrow_right.style.transform = 'rotate(84deg)';
+            }
+
+        }
 
         document.addEventListener("DOMContentLoaded", function () {
             const myWpElements1 = document.querySelectorAll(".my_wp1");
@@ -1732,4 +1698,3 @@
     </script>
 @endsection
 
-@endsection

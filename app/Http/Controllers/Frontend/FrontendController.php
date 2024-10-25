@@ -329,7 +329,7 @@ class FrontendController extends Controller
 
     public function Brands()
     {
-                $brands = Brand::where('status', 1)->get();
+        $brands = Brand::where('status', 1)->get();
 
         return view('frontend.brands', get_defined_vars());
 
@@ -467,11 +467,31 @@ class FrontendController extends Controller
 
     public function carDetails(Request $request, $slug)
     {
-        $details = Product::where('slug', $slug)->where('status', 1)->where('is_admin_approve', 1)->with('get_user.shop_timings', 'get_images', 'get_mileage', 'get_brand_name')->first();
-        $related_products = Product::where('brand_id', $details->brand_id)->where('status', 1)->where('is_admin_approve', 1)->with('get_user.shop_timings', 'get_images', 'get_mileage', 'get_brand_name')->get();
-        // return $related_products;
+        $details = Product::where('slug', $slug)
+            ->where('status', 1)
+            ->where('is_admin_approve', 1)
+            ->with('get_user.shop_timings', 'get_images', 'get_mileage', 'get_brand_name')
+            ->first();
+
+// Related products with same brand
+        $related_products = Product::where('brand_id', $details->brand_id)
+            ->where('status', 1)
+            ->where('is_admin_approve', 1)
+            ->with('get_user.shop_timings', 'get_images', 'get_mileage', 'get_brand_name')
+            ->get();
+
+// Cars with same category as $details
+        $cars = Product::with('get_images', 'get_mileage', 'get_user', 'get_brand_name')
+            ->where('category', $details->category)  // Filter by category
+            ->where('status', 1)
+            ->where('is_admin_approve', 1)
+            ->take(10)
+            ->get();
+
+// Optional: Return or manipulate the data as needed
         $data = json_decode($details, true);
         $shop_timings = $data['get_user']['shop_timings'];
+
 
         if (Auth::user()) {
             $viewed_car = ViewCar::where('user_id', Auth::user()->id)->where('product_id', $details->id)->first();
@@ -495,6 +515,13 @@ class FrontendController extends Controller
     {
         $chauffeur_details = CarWithDriver::where('slug', $slug)->with('get_user')->first();
         $related_products = CarWithDriver::where('brand_name', $chauffeur_details->brand_name)->orderBy('id', 'desc')->take(5)->get();
+// Cars with same category as $details
+        $cars = Product::with('get_images', 'get_mileage', 'get_user', 'get_brand_name')
+            ->where('category', $chauffeur_details->category_type)  // Filter by category
+            ->where('status', 1)
+            ->where('is_admin_approve', 1)
+            ->take(10)
+            ->get();
 
         return view('frontend.chauffeur-details', get_defined_vars());
     }
@@ -502,6 +529,13 @@ class FrontendController extends Controller
     public function carWithDriverDetails(Request $request, $slug)
     {
         $car_details = CarWithDriver::where('slug', $slug)->with('get_user')->first();
+// Cars with same category as $details
+        $cars = Product::with('get_images', 'get_mileage', 'get_user', 'get_brand_name')
+            ->where('category', $car_details->category_type)  // Filter by category
+            ->where('status', 1)
+            ->where('is_admin_approve', 1)
+            ->take(10)
+            ->get();
         return view('frontend.car-with-driver-details', get_defined_vars());
     }
 

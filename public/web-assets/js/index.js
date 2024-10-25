@@ -2,6 +2,7 @@ $(function () {
     showDropdown()
     allSlider()
     menuToggler()
+    showHideUpdateBtn()
     Fancybox.bind("[data-fancybox]", {
         buttons: [
             "slideShow",
@@ -64,10 +65,10 @@ function allSlider() {
     const brandSwiper = new Swiper(".brandSwiper", {
         slidesPerView: 4,
         loop: true,
-        spaceBetween: 20,
-        // autoplay: {
-        //     delay: 2500
-        // },
+        spaceBetween: 10,
+        autoplay: {
+            delay: 1500
+        },
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -76,22 +77,27 @@ function allSlider() {
             575: {
                 slidesPerView: 4.5,
             },
-            768: {
+            767: {
                 slidesPerView: 5.5,
             },
+            991: {
+                slidesPerView: 7.75,
+            },
             1199: {
-                centeredSlides: true,
-                slidesPerView: 5,
+                slidesPerView: 7,
+            },
+            1366: {
+                slidesPerView: 10,
             },
         },
     });
     const carsSwiper = new Swiper(".carsSwiper", {
         slidesPerView: 1.125,
         loop: true,
-        spaceBetween: 20,
-        // autoplay: {
-        //     delay: 2500
-        // },
+        spaceBetween: 10,
+        autoplay: {
+            delay: 1500
+        },
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -99,23 +105,27 @@ function allSlider() {
         breakpoints: {
             575: {
                 slidesPerView: 1.5,
+                spaceBetween: 20,
             },
             768: {
                 slidesPerView: 2.5,
+                spaceBetween: 20,
             },
             1199: {
                 centeredSlides: true,
+                spaceBetween: 20,
                 slidesPerView: 4,
             },
         },
     });
+
     const carFullSwiper = new Swiper(".carFullSwiper", {
-        slidesPerView: 1,
+        slidesPerView: 1.125,
         loop: true,
-        spaceBetween: 20,
-        // autoplay: {
-        //     delay: 2500
-        // },
+        spaceBetween: 10,
+        autoplay: {
+            delay: 1500
+        },
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -123,12 +133,15 @@ function allSlider() {
         breakpoints: {
             575: {
                 slidesPerView: 1.5,
+                spaceBetween: 20,
             },
             768: {
                 slidesPerView: 2.5,
+                spaceBetween: 20,
             },
             1199: {
                 centeredSlides: true,
+                spaceBetween: 20,
                 slidesPerView: 4,
             },
         },
@@ -178,6 +191,19 @@ function allSlider() {
         },
         parallax: true,
         speed: 1000
+    });
+    const adsBannerSlider = new Swiper(".adsBannerSlider", {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        loop: true,
+        // autoplay: {
+        //     delay: 2000
+        // },
+        // Navigation arrows
+        navigation: {
+            nextEl: '.adsBannerCont .swiper-button-next',
+            prevEl: '.adsBannerCont .swiper-button-prev',
+        },
     });
 }
 
@@ -232,11 +258,35 @@ function onOpenCollapse(id) {
     let contentHeight = document.getElementById(`${id}-content`).getBoundingClientRect().height;
 
     if (parentElem.getBoundingClientRect().height > 60) {
-        parentElem.style.height = 60 + "px"
-        document.getElementById(`${id}-arrow`).style.transform = 'rotate(0deg)'
+        parentElem.style.height = 60 + "px";
+        document.getElementById(`${id}-arrow`).style.transform = 'rotate(0deg)';
     } else {
-        console.log(parentElem, contentHeight + 60)
-        parentElem.style.height = `${contentHeight + 60}px`
-        document.getElementById(`${id}-arrow`).style.transform = 'rotate(-180deg)'
+        // console.log(parentElem, contentHeight + 60);
+        parentElem.style.height = `${contentHeight + 60}px`;
+        document.getElementById(`${id}-arrow`).style.transform = 'rotate(-180deg)';
     }
+}
+
+function showHideUpdateBtn() {
+    let inputBoxes = document.querySelectorAll('.custom_collapse')
+
+    inputBoxes.forEach((box) => {
+        let checkboxInputBox = box.querySelectorAll(".collapse_content:has(.checkboxInput)");
+        let inputBoxes = box.querySelectorAll(".collapse_content:not(:has(.checkboxInput))");
+        checkboxInputBox.forEach((innerBox) => {
+            let input = innerBox.querySelector("input")
+            let btn = innerBox.querySelector(".updateBtn")
+            input.addEventListener('change', () => {
+                btn.style.display = input.checked ? 'block' : 'none';
+            })
+        })
+        inputBoxes.forEach((innerBox) => {
+            let input = innerBox.querySelector("input,select")
+            console.log(input)
+            let btn = innerBox.querySelector(".updateBtn")
+            input.addEventListener('change', () => {
+                btn.style.display = input.checked ? 'block' : 'none';
+            })
+        })
+    })
 }
